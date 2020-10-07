@@ -10,7 +10,6 @@ using std::string;
 
 int main() {
 	Map map;
-	//vector<std::pair<string, Territory*>> edges;
 	
 	// add continents: Bretagne 3, Languedoc-Roussillon 3 
 	map.addContinent("Bretagne", 3);
@@ -31,10 +30,10 @@ int main() {
 	map.addEdge("Morbihan", * map.getTerritory(1));
 	map.addEdge("Morbihan", * map.getTerritory(2));
 	map.addEdge("Morbihan", * map.getTerritory(3));
-	map.addEdge("Finistere", *map.getTerritory(0));
-	map.addEdge("Cotes-d-Armor", *map.getTerritory(0));
-	map.addEdge("Herault", *map.getTerritory(0));
-	map.addEdge("Ille-et-Vilaine", *map.getTerritory(0));
+	map.addEdge("Finistere", * map.getTerritory(0));
+	map.addEdge("Cotes-d-Armor", * map.getTerritory(0));
+	map.addEdge("Herault", * map.getTerritory(0));
+	map.addEdge("Ille-et-Vilaine", * map.getTerritory(0));
 
 	//Setup continents
 	map.addTerritoriesToContinents();
