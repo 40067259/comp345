@@ -3,15 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-int main() {
-	Map map = MapLoader::loadMap("estonia.map");
-	map.printMapInfo();
-	cout << endl;
-	map.printMap();
-	cout << endl;
-	
-	system("pause");
-}
+
 Map MapLoader::loadMap(std::string fileInput)
 {
 
