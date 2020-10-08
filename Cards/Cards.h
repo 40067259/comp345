@@ -16,8 +16,8 @@ public:
 	cardType type;
 	Card();
 	Card(cardType cardType);
-	//Play(Player* player);
 	cardType getType();
+	void play(Player& player,Card &card);
 };
 
 	

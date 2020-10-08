@@ -16,6 +16,10 @@ Card::cardType Card::getType() {
 	return this->type;
 }
 
+void Card::play(Player& player,Card &card) {
+	player.issueOrder(card);
+}
+
 Deck::Deck(){
 	availableCards = new vector<Card>();
 	availableCards->emplace_back("Spy");
