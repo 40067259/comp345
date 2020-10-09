@@ -1,19 +1,14 @@
 #include "MapLoader.h"
 #include "Map.h"
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <vector>
+#include <list>
+#include <string>
+using std::cout;
+using std::string;
+using std::ifstream;
 
 
-MapLoader::MapLoader()
-{
-    
-}
-
-MapLoader::~MapLoader()
-{
-
+MapLoader::MapLoader() : Map()
+{ 
 }
 
 MapLoader MapLoader::loadMap(string fileInput)
@@ -21,11 +16,9 @@ MapLoader MapLoader::loadMap(string fileInput)
 
     MapLoader map;
 
-    std::string line;
-    std::ifstream fileToRead;
-
-    fileToRead.open(fileInput);
-
+    string line;
+    ifstream fileToRead(fileInput);
+    
     if (fileToRead.is_open())
     {
         //[Continents]
@@ -93,9 +86,23 @@ MapLoader MapLoader::loadMap(string fileInput)
                 armiesNbStr = armiesNbStr.substr(3, armiesNbStr.length());
                 const int emptySpace_armiesNb2 = armiesNbStr.find(" ");
                 armiesNbStr = armiesNbStr.substr(0, emptySpace_armiesNb2);
-
+                
                 //convert string to integer
-                int armiesNb = std::stoi(armiesNbStr);
+                int armiesNb=0;
+                try {
+                    armiesNb = std::stoi(armiesNbStr);
+                }
+                catch (const std::exception& ex) {
+                    cout << "";
+                }
+                catch (const std::string& ex) {
+                    cout << "";
+                }
+                catch (...) {
+                    cout << "";
+                }
+                //convert string to integer
+                
                 // [armies]
 
                 // [index]
@@ -107,12 +114,25 @@ MapLoader MapLoader::loadMap(string fileInput)
                 }
 
                 //convert string to integer
-                int indexNb = std::stoi(indexNbStr);
+                int indexNb=0;
+                try {
+                    indexNb = std::stoi(indexNbStr);
+                }
+                catch (const std::exception& ex) {
+                    cout << "";
+                }
+                catch (const std::string& ex) {
+                    cout << "";
+                }
+                catch (...) {
+                    cout << "";
+                }
+                //convert string to integer
+
                 // [index]
 
                 // [add country to unordered map]
-                map.addTerritory(country, continentNbStr, armiesNb, indexNb); //change continentNbStr to real continent name
-                // [add country to unordered map]
+                map.addTerritory(country, continentNbStr, armiesNb, indexNb);
 
                 // [Setup edges]
                 map.addEdge(country, *map.getTerritory(country));
@@ -144,7 +164,19 @@ MapLoader MapLoader::loadMap(string fileInput)
                 armiesNbStr = armiesNbStr.substr(0, emptySpace_armiesNb2);
 
                 //convert string to integer
-                int armiesNb = std::stoi(armiesNbStr);
+                int armiesNb=0;
+                try {
+                    armiesNb = std::stoi(armiesNbStr);
+                }
+                catch (const std::exception& ex) {
+                    cout << "";
+                }
+                catch (const std::string& ex) {
+                    cout << "";
+                }
+                catch (...) {
+                    cout << "";
+                }
                 // [armies]
 
                 // [index]
@@ -156,11 +188,24 @@ MapLoader MapLoader::loadMap(string fileInput)
                 }
 
                 //convert string to integer
-                int indexNb = std::stoi(indexNbStr);
+                int indexNb=0;
+                try {
+                    indexNb = std::stoi(indexNbStr);
+                }
+                catch (const std::exception& ex) {
+                    cout << "";
+                }
+                catch (const std::string& ex) {
+                    cout << "";
+                }
+                catch (...) {
+                    cout << "";
+                }
+                //convert string to integer
                 // [index]
 
                 // [add country to unordered map]
-                map.addTerritory(country, continentNbStr, armiesNb, indexNb); //change continentNbStr to real continent name
+                map.addTerritory(country, continentNbStr, armiesNb, indexNb);
                 // [add country to unordered map]
             }
             count++;
@@ -179,6 +224,8 @@ MapLoader MapLoader::loadMap(string fileInput)
     // [Setup continents]
     map.addTerritoriesToContinents();
     // [Setup continents]
+
+    fileToRead.close();
 
     return map;
 }
