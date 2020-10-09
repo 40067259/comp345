@@ -26,5 +26,9 @@ private:
 	std::string name;
 	int armies;
 	int index;
+<<<<<<< Updated upstream:Map/Territory.h
 	//Player* owner;
+=======
+	Player* owner;
+>>>>>>> Stashed changes:Risk/Territory.h
 };
