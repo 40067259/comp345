@@ -1,14 +1,15 @@
 #include <iostream>
-#include "Map.h"
-#include "MapLoader.h"
+#include "Risk/Map.h"
+#include "Risk/MapLoader.h"
 #include <string>
 #include <fstream>
-#include <queue>
-#include <set>
-
 using namespace std;
+
 int main() {
-	Map map = MapLoader::loadMap("estonia.map");
+	MapLoader map;
+	map.loadMap("Ressources/estonia.map");
+	//map.loadMap("france.map");
+	//map.loadMap("google.map");
 	map.printMapInfo();
 	cout << endl;
 	map.printMap();

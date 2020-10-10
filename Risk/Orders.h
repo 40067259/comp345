@@ -6,7 +6,7 @@ class Orders
 {
 public:
 	std::string orderType = " none"; //deploy, advance, bomb, blockade, airlift, or negotiate
-
+	
 	Orders();
 	Orders(std::string);
 	~Orders();
