@@ -13,6 +13,7 @@ private:
     OrdersList _playerOrderList;
 
 public:
+   Player();
    Player(std::vector<Territory> territories, Card cards);
    std::vector<Territory> toDefend();
    std::vector<Territory> toAttack();

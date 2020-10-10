@@ -1,6 +1,8 @@
 #include "Player.h"
 #include <vector>
 
+
+
 Player::Player(std::vector<Territory> territories, Card cards) {
     territories = _territories;
     cards = _cards;
