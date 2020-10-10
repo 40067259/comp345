@@ -3,7 +3,6 @@
 #include "MapLoader.h"
 #include <string>
 #include <fstream>
-using namespace std;
 
 int main() {
 	MapLoader map;
@@ -11,9 +10,9 @@ int main() {
 	//map.loadMap("france.map");
 	//map.loadMap("google.map");
 	map.printMapInfo();
-	cout << endl;
+	std::cout << std::endl;
 	map.printMap();
-	cout << endl;
+	std::cout << std::endl;
 	
 	system("pause");
 }
