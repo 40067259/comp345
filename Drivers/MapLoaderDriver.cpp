@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Risk/Map.h"
-#include "Risk/MapLoader.h"
+#include "../Risk/Map.h"
+#include "../Risk/MapLoader.h"
 #include <string>
 #include <fstream>
 using namespace std;

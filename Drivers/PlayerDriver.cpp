@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Risk/Player.h"
+#include "../Risk/Player.h"
 
 using namespace std;
 

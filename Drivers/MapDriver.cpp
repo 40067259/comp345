@@ -1,5 +1,5 @@
-#include "Map.h"
-//#include "MapLoader.h"
+#include "../Risk/Map.h"
+//#include "../Risk/MapLoader.h"
 #include <iostream>
 #include <string>
 
