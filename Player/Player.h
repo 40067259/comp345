@@ -19,14 +19,12 @@ private:
 
 public:
 
-   Player();
    Player(std::vector<Territory> &territories /*,Card cards*/);
    std::vector<Territory> arbitraryTerritoriesToAttack; //TEMPORARY: For the first assignement
    std::vector<Territory> toDefend();
    std::vector<Territory> toAttack();
    void issueOrder(int orderType);
    void printPlayerOrders();
-  void printPlayerTerritories();
 
 
 };
