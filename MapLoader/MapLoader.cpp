@@ -9,16 +9,19 @@ using std::string;
 using std::ifstream;
 
 
-MapLoader::MapLoader() : Map()
+MapLoader::MapLoader()/* : Map()*/
 { 
 }
 
 
+
 MapLoader MapLoader::loadMap(string fileInput)
 {
-    int count = 1;
-    MapLoader map;
 
+    //MapLoader map;
+
+    int count = 1;
+    
     string line;
 
     ifstream fileToRead(fileInput);
@@ -224,3 +227,4 @@ MapLoader MapLoader::loadMap(string fileInput)
  return map;
 
 }
+
