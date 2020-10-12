@@ -7,10 +7,12 @@
 #include "Map.h"
 using std::string;
 
-class Map;
-class MapLoader : public Map
+//class Map;
+class MapLoader/* : public Map*/
 {
 public:
     MapLoader();
     MapLoader loadMap(string fileInput);
+    Map map;
+    
 };
