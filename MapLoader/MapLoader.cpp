@@ -2,6 +2,8 @@
 #include "Map.h"
 #include <list>
 #include <string>
+#include <vector>
+using std::vector;
 using std::cout;
 using std::string;
 using std::ifstream;
@@ -11,237 +13,20 @@ MapLoader::MapLoader() : Map()
 { 
 }
 
+
 MapLoader MapLoader::loadMap(string fileInput)
 {
-
-    MapLoader map;
-
-    string line;
-    ifstream fileToRead(fileInput);
-    
-    if (fileToRead.is_open())
-    {
-        //[Continents]
-        // [to get the continents section]
-        while (std::getline(fileToRead, line))
-        {
-            if (line == "[continents]")
-            {
-                break;
-            }
-        }
-        // [to get the continents section]
-        while (std::getline(fileToRead, line) && line != "")
-        {
-
-            const int equalsIndex = line.find(" ");
-            const std::string continent = line.substr(0, equalsIndex);
-            const int value = std::stoi(line.substr(equalsIndex + 1));
-
-            // add continentName and nativeArmy
-            map.addContinent(continent, value);
-            cout << "Continent: " << continent << " Value: " << value << "\n";
-        }
-        cout << "\n";
-        //[Continents]
-
-        //[Territories]
-        // [to get the countries section]
-        while (std::getline(fileToRead, line))
-        {
-            if (line == "[countries]")
-            {
-                break;
-            }
-        }
-        // [to get the countries section]
-        int count = 1;
-        while (std::getline(fileToRead, line) && line != "")
-        {
-            if (count < 10)
-            {
-
-                // [country]
-                std::string country = line.substr(2, line.length());
-                const int equalsIndex = country.find(" ");
-                country = country.substr(0, equalsIndex);
-                // [country]
-
-                // [continent number]
-                string continentNbStr = line.substr(3, line.length());
-                continentNbStr = continentNbStr.substr(equalsIndex, continentNbStr.length());
-                continentNbStr = continentNbStr.substr(0, 1);
-
-                //convert string to integer
-                int continentNb = std::stoi(continentNbStr);
-
-                std::string continentName;
-
-                // [continent number]
-
-                // [armies]
-                std::string armiesNbStr = line.substr(2, line.length());
-                const int emptySpace_armiesNb = armiesNbStr.find(" ");
-                armiesNbStr = armiesNbStr.substr(emptySpace_armiesNb, armiesNbStr.length());
-                armiesNbStr = armiesNbStr.substr(3, armiesNbStr.length());
-                const int emptySpace_armiesNb2 = armiesNbStr.find(" ");
-                armiesNbStr = armiesNbStr.substr(0, emptySpace_armiesNb2);
-                
-                //convert string to integer
-                int armiesNb=0;
-                try {
-                    armiesNb = std::stoi(armiesNbStr);
-                }
-                catch (const std::exception& ex) {
-                    cout << "";
-                }
-                catch (const std::string& ex) {
-                    cout << "";
-                }
-                catch (...) {
-                    cout << "";
-                }
-                //convert string to integer
-                
-                // [armies]
-
-                // [index]
-                std::string indexNbStr = line.substr(2, line.length()); //"Hiiumaa 1 167 172"
-                indexNbStr = indexNbStr.substr(indexNbStr.length() - 3, indexNbStr.length());
-                if (indexNbStr[0] == ' ')
-                {
-                    indexNbStr = indexNbStr.substr(0, indexNbStr.length());
-                }
-
-                //convert string to integer
-                int indexNb=0;
-                try {
-                    indexNb = std::stoi(indexNbStr);
-                }
-                catch (const std::exception& ex) {
-                    cout << "";
-                }
-                catch (const std::string& ex) {
-                    cout << "";
-                }
-                catch (...) {
-                    cout << "";
-                }
-                //convert string to integer
-
-                // [index]
-
-                // [add country to unordered map]
-                map.addTerritory(country, continentNbStr, armiesNb, indexNb);
-                // [add country to unordered map]
-
-                // [Setup edges]
-                map.addEdge(country, *map.getTerritory(country));
-                // [Setup edges]
-            }
-            else if (count > 9)
-            {
-                //country
-                std::string country = line.substr(3, line.length());
-                const int equalsIndex = country.find(" ");
-                country = country.substr(0, equalsIndex);
-                //country
-
-                // [continent number]
-                string continentNbStr = line.substr(4, line.length());
-                continentNbStr = continentNbStr.substr(equalsIndex, continentNbStr.length());
-                continentNbStr = continentNbStr.substr(0, 1);
-
-                //convert string to integer
-                int continentNb = std::stoi(continentNbStr);
-                // [continent number]
-
-                // [armies]
-                std::string armiesNbStr = line.substr(3, line.length());
-                const int emptySpace_armiesNb = armiesNbStr.find(" ");
-                armiesNbStr = armiesNbStr.substr(emptySpace_armiesNb, armiesNbStr.length());
-                armiesNbStr = armiesNbStr.substr(3, armiesNbStr.length());
-                const int emptySpace_armiesNb2 = armiesNbStr.find(" ");
-                armiesNbStr = armiesNbStr.substr(0, emptySpace_armiesNb2);
-
-                //convert string to integer
-                int armiesNb=0;
-                try {
-                    armiesNb = std::stoi(armiesNbStr);
-                }
-                catch (const std::exception& ex) {
-                    cout << "";
-                }
-                catch (const std::string& ex) {
-                    cout << "";
-                }
-                catch (...) {
-                    cout << "";
-                }
-                // [armies]
-
-                // [index]
-                std::string indexNbStr = line.substr(2, line.length()); //"Hiiumaa 1 167 172"
-                indexNbStr = indexNbStr.substr(indexNbStr.length() - 3, indexNbStr.length());
-                if (indexNbStr[0] == ' ')
-                {
-                    indexNbStr = indexNbStr.substr(0, indexNbStr.length());
-                }
-
-                //convert string to integer
-                int indexNb=0;
-                try {
-                    indexNb = std::stoi(indexNbStr);
-                }
-                catch (const std::exception& ex) {
-                    cout << "";
-                }
-                catch (const std::string& ex) {
-                    cout << "";
-                }
-                catch (...) {
-                    cout << "";
-                }
-                //convert string to integer
-                // [index]
-
-                // [add country to unordered map]
-                map.addTerritory(country, continentNbStr, armiesNb, indexNb);
-                // [add country to unordered map]
-            }
-            count++;
-        }
-        //[Territories]
-    }
-    else
-    {
-        cout << "No such file";
-    }
-
-    //[Re-read file]
-    fileToRead.clear();
-    fileToRead.seekg(0, fileToRead.beg);
-
-    // [Setup continents]
-    map.addTerritoriesToContinents();
-    // [Setup continents]
-
-    fileToRead.close();
-
-    return map;
-}
-
-MapLoader MapLoader::loadMapAlt(string fileInput)
-{
+    int count = 1;
     MapLoader map;
 
     string line;
 
     ifstream fileToRead(fileInput);
 
+    vector<string>continentsList; //to store continent for later use
+
     if (fileToRead.is_open())
     {
-        int count = 1;
         // [continents]
 
         // [to get the continents section]
@@ -254,6 +39,7 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
         }
         // [to get the continents section]
 
+        cout << "[Continent Section: ]" << "\n";
         while (std::getline(fileToRead, line) && line != "")
         {
 
@@ -263,9 +49,11 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
 
             // add continentName and nativeArmy
             map.addContinent(continent, value);
+            continentsList.push_back(continent);
             cout << "Continent: " << continent << " Value: " << value << "\n"; //TODO
         }
-        cout << "\n"; //TODO
+        cout << "[End of Continent Section]" << "\n";
+        //cout << "\n"; //TODO
 
         // [continents]
 
@@ -281,7 +69,7 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
         }
         // [to get the countries section]
 
-        
+        cout << "[Territory Section: ]" << "\n";
         while (std::getline(fileToRead, line) && line != "")
         {
             // [country]
@@ -292,7 +80,7 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
             int emptySpace_country2 = country.find(" ");
             country = country.substr(0, emptySpace_country2);
 
-            cout << country << "\n";
+            cout << country << "\n"; //TODO
 
             // [country]
 
@@ -307,7 +95,32 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
             int emptySpace_continent3 = continentNbStr.find(" ");
             continentNbStr = continentNbStr.substr(0, emptySpace_continent3);
 
-            cout << "continentNbStr: " << continentNbStr << "\n"; //TODO
+            //convert string to integer for continentNb
+            int continentNb = 0;
+            try {
+                continentNb = std::stoi(continentNbStr);
+                //cout << "index converted" << "\n";
+            }
+            catch (const std::exception& ex) {
+                cout << "no index";
+            }
+            catch (const std::string& ex) {
+                cout << "no index";
+            }
+            catch (...) {
+                cout << "no index";
+            }
+            //convert string to integer for index 
+
+            // [convert the number back to the name]
+            string continenttoParse= continentsList[0]; //continentNb
+            for (int i=0; i< continentNb; i++)
+            {
+                continenttoParse = continentsList[i];
+            }
+            cout << "Territory belongs to (continent): " << continenttoParse << "\n"; //TODO
+            // [convert the number back to the name]
+
             // [continent number]
 
 
@@ -363,7 +176,7 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
             emptySpace_indexNb4 = emptySpace_indexNb4 + 1;
             indexNbStr = indexNbStr.substr(emptySpace_indexNb4, indexNbStr.length() - 1);
 
-            //convert string to integer for 
+            //convert string to integer for index
             int indexNb = 0;
             try {
                 indexNb = std::stoi(indexNbStr);
@@ -378,20 +191,20 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
             catch (...) {
                 cout << "no index";
             }
-            //convert string to integer
+            //convert string to integer for index 
             cout << "Index: " << indexNbStr << "\n"; //TODO
 
             // [index]
 
 
             // [add country to unordered map]
-            map.addTerritory(/*country*/"Portugal", /*continentNbStr*/"continentTest", /*armiesNb*/1, /*indexNb*/2);
-
+            map.addTerritory(country, continenttoParse, armiesNb, indexNb);
             // [Setup edges]
-           // map.addEdge(country, *map.getTerritory(country));
+            map.addEdge(country, *map.getTerritory(country));
             // [Setup edges]
 
         }
+        cout << "[End of Territory Section]" << "\n";
          //[Territories]
     }
     else
@@ -410,5 +223,7 @@ MapLoader MapLoader::loadMapAlt(string fileInput)
 
  return map;
 
-
 }
+
+
+
