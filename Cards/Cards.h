@@ -17,7 +17,7 @@ public:
 	Card();
 	Card(cardType cardType);
 	cardType getType();
-	void play(Player& player,Card &card);
+	void play(Deck &deck,Hand &hand);
 };
 
 	
@@ -26,7 +26,7 @@ public:
 	Deck();
 	Deck(const Deck& deck);
 	~Deck();
-	Card draw(Player &player);
+	Card draw(Hand &hand);
 	void insertCard(Card &card);
 	vector<Card> getAvailableCards();
 private:

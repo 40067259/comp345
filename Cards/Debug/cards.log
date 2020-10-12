@@ -1,0 +1,6 @@
+﻿  Deck.cpp
+E:\C++\Workplace\cards\Deck.cpp(20,20): warning C4018: '<': signed/unsigned mismatch
+E:\C++\Workplace\cards\Deck.cpp(28,20): warning C4018: '<': signed/unsigned mismatch
+E:\C++\Workplace\cards\Deck.cpp(38,20): warning C4018: '<': signed/unsigned mismatch
+E:\C++\Workplace\cards\Deck.cpp(72): warning C4715: 'Deck::draw': not all control paths return a value
+  cards.vcxproj -> E:\C++\Workplace\cards\Debug\cards.exe
