@@ -8,10 +8,9 @@
 using std::string;
 
 class Map;
-class MapLoader: public Map
+class MapLoader : public Map
 {
 public:
     MapLoader();
     MapLoader loadMap(string fileInput);
-    MapLoader loadMapAlt(string fileInput);
 };
