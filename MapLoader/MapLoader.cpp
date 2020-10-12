@@ -3,6 +3,7 @@
 #include <list>
 #include <string>
 #include <vector>
+#include <iostream>
 using std::vector;
 using std::cout;
 using std::string;
@@ -15,7 +16,7 @@ MapLoader::MapLoader()/* : Map()*/
 
 
 
-MapLoader MapLoader::loadMap(string fileInput)
+void MapLoader::loadMap(string fileInput)
 {
 
     //MapLoader map;
@@ -223,8 +224,6 @@ MapLoader MapLoader::loadMap(string fileInput)
 //map.printMapInfo();
 
  fileToRead.close();
-
- return map;
 
 }
 
