@@ -1,3 +1,4 @@
+#pragma once
 #include "MapLoader.h"
 #include "Map.h"
 #include <list>
