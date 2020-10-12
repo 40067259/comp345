@@ -7,17 +7,17 @@ using std::cout;
 
 int main() {
 
-	MapLoader map;
-	map.loadMap("google.map");
-	//map.loadMap("france.map");
+	MapLoader maploader;
+	//map.loadMap("google.map");
+	maploader.loadMap("france.map");
 	//map.loadMap("estonia.map");
 
 	cout << "\n";
 
-	map.printMapInfo();
+	maploader.map.printMapInfo();
 	cout << std::endl;
 	
-	map.printMap();
+	maploader.map.printMap();
 	cout << std::endl;
 
 	system("pause");
