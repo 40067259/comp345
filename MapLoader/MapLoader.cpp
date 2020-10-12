@@ -193,11 +193,11 @@ MapLoader MapLoader::loadMap(string fileInput)
 
 
             // [add country to unordered map]
-            map.addTerritory(country, continenttoParse, armiesNb, indexNb);
+            map.addTerritory(country, continentsList[continentNb - 1], armiesNb, indexNb);
             // [Setup edges]
             map.addEdge(country, *map.getTerritory(country));
             // [Setup edges]
-
+            
         }
         cout << "[End of Territory Section]" << "\n";
          //[Territories]
@@ -210,15 +210,17 @@ MapLoader MapLoader::loadMap(string fileInput)
  fileToRead.clear();
  fileToRead.seekg(0, fileToRead.beg);
 
+
+
  // [Setup continents]
  map.addTerritoriesToContinents();
  // [Setup continents]
+
+// map.printMap();
+//map.printMapInfo();
 
  fileToRead.close();
 
  return map;
 
 }
-
-
-
