@@ -9,9 +9,10 @@
 
 Hand::Hand()
 {
-	hand = new std::vector<Card>;
+	hand = new vector<Card>;
 }
 
+//copy constructor
 Hand::Hand(const Hand& h)
 {
 	hand = new vector<Card>();
@@ -23,26 +24,26 @@ Hand::Hand(const Hand& h)
 
 Hand::~Hand()
 {
-	delete hand;
-	hand = NULL;
+	delete hand; // free the memory
+	hand = NULL; // assign pointer to null
 }
 
-std::vector<Card>* Hand::getHand()
+vector<Card>* Hand::getHand() // get cards of deck
 {
 	return hand;
 }
 
-void Hand::setHand(vector<Card>* toSet)
+void Hand::setHand(vector<Card>* toSet)// assign a vector to cards of deck
 {
 	hand = toSet;
 }
 
-void Hand::add(Card& card)
+void Hand::add(Card& card) // add a card to hand
 {
-	hand->emplace_back(card); //creates a card in the back of the vector with the type provided
+	hand->emplace_back(card); 
 }
 
-ostream& operator<<(ostream& ostream, const Hand& h)
+ostream& operator<<(ostream& ostream, const Hand& h)// print all cards in deck
 {
 	std::string cards = "";
 	for (int i = 0; i < h.hand->size(); i++)

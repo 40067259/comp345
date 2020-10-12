@@ -47,21 +47,20 @@ vector<Card>* Deck::getAvailableCards() {
 
 Deck::~Deck()
 {
-	delete availableCards;
-	availableCards = NULL;
+	delete availableCards;// delet the memory
+	availableCards = NULL; // set the pointer to null 
 }
 
 Card* Deck::draw(Hand* hand) {
 	if (availableCards->size() != 0) {
-		int randIndex = rand() % getAvailableCards()->size();
+		int randIndex = rand() % getAvailableCards()->size();// get a random int
 		cout << "The player starts to draw a card from deck..." << endl;
-		Card* card = &(availableCards->at(randIndex));
+		Card* card = &(availableCards->at(randIndex));// obtain the card accroding the randomInt
 		cout << "The random number is " << randIndex << ", " << *card << endl;
 		cout << "This round of draw finished" << endl;
-		hand->add(*card);
-	//	cout << "Erased card is :" << *(getAvailableCards()->begin() + randIndex) << endl;
-		availableCards->erase(getAvailableCards()->begin() + randIndex);
-		cout << "The deck infomation is : " << *this << endl;
+		hand->add(*card);//hand got a card
+		availableCards->erase(getAvailableCards()->begin() + randIndex);//deck pile lost a card
+		cout << "The deck infomation is : " << *this << endl;// after this draw round, the remaiding cards
 		return card;
 	}
 
@@ -70,29 +69,9 @@ Card* Deck::draw(Hand* hand) {
 	}
 
 }
-
-/*
-
+//got a card after it was played
 void Deck::insertCard(Card& card) {
 
-	if (card.getType() == "Spy") availableCards->insert(availableCards->begin() + 0, card);
-	else if (card.getType() == "Bomb") availableCards->insert(availableCards->begin() + 1, card);
-	else if (card.getType() == "Reinforcement") availableCards->insert(availableCards->begin() + 2, card);
-	else if (card.getType() == "Blockade") availableCards->insert(availableCards->begin() + 3, card);
-	else if (card.getType() == "Airlift") availableCards->insert(availableCards->begin() + 4, card);
-	else if (card.getType() == "Diplomacy") availableCards->insert(availableCards->begin() + 5, card);
-
-}*/
-
-void Deck::insertCard(Card& card) {
-	
-	/*if (card->getType() == "Spy") availableCards->insert(availableCards->begin()+ 0,*card);
-	else if (card->getType() == "Bomb") availableCards->insert(availableCards->begin() + 1, *card);
-	else if (card->getType() == "Reinforcement") availableCards->insert(availableCards->begin() + 2, *card);
-	else if (card->getType() == "Blockade") availableCards->insert(availableCards->begin() + 3, *card);
-	else if (card->getType() == "Airlift") availableCards->insert(availableCards->begin() + 4, *card);
-	else if (card->getType() == "Diplomacy") availableCards->insert(availableCards->begin() + 5, *card);*/
-	cout << "Card: " << &card << endl;
-	availableCards->push_back(card);
+	availableCards->emplace_back(card);//this deck obtains a card 
 	
 }
