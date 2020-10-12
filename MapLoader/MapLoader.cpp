@@ -42,7 +42,6 @@ MapLoader MapLoader::loadMap(string fileInput)
         cout << "[Continent Section: ]" << "\n";
         while (std::getline(fileToRead, line) && line != "")
         {
-
             const int equalsIndex = line.find(" ");
             const std::string continent = line.substr(0, equalsIndex);
             const int value = std::stoi(line.substr(equalsIndex + 1));
@@ -113,11 +112,7 @@ MapLoader MapLoader::loadMap(string fileInput)
             //convert string to integer for index 
 
             // [convert the number back to the name]
-            string continenttoParse= continentsList[0]; //continentNb
-            for (int i=0; i< continentNb; i++)
-            {
-                continenttoParse = continentsList[i];
-            }
+            string continenttoParse= continentsList[continentNb-1]; //continentNb
             cout << "Territory belongs to (continent): " << continenttoParse << "\n"; //TODO
             // [convert the number back to the name]
 
