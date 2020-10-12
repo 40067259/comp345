@@ -12,7 +12,7 @@ class MapLoader/* : public Map*/
 {
 public:
     MapLoader();
-    MapLoader loadMap(string fileInput);
     Map map;
+    void loadMap(string fileInput);
     
 };
