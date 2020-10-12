@@ -6,9 +6,9 @@
 
 int main() {
 	MapLoader map;
-	map.loadMap("estonia.map");
+	map.loadMapAlt("google.map");
 	//map.loadMap("france.map");
-	//map.loadMap("google.map");
+	//map.loadMap("estonia.map");
 	map.printMapInfo();
 	std::cout << std::endl;
 	map.printMap();
