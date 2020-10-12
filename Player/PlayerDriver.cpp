@@ -10,6 +10,7 @@
 int main() {
     
     int orderNumber;
+    Hand hand;
     std::vector<Territory> territories;
     
     
@@ -26,7 +27,7 @@ int main() {
     territories.push_back(pakistan);
     
     //Initializing Player constructor (player owns 2 territories in this case)
-    Player player1(territories);
+    Player player1(territories, hand);
     
     //Pushing arbitrary territories to attack (as per A1 instructions)
     player1.arbitraryTerritoriesToAttack.push_back(sriLanka);

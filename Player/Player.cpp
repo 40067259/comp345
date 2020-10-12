@@ -4,9 +4,9 @@
 #include <vector>
 #include <iostream>
 
-Player::Player(std::vector<Territory> &territories/*, Card cards*/) {
+Player::Player(std::vector<Territory> &territories, Hand cards) {
      _territories = territories;
-    //_cards = cards;
+     _cards = cards;
 }
 
 
