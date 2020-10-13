@@ -287,7 +287,7 @@ void MapLoader::loadMap(string fileInput)
             currentTerritoryNb = currentTerritoryNb - 1; //everything starts from 0
             //cout << "Current: " << currentTerritoryNb << " "<< countryList[currentTerritoryNb] << "\n";//TODO
 
-            for(int i=0; i< edgesStrList.size(); i++)
+            for(int i=1; i< edgesStrList.size(); i++)
             {
                 int edgeNb = 0;
                 try {
