@@ -8,8 +8,6 @@
 #include"Card.h"
 #include"Hand.h"
 
-using namespace std;
-
 //predefine the classes
 class Hand;
 class Card;
@@ -21,8 +19,8 @@ public:
 	~Deck();//deconstructor because of its object instace variable
 	Card* draw(Hand* hand); // draw a card from deck randomly and add it to a hand
 	void insertCard(Card& card);// insert a card to deck pile
-	vector<Card>* getAvailableCards();// get instance variable
+	std::vector<Card>* getAvailableCards();// get instance variable
 private:
-	vector<Card>* availableCards;
-	friend ostream& operator<<(ostream&, const Deck&);//overwrite the operator <<
+	std::vector<Card>* availableCards;
+	friend std::ostream& operator<<(std::ostream&, const Deck&);//overwrite the operator <<
 };

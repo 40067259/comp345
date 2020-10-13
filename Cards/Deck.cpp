@@ -9,22 +9,22 @@
 
 
 Deck::Deck() {
-	availableCards = new vector<Card>();
+	availableCards = new std::vector<Card>();
 	availableCards->emplace_back("Spy");
 	availableCards->emplace_back("Bomb");
 	availableCards->emplace_back("Reinforcement");
 	availableCards->emplace_back("Blockade");
 	availableCards->emplace_back("Airlift");
 	availableCards->emplace_back("Diplomacy");
-	cout << "Initialize Deck: " << endl;
+	std::cout << "Initialize Deck: " << std::endl;
 	for (int i = 0; i < availableCards->size(); i++) {
-		cout << availableCards->at(i)<<endl;
+		std::cout << availableCards->at(i)<<std::endl;
 	}
 }
 
 Deck::Deck(const Deck& deck)
 {
-	availableCards = new vector<Card>();
+	availableCards = new std::vector<Card>();
 	for (int i = 0; i < deck.availableCards->size(); i++)
 	{
 		//deep copy
@@ -32,7 +32,7 @@ Deck::Deck(const Deck& deck)
 	}
 }
 
-ostream& operator<<(std::ostream& ostream, const Deck& deck)
+std::ostream& operator<<(std::ostream& ostream, const Deck& deck)
 {
 	std::string cards = "";
 	for (int i = 0; i < deck.availableCards->size(); i++)
@@ -41,7 +41,7 @@ ostream& operator<<(std::ostream& ostream, const Deck& deck)
 	}
 	return ostream << "Deck contains cards in the following order: " << cards;
 }
-vector<Card>* Deck::getAvailableCards() {
+std::vector<Card>* Deck::getAvailableCards() {
 	return availableCards;
 }
 
@@ -54,18 +54,18 @@ Deck::~Deck()
 Card* Deck::draw(Hand* hand) {
 	if (availableCards->size() != 0) {
 		int randIndex = rand() % getAvailableCards()->size();// get a random int
-		cout << "The player starts to draw a card from deck..." << endl;
+		std::cout << "The player starts to draw a card from deck..." << std::endl;
 		Card* card = &(availableCards->at(randIndex));// obtain the card accroding the randomInt
-		cout << "The random number is " << randIndex << ", " << *card << endl;
-		cout << "This round of draw finished" << endl;
+		std::cout << "The random number is " << randIndex << ", " << *card <<std:: endl;
+		std::cout << "This round of draw finished" << std::endl;
 		hand->add(*card);//hand got a card
 		availableCards->erase(getAvailableCards()->begin() + randIndex);//deck pile lost a card
-		cout << "The deck infomation is : " << *this << endl;// after this draw round, the remaiding cards
+		std::cout << "The deck infomation is : " << *this << std::endl;// after this draw round, the remaiding cards
 		return card;
 	}
 
 	else {
-		cout << "no more cards available,please try later";
+		std::cout << "no more cards available,please try later";
 	}
 
 }
