@@ -4,16 +4,34 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <map>
 using std::vector;
 using std::cout;
 using std::string;
 using std::ifstream;
+using std::map;
 
 
 MapLoader::MapLoader()/* : Map()*/
 { 
 }
 
+vector<string> split(string str, string token) {
+    vector<string>result;
+    while (str.size()) {
+        int index = str.find(token);
+        if (index != string::npos) {
+            result.push_back(str.substr(0, index));
+            str = str.substr(index + token.size());
+            if (str.size() == 0)result.push_back(str);
+        }
+        else {
+            result.push_back(str);
+            str = "";
+        }
+    }
+    return result;
+}
 
 
 void MapLoader::loadMap(string fileInput)
@@ -28,6 +46,8 @@ void MapLoader::loadMap(string fileInput)
     ifstream fileToRead(fileInput);
 
     vector<string>continentsList; //to store continent for later use
+
+    vector<string>countryList;
 
     if (fileToRead.is_open())
     {
@@ -75,6 +95,30 @@ void MapLoader::loadMap(string fileInput)
         cout << "[Territory Section: ]" << "\n";
         while (std::getline(fileToRead, line) && line != "")
         {
+            // [get the order]
+            std::string indexOrderStr = line;
+            int emptySpace_indexOrderStr = indexOrderStr.find(" ");
+            indexOrderStr.substr(0, emptySpace_indexOrderStr);
+
+            //convert string to integer for continentNb
+            int indexOrder = 0;
+            try {
+                indexOrder = std::stoi(indexOrderStr);
+                //cout << "index converted" << "\n";
+            }
+            catch (const std::exception& ex) {
+                cout << "no order index";
+            }
+            catch (const std::string& ex) {
+                cout << "no order index";
+            }
+            catch (...) {
+                cout << "no order index";
+            }
+            //convert string to integer for index 
+
+            // [get the order]
+
             // [country]
             std::string country = line;
             int emptySpace_country1 = country.find(" ");
@@ -198,13 +242,86 @@ void MapLoader::loadMap(string fileInput)
 
             // [add country to unordered map]
             map.addTerritory(country, continentsList[continentNb - 1], armiesNb, indexNb);
+            countryList.push_back(country);//add country to the vector for later use
             // [Setup edges]
-            map.addEdge(country, *map.getTerritory(country));
+            //map.addEdge(country, *map.getTerritory(country)); //append in the border section
             // [Setup edges]
-            
         }
         cout << "[End of Territory Section]" << "\n";
          //[Territories]
+
+        // [Borders]
+        //cout << "[Borders Section: ]" << "\n"; //TODO
+        // [to get the borders section]
+        while (std::getline(fileToRead, line))
+        {
+            if (line == "[borders]")
+            {
+                break;
+            }
+        }
+        // [to get the borders section]
+        while (std::getline(fileToRead, line) && line != "")
+        {
+            vector<string>edgesStrList = split(line, " ");
+            vector<int>edgesList;
+
+            string currentTerritory = edgesStrList[0];
+
+            int currentTerritoryNb = 0;
+            //convert string to integer for currentTerritoryNb
+            try {
+                currentTerritoryNb = std::stoi(currentTerritory);
+                //cout << "index converted" << "\n";
+            }
+            catch (const std::exception& ex) {
+                cout << "no conversion";
+            }
+            catch (const std::string& ex) {
+                cout << "no conversion";
+            }
+            catch (...) {
+                cout << "no conversion";
+            }
+            //convert string to integer for currentTerritoryNb
+            currentTerritoryNb = currentTerritoryNb - 1; //everything starts from 0
+            //cout << "Current: " << currentTerritoryNb << " "<< countryList[currentTerritoryNb] << "\n";//TODO
+
+            for(int i=0; i< edgesStrList.size(); i++)
+            {
+                int edgeNb = 0;
+                try {
+                    edgeNb = std::stoi(edgesStrList[i]);
+                    edgeNb = edgeNb - 1; //everything starts from 0
+                    edgesList.push_back(edgeNb);
+                    //cout << "index converted" << "\n";
+                }
+                catch (const std::exception& ex) {
+                    cout << "no index";
+                }
+                catch (const std::string& ex) {
+                    cout << "no index";
+                }
+                catch (...) {
+                    cout << "no index";
+                }
+
+                //cout << "The edges numbers " << edgesStrList[i];//TODO
+            }
+            //convert string to integer for edges 
+           
+            
+            for (int i = 0; i < edgesList.size(); i++)
+            {
+                map.addEdge(countryList[currentTerritoryNb], *map.getTerritory(countryList[edgesList[i]]));
+                //cout << "Edges: " << countryList[edgesList[i]] << "\n"; //TODO
+            }
+        }
+        
+        //cout << "[End of Borders Section]" << "\n"; //TODO
+        // [Borders]
+
+
     }
     else
     {
