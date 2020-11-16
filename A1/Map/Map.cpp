@@ -88,7 +88,7 @@ void Map::printMap()
 {
 	for (int i = 0; i < map.size(); i++)
 	{
-		std::cout << map[i].territory->getName() << "belongs to continent (" << map[i].territory->getContinent()->getName() << ")" << std::endl;
+		std::cout << map[i].territory->getName() << " belongs to continent (" << map[i].territory->getContinent()->getName() << ")" << std::endl;
 		std::cout << "\tIt's adjacent territories are:"  << std::endl;
 
 		for (int j = 0; j < map[i].adjList.size(); j++)
