@@ -14,6 +14,10 @@ Continent::~Continent()
 {
 }
 
+int Continent::numOfTerritories() {
+	return territories.size();
+}
+
 std::string Continent::getName() const
 {
 	return continentName;
@@ -42,6 +46,19 @@ void Continent::printTerritory()
 		}
 
 		std::cout << std::endl;
+	}
+}
+
+// check if a territory in this continent
+bool Continent::checkTerritory(std::string n)
+{
+	for (int i = 0; i < territories.size(); i++){
+		if (n == territories[i]->territory->getName()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
