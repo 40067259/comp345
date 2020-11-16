@@ -4,46 +4,62 @@
 #include "Territory.h"
 #include "Continent.h"
 #include "Player.h"
+#include "Orders.h"
+#include "OrdersList.h"
 
 
 
 int main() {
     
     int orderNumber;
-    Hand hand;
-    std::vector<Territory> territories;
-    
     
     //Creating some territories to test methods
     Continent asia("Asia",2);
-    Territory india("India", asia, 5, 21);
-    Territory pakistan("Pakistan", asia, 4, 22);
-    Territory bangladesh("Bangladesh", asia, 2, 23);
-    Territory sriLanka("Sri-Lanka", asia, 2, 24);
-    Territory iran("Iran", asia, 3, 25);
+    Territory *india = new Territory("India", asia, 5, 1);
+    Territory *pakistan = new Territory("Pakistan", asia, 4, 2);
+    Territory *bangladesh = new Territory("Bangladesh", asia, 2, 3);
+    Territory *sriLanka = new Territory("Sri-Lanka", asia, 2, 4);
+    Territory *iran = new Territory("Iran", asia, 3, 5);
     
-    //Putting 2 territories in the vector
+    
+   
+    
+    //SETTING TERRITORIES
+    std::vector<Territory*> territories;
     territories.push_back(india);
     territories.push_back(pakistan);
     
+    //SETTING CARDS
+    Card *c1 = new Card("Bomb");
+    Card *c2 = new Card("Airlift");
+    vector<Card *> cards;
+    cards.push_back(c1);
+    cards.push_back(c2);
+    Hand *hand = new Hand();
+    for (Card *card : cards)
+        hand->add(card);
+
+    
+    //SETTING ORDERS
+    Deploy *deploy = new Deploy;
+    Advance *advance = new Advance;
+    vector<Orders*> orders;
+    orders.push_back(deploy);
+    orders.push_back(advance);
+    OrdersList *ordersList = new OrdersList();
+    for (Orders *order : orders)
+        ordersList->addOrders(order);
+    
+    
+    
+    
     //Initializing Player constructor (player owns 2 territories in this case)
-    Player player1(territories, hand);
+    Player player1("Eric", territories, hand, ordersList);
     
     //Pushing arbitrary territories to attack (as per A1 instructions)
     player1.arbitraryTerritoriesToAttack.push_back(sriLanka);
     player1.arbitraryTerritoriesToAttack.push_back(bangladesh);
     player1.arbitraryTerritoriesToAttack.push_back(iran);
-    
-    
-    //Testing .toDefend() method
-    std::cout<< "Player needs to defend: ";
-    for (const Territory &t : player1.toDefend())
-         std::cout << t.getName() << " ";
-    
-    //Testing .toAttack() method
-    std::cout<< "\nPlayer needs to attack: ";
-    for (const Territory &t : player1.toAttack())
-         std::cout << t.getName() << " ";
     
     
     //Testing .issueOrder() method
@@ -72,7 +88,6 @@ int main() {
     
     return 0;
 }
-
 
 
 
