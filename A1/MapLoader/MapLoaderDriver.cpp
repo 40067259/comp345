@@ -6,15 +6,23 @@
 using std::cout;
 
 int main() {
-
+	/*
+	To use the MapLoader class to load map, the following steps will be followed:
+	1) Create 1 MapLoader Object
+	2) Use the loadMap() method, and put the .map file inside the argument
+	3) Ensure that the .map files are in the same folder of the program
+	4) Once the .map file is successfully loaded, the map variable will have the information from the input
+	5) Further operation can be performed with the map
+	*/
+	
 	// [A maploader object is created to load map]
 	MapLoader maploader;
 	// [A maploader object is created to load map]
 
 	// [To loap different map from .map file] 
-	maploader.loadMap("google.map");
-	//maploader.loadMap("france.map");
-	//maploader.loadMap("estonia.map");
+	maploader.loadMap("canada.map");
+	//maploader.loadMap("europe.map");
+	//maploader.loadMap("us.map");
 	// [To loap different map from .map file] 
 	
 	//***
