@@ -1,8 +1,8 @@
 
 
-#include "Player.h"
 #include <vector>
 #include <iostream>
+#include "Player.h"
 
 int Player::numberOfPlayers = 0; //initializing static variable
 
@@ -17,9 +17,18 @@ Player::Player(string name, std::vector<Territory*> territories, Hand *cards, Or
     _orderList = orderList;
 }
 
+Player::Player(string name) {
+    _playerNumber = numberOfPlayers++;
+    _name = name;
+    vector<Territory*> territories;
+    _territories = territories;
+     _cards = new Hand();
+    _orderList = new OrdersList();
+}
+
 Player::Player() {
     _playerNumber = numberOfPlayers++;
-    _name = "Default ";
+    _name = "Default" + to_string(_playerNumber);
     vector<Territory*> territories;
     _territories = territories;
      _cards = new Hand();
@@ -118,5 +127,6 @@ void Player::issueOrder(int orderType) {
 
 
 void Player::printPlayerOrders(){
-    _orderList.printOrders();
+    _orderList->printOrders();
 }
+

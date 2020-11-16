@@ -24,6 +24,7 @@ private:
 
 public:
    Player();
+    Player(string name);
    Player(string name, std::vector<Territory*> territories ,Hand *cards, OrdersList *orderlist);
    ~Player();
    std::vector<Territory*> arbitraryTerritoriesToAttack; //TEMPORARY: For the first assignement
@@ -35,5 +36,6 @@ public:
 
 
 };
+
 
 
