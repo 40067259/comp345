@@ -88,7 +88,7 @@ void Map::printMap()
 {
 	for (int i = 0; i < map.size(); i++)
 	{
-		std::cout << map[i].territory->getName() << " belongs to continent (" << map[i].territory->getContinent()->getName() << ")" << std::endl;
+		std::cout << map[i].territory->getName() << "belongs to continent (" << map[i].territory->getContinent()->getName() << ")" << std::endl;
 		std::cout << "\tIt's adjacent territories are:"  << std::endl;
 
 		for (int j = 0; j < map[i].adjList.size(); j++)
@@ -131,4 +131,112 @@ void Map::printMapInfo()
 		std::cout << t->getName() << std::endl;
 		//std::cout << t->getName() << "'s owner is " << t->getOwner()->getName() << std::endl;
 	}
+}
+
+bool Map::validate()
+{
+	// check if the map is a connected graph 
+	// by verifying if every node/territory can reach all the rest nodes/territories
+	for (int i = 0; i < map.size(); i++)
+	{
+		std::string t1 = map[i].territory->getName();
+		for (int i1 = 0; i1 < map.size(); i1++) {
+			std::string t2 = map[i1].territory->getName();
+			if (!reachable(t1, t2)) {
+				return false;
+			}
+		}
+	}
+
+	// check if continents are connected subgraphs
+	// by verifying all continents contain at least one territory
+	// since continents contain territories and all territories are connected
+	for (auto& m : continents) {
+		if (m.second.numOfTerritories()==0) {
+			return false;
+		}
+	}
+
+	// verify all territories should belong to at least one continent
+	for (int j = 0; j < map.size(); j++)
+	{
+		if (map[j].territory->getContinent() == nullptr) {
+			return false;
+		}
+	}
+	// check each territory belongs to only one continent
+	for (int k = 0; k < size(); k++)
+	{
+		std::string t3 = map[k].territory->getName();
+		std::string c = map[k].territory->getContinent()->getName();
+		for (auto& n : continents) {
+			if (n.second.checkTerritory(t3) && (c != n.first)) {
+				return false;
+			}
+		}
+	}
+}
+
+// Check if a source territory can reach a destinatation territory
+bool Map::reachable(std::string source, std::string destination)
+{
+	if (source == destination)
+		return true;
+
+	// Keep track of visited territories.
+	std::unordered_map<std::string, bool> visited;
+
+	//initialize them all to false
+	std::unordered_map<std::string, Territory*>::iterator beg = auxStorage.begin();
+	for (beg; beg != auxStorage.end(); ++beg)
+	{
+		std::pair<std::string, bool> pair(beg->first, false);
+		visited.insert(pair);
+	}
+
+	//Create a queue and mark the source as visited
+	std::list<std::string> queue;
+	visited[source] = true;
+	queue.push_back(source);
+
+	while (!queue.empty())
+	{
+		std::string name = queue.front();
+		queue.pop_front();
+
+		//Get edges 
+		std::vector<Edge>::iterator i = getNodeFromMap(name).adjList.begin();
+		for (i; i != getNodeFromMap(name).adjList.end(); ++i)
+		{
+			// If this adjacent node is the destination node, then 
+			// return true
+			if (i->territory->getName() == destination)
+				return true;
+
+			if (!visited[i->territory->getName()])
+			{
+				visited[i->territory->getName()] = true;
+				queue.push_back(i->territory->getName());
+			}
+		}
+	}
+
+	return false;
+}
+
+//Search the map for a Node by name of the territory
+Node& Map::getNodeFromMap(std::string territoryName)
+{
+	for (int i = 0; i < map.size(); i++)
+	{
+		if (map[i].territory->getName() == territoryName)
+		{
+			return map[i];
+		}
+	}
+}
+
+std::unordered_map<std::string, Continent> Map::getContinents() const
+{
+	return continents;
 }
