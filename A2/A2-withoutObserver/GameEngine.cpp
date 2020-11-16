@@ -1,4 +1,5 @@
 #include "GameEngine.hpp"
+#include "Player.h"
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -30,7 +31,7 @@ void GameEngine::mapSelection(){
         cout<< "Let's select a map: (1)USA (2)Canada (3)Europe" <<endl;
         cout<< "Enter an integer 1, 2, or 3"<<endl;
         cin >> selectedMap;
-    while(selectedMap != 1 || selectedMap != 2 || selectedMap != 3) {
+    while(selectedMap !=  1 || selectedMap != 2 || selectedMap != 3) {
         cout<< "You have made an invalid selection. Please choose from one of 3 options."<<endl;
         cin >> selectedMap;
     }
@@ -60,4 +61,31 @@ void GameEngine::playerSelection(){
     
     numberOfPlayers = numberOfPlayersSelected;
     
+    for(int i=0; i<numberOfPlayers; i++) {
+        string name;
+        cout<<"Enter the name of player "<< i+1 <<endl;
+        cin >> name;
+        Player *player = new Player(name);
+        playersVector.push_back(player);
+    }
+    
+}
+
+
+
+//==========PART 3: MAIN GAME LOOP==========//
+void GameEngine::mainGameLoop() {
+    reinforcementPhase();
+    issuingOrderPhase();
+    ordersExectionPhase();
+}
+
+void GameEngine::reinforcementPhase(){
+    for(Player *p : playersVector) {
+        int armiesGiven = 3;
+        
+        int territoriesowned  = p->getTerritories().size();
+        
+        
+    }
 }

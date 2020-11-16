@@ -1,7 +1,7 @@
-
 #include <vector>
 #include <iostream>
 #include "Player.h"
+
 
 int Player::numberOfPlayers = 0; //initializing static variable
 
@@ -12,7 +12,7 @@ Player::Player(string name, std::vector<Territory*> territories, Hand *cards, Or
     _playerNumber = ++numberOfPlayers;
     _name = name;
      _territories = territories;
-     _cards = cards;
+    _cards = cards;
     _orderList = orderList;
 }
 
@@ -48,11 +48,31 @@ Player::~Player(){
     _orderList = nullptr;
 }
 
+//=====GETTERS AND SETTERS====//
+vector<Territory*> Player::getTerritories(){
+    return _territories;
+}
+
+Hand* Player::getHand(){
+    return _cards;
+};
+
+OrdersList* Player::getOrdersList(){
+    return _orderList;
+};
+
+string Player::getName(){
+    return _name;
+};
+int Player::getArmies(){
+    return _armies;
+};
 
 
 
 
 //==========METHODS==========//
+
 
 //return territories that player owns
 std::vector<Territory*> Player::toDefend() {
@@ -70,7 +90,6 @@ std::vector<Territory*> Player::toAttack() {
          std::cout << terr->getName() << " ";
     return arbitraryTerritoriesToAttack;
 }
-
 
 
 //issue the order depending on what the player wants
@@ -124,13 +143,19 @@ void Player::issueOrder(int orderType) {
     }
 }
 
+//add territory
+void Player::addTerritory(Territory *terr){
+    this->_territories.push_back(terr);
+}
+
 //add new army to players
 void Player::giveNewArmy(int num){
-    armies = armies + num;
+    _armies = _armies + num;
 }
 
 
 void Player::printPlayerOrders(){
     _orderList->printOrders();
 }
+
 
