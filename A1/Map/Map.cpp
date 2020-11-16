@@ -143,19 +143,23 @@ bool Map::validate()
 		for (int i1 = 0; i1 < map.size(); i1++) {
 			std::string t2 = map[i1].territory->getName();
 			if (!reachable(t1, t2)) {
+				std::cout << "This is not a connected graph." << std::endl;
 				return false;
 			}
 		}
 	}
+	std::cout << "This is a connected graph." << std::endl;
 
 	// check if continents are connected subgraphs
 	// by verifying all continents contain at least one territory
 	// since continents contain territories and all territories are connected
 	for (auto& m : continents) {
 		if (m.second.numOfTerritories()==0) {
+			std::cout << "Continents are not connected subgraphs." << std::endl;
 			return false;
 		}
 	}
+	std::cout << "Continents are connected subgraphs." << std::endl;
 
 	// verify all territories should belong to at least one continent
 	for (int j = 0; j < map.size(); j++)
@@ -171,10 +175,12 @@ bool Map::validate()
 		std::string c = map[k].territory->getContinent()->getName();
 		for (auto& n : continents) {
 			if (n.second.checkTerritory(t3) && (c != n.first)) {
+				std::cout << "There exists a country that not belongs to one unique continent." << std::endl;
 				return false;
 			}
 		}
 	}
+	std::cout << "Each country belongs to one and only one continent." << std::endl;
 	std::cout << "Map validity is verified. This map has no issue." << std::endl;
 	return true;
 }
