@@ -8,9 +8,8 @@ int Player::numberOfPlayers = 0; //initializing static variable
 
 
 //==========CONSTRUCTORS==========//
-
 Player::Player(string name, std::vector<Territory*> territories, Hand *cards, OrdersList *orderList) {
-    _playerNumber = numberOfPlayers++;
+    _playerNumber = ++numberOfPlayers;
     _name = name;
      _territories = territories;
      _cards = cards;
@@ -18,7 +17,7 @@ Player::Player(string name, std::vector<Territory*> territories, Hand *cards, Or
 }
 
 Player::Player(string name) {
-    _playerNumber = numberOfPlayers++;
+    _playerNumber = ++numberOfPlayers;
     _name = name;
     vector<Territory*> territories;
     _territories = territories;
@@ -27,7 +26,7 @@ Player::Player(string name) {
 }
 
 Player::Player() {
-    _playerNumber = numberOfPlayers++;
+    _playerNumber = ++numberOfPlayers;
     _name = "Default" + to_string(_playerNumber);
     vector<Territory*> territories;
     _territories = territories;
@@ -54,7 +53,6 @@ Player::~Player(){
 
 
 //==========METHODS==========//
-
 //return territories that player owns
 std::vector<Territory*> Player::toDefend() {
     std::cout<< "Player needs to defend: ";
