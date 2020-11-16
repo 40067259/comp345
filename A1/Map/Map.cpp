@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-//#include "Player.h"
+#include "Player.h"
 #include "Map.h"
 
 Map::Map()

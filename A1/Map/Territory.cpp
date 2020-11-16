@@ -45,7 +45,7 @@ void Territory::removeArmies(int amount)
 {
 	armies -= amount;
 }
-/*
+
 Player* Territory::getOwner() const
 {
 	return owner;
@@ -55,5 +55,5 @@ void Territory::setOwner(Player* player)
 {
 	owner = player;
 }
-*/
+
 

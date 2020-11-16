@@ -4,6 +4,9 @@
 #include "Continent.h"
 #include <unordered_map>
 
+class Territory;
+class Continent;
+
 struct Edge
 {
 	Territory* territory;
@@ -20,13 +23,13 @@ class Map
 public:
 
 	Map();
-	~Map();
-	int size() const;
-	int continentSize() const;
+    ~Map();
+    int size() const;
+    int continentSize() const;
 	std::unordered_map<std::string, Continent> getContinents() const;
-	bool addEdge(std::string terr, Territory& newCountry);
-	std::pair<Territory*, bool> addTerritory(std::string TerritoryName, std::string continentName, int armies, int index);
-	bool addContinent(std::string continentName, int nativeArmy);
+    bool addEdge(std::string terr, Territory& newCountry);
+    std::pair<Territory*, bool> addTerritory(std::string TerritoryName, std::string continentName, int armies, int index);
+    bool addContinent(std::string continentName, int nativeArmy);
 	Continent& getContinent(std::string continentName);
 	Territory* getTerritory(std::string territoryName);
 	Territory* getTerritory(int index);
@@ -36,8 +39,8 @@ public:
 	void printMapInfo();
 	bool validate();
 	bool reachable(std::string source, std::string destination);
-	Node& getNodeFromMap(std::string territoryName);
-
+    Node& getNodeFromMap(std::string territoryName);
+    
 private:
 	std::unordered_map<std::string, Territory*> auxStorage;
 	std::unordered_map<std::string, Continent> continents;

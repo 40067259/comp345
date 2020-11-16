@@ -4,7 +4,7 @@
 #include "Map.h"
 
 class Territory;
-//class Player;
+class Player;
 struct Node;
 
 class Continent 
@@ -17,9 +17,9 @@ public:
 	void addTerritory(Node& Territory);
 	std::string getName() const;
 	void printTerritory();
-	//bool owner(const Player* player);
+	bool owner(Player* player);
 	std::vector<Node*> getTerritories() const;
-	// check if a territory is in this continent
+	//check if a territory is in this continent
 	bool checkTerritory(std::string n);
 
 private:
