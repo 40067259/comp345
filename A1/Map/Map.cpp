@@ -175,6 +175,8 @@ bool Map::validate()
 			}
 		}
 	}
+	std::cout << "Map validity is verified. This map has no issue." << std::endl;
+	return true;
 }
 
 // Check if a source territory can reach a destinatation territory
