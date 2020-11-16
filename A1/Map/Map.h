@@ -34,6 +34,10 @@ public:
 	void clearMap();
 	bool addTerritoriesToContinents();	
 	void printMapInfo();
+	bool validate();
+	bool reachable(std::string source, std::string destination);
+	Node& getNodeFromMap(std::string countrytName);
+	std::unordered_map<std::string, Continent> getContinents() const;
 
 
 private:
@@ -41,3 +45,4 @@ private:
 	std::unordered_map<std::string, Continent> continents;
 	std::vector<Node> map;
 };
+
