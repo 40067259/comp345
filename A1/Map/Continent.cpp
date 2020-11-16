@@ -55,11 +55,9 @@ bool Continent::checkTerritory(std::string n)
 	for (int i = 0; i < territories.size(); i++){
 		if (n == territories[i]->territory->getName()) {
 			return true;
-		}
-		else {
-			return false;
-		}
+		}		
 	}
+	return false;
 }
 
 /*
