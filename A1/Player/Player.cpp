@@ -126,7 +126,7 @@ void Player::issueOrder(int orderType) {
 
 //add new army to players
 void Player::giveNewArmy(int num){
-    armies = armis + num;
+    armies = armies + num;
 }
 
 
