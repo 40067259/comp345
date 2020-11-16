@@ -1,5 +1,4 @@
 
-
 #include <vector>
 #include <iostream>
 #include "Player.h"
@@ -8,6 +7,7 @@ int Player::numberOfPlayers = 0; //initializing static variable
 
 
 //==========CONSTRUCTORS==========//
+
 Player::Player(string name, std::vector<Territory*> territories, Hand *cards, OrdersList *orderList) {
     _playerNumber = ++numberOfPlayers;
     _name = name;
@@ -53,6 +53,7 @@ Player::~Player(){
 
 
 //==========METHODS==========//
+
 //return territories that player owns
 std::vector<Territory*> Player::toDefend() {
     std::cout<< "Player needs to defend: ";
@@ -121,6 +122,11 @@ void Player::issueOrder(int orderType) {
         }
 
     }
+}
+
+//add new army to players
+void Player::giveNewArmy(int num){
+    armies = armis + num;
 }
 
 

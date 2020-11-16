@@ -18,7 +18,9 @@ private:
     OrdersList *_orderList;
     string _name;
     int _playerNumber;
+    int armies = 0;
     static int numberOfPlayers;
+    
 
 
 
@@ -32,10 +34,13 @@ public:
    std::vector<Territory*> toAttack();
    void issueOrder(int orderType);
    void printPlayerOrders();
-  void printPlayerTerritories();
+   void printPlayerTerritories();
+    void giveNewArmy(int num);
 
 
 };
+
+
 
 
 
