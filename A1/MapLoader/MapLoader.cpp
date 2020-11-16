@@ -11,11 +11,21 @@ using std::string;
 using std::ifstream;
 using std::map;
 
-
-MapLoader::MapLoader()/* : Map()*/
+// [MapLoader default constructor]
+MapLoader::MapLoader()
 { 
 }
+// [MapLoader default constructor]
 
+// [MapLoader destructor]
+ MapLoader::~MapLoader()
+{
+}
+// [MapLoader destructor]
+
+
+
+// [A supporting method to split String]
 vector<string> split(string str, string token) {
     vector<string>result;
     while (str.size()) {
@@ -32,18 +42,37 @@ vector<string> split(string str, string token) {
     }
     return result;
 }
+// [A supporting method to split String]
 
-
+// [The method to load .map file into a Map object which is a variable of the MapLoader object]
 void MapLoader::loadMap(string fileInput)
 {
 
-    //MapLoader map;
+    // [To check if the file is in the right format]
+    if(fileInput.find(".map") == std::string::npos)
+    {
+        cout << "Wrong format for map. " << "\n";
+        return;
+    }
+    // [To check if the file is in the right format]
 
     int count = 1;
     
+    // [reference string to read line by line later]
     string line;
+    // [reference string to read line by line later]
 
+    // [Use file stream to read the input file]
     ifstream fileToRead(fileInput);
+    // [Use file stream to read the input file]
+
+    // [To check if the file is opened]
+    if (!fileToRead.is_open())
+    {
+        cout << fileInput << " is not opened" << "\n";
+        return;
+    }
+    // [To check if the file is opened]
 
     vector<string>continentsList; //to store continent for later use
 
@@ -73,10 +102,9 @@ void MapLoader::loadMap(string fileInput)
             // add continentName and nativeArmy
             map.addContinent(continent, value);
             continentsList.push_back(continent);
-            cout << "Continent: " << continent << " Value: " << value << "\n"; //TODO
+            cout << "Continent: " << continent << " Value: " << value << "\n";
         }
         cout << "[End of Continent Section]" << "\n";
-        //cout << "\n"; //TODO
 
         // [continents]
 
@@ -127,7 +155,7 @@ void MapLoader::loadMap(string fileInput)
             int emptySpace_country2 = country.find(" ");
             country = country.substr(0, emptySpace_country2);
 
-            cout << country << "\n"; //TODO
+            cout << country << "\n";
 
             // [country]
 
@@ -161,9 +189,8 @@ void MapLoader::loadMap(string fileInput)
 
             // [convert the number back to the name]
             string continenttoParse= continentsList[continentNb-1]; //continentNb
-            cout << "Territory belongs to (continent): " << continenttoParse << "\n"; //TODO
+            cout << "Territory belongs to (continent): " << continenttoParse << "\n";
             // [convert the number back to the name]
-
             // [continent number]
 
 
@@ -200,9 +227,7 @@ void MapLoader::loadMap(string fileInput)
             //convert string to integer for armies
 
             cout << "Army: " << armiesNbStr << "\n"; //TODO
-
             // [armies]
-
 
             // [index]
             std::string indexNbStr = line;
@@ -239,19 +264,14 @@ void MapLoader::loadMap(string fileInput)
 
             // [index]
 
-
             // [add country to unordered map]
             map.addTerritory(country, continentsList[continentNb - 1], armiesNb, indexNb);
             countryList.push_back(country);//add country to the vector for later use
-            // [Setup edges]
-            //map.addEdge(country, *map.getTerritory(country)); //append in the border section
-            // [Setup edges]
         }
         cout << "[End of Territory Section]" << "\n";
          //[Territories]
 
         // [Borders]
-        //cout << "[Borders Section: ]" << "\n"; //TODO
         // [to get the borders section]
         while (std::getline(fileToRead, line))
         {
@@ -311,14 +331,13 @@ void MapLoader::loadMap(string fileInput)
             //convert string to integer for edges 
            
             
+            // [Add edges to the map]
             for (int i = 0; i < edgesList.size(); i++)
             {
                 map.addEdge(countryList[currentTerritoryNb], *map.getTerritory(countryList[edgesList[i]]));
-                //cout << "Edges: " << countryList[edgesList[i]] << "\n"; //TODO
             }
+            // [Add edges to the map]
         }
-        
-        //cout << "[End of Borders Section]" << "\n"; //TODO
         // [Borders]
 
 
@@ -328,19 +347,21 @@ void MapLoader::loadMap(string fileInput)
     cout << "No such file";
     }
 
+ // [user clear()) to allow further operation]
  fileToRead.clear();
+ // [user clear()) to allow further operation]
+
+ // [move the position to the beginning]
  fileToRead.seekg(0, fileToRead.beg);
-
-
+ // [move the position to the beginning]
 
  // [Setup continents]
  map.addTerritoriesToContinents();
  // [Setup continents]
 
-// map.printMap();
-//map.printMapInfo();
-
+ // [Close the file which was opened]
  fileToRead.close();
+ // [Close the file which was opened]
 
 }
-
+// [The method to load .map file into a Map object which is a variable of the MapLoader object]
