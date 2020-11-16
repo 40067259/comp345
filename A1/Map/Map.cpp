@@ -242,4 +242,6 @@ Node& Map::getNodeFromMap(std::string territoryName)
 			return map[y];
 		}
 	}
+	std::cout << "error, cannot find the territory in this map." << std::endl;
+	return map[0];	
 }
