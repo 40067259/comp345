@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-#include "Player.h"
+//#include "Player.h"
 #include "Map.h"
 
 Map::Map()
@@ -44,7 +44,7 @@ bool Map::addEdge(std::string terr, Territory& newTerritory)
 
 std::pair<Territory*, bool> Map::addTerritory(std::string territoryName, std::string continentName, int armies, int index)
 {
-	Territory* t = new Territory(territoryName, getContinent(continentName),armies, index);
+	Territory* t = new Territory(territoryName, getContinent(continentName), armies, index);
 	std::pair<std::string, Territory*> pair(territoryName, t);
 	if (!auxStorage.insert(pair).second)
 	{
@@ -89,7 +89,7 @@ void Map::printMap()
 	for (int i = 0; i < map.size(); i++)
 	{
 		std::cout << map[i].territory->getName() << " belongs to continent (" << map[i].territory->getContinent()->getName() << ")" << std::endl;
-		std::cout << "\tIt's adjacent territories are:"  << std::endl;
+		std::cout << "\tIt's adjacent territories are:" << std::endl;
 
 		for (int j = 0; j < map[i].adjList.size(); j++)
 		{
@@ -143,7 +143,7 @@ bool Map::validate()
 		for (int i1 = 0; i1 < map.size(); i1++) {
 			std::string t2 = map[i1].territory->getName();
 			if (!reachable(t1, t2)) {
-				std::cout << "This is not a connected graph." << std::endl;
+				std::cout << t1 << "cannot connected to This is not a connected graph." << t2 << std::endl;
 				return false;
 			}
 		}
@@ -154,7 +154,7 @@ bool Map::validate()
 	// by verifying all continents contain at least one territory
 	// since continents contain territories and all territories are connected
 	for (auto& m : continents) {
-		if (m.second.numOfTerritories()==0) {
+		if (m.second.numOfTerritories() == 0) {
 			std::cout << "Continents are not connected subgraphs." << std::endl;
 			return false;
 		}
@@ -243,5 +243,5 @@ Node& Map::getNodeFromMap(std::string territoryName)
 		}
 	}
 	std::cout << "error, cannot find the territory in this map." << std::endl;
-	return map[0];	
+	return map[0];
 }
