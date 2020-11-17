@@ -17,5 +17,5 @@ public:
 
 private:
 	std::vector<Orders*> listOfOrders;
-	
+
 };
