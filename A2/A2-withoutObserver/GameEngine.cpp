@@ -10,6 +10,7 @@ using std::cin;
 
 
 GameEngine::GameEngine() {
+
 }
 
 
@@ -88,8 +89,6 @@ void GameEngine::reinforcementPhase() {
         int armiesGiven = 3;
 
         int territoriesowned = p->getTerritories().size();
-
-
     }
 }
 
@@ -159,8 +158,9 @@ void GameEngine::issuingOrderPhase()
             break;
         }
         // [issue order]
+        // This method will ask the player which order they would like to issue
+        // The order the player issue will then be placed inside the "_orderList" list of that player
 
-        //Round-robin through game engine?
 
         // [toAttack]
         std::cout << "Please select Territory to attack: ";
@@ -183,12 +183,15 @@ void GameEngine::issuingOrderPhase()
             p->toAttack(map->getTerritory(user_input - 1)); //add the territory to attack to the arbitraryTerritoriesToAttack list
         }
         // [toAttack]
+        // This method will ask the player to choose a territory to attack
+        // After checking that the territory can be attacked, the territory will be placed into "arbitraryTerritoriesToAttack" list of that player
 
         // [toDefend]
         p->toDefend();
-        // The method will
         // [toDefend]
-        
+        // The method will ask the player to choose a territory it owns to defend
+        // The territory will be placed into "_territoriesToDefend_priority" list of that player
+
     }
     
 }
