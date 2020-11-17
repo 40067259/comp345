@@ -9,7 +9,7 @@
 
 using namespace std;
 //predefine the classed
-class Cards;
+class Card;
 class Deck;
 
 class Hand {
