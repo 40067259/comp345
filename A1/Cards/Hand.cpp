@@ -3,9 +3,8 @@
 #include<cstdlib>
 #include<iostream>
 #include<map>
-#include "Hand.h"
-#include"Card.h"
-#include"Deck.h"
+#include"Hand.h"
+
 
 Hand::Hand()
 {
@@ -16,7 +15,7 @@ Hand::Hand()
 Hand::Hand(const Hand& h)
 {
 	hand = new vector<Card>();
-	for (int i = 0; i < h.hand->size(); i++)
+	for (unsigned int i = 0; i < h.hand->size(); i++)
 	{
 		hand->emplace(hand->begin() + i, h.hand->at(i).getType()); //Creating a deep copy the vector
 	}
@@ -36,15 +35,15 @@ void Hand::setHand(vector<Card>* toSet)// assign a vector to cards of deck
 	hand = toSet;
 }
 
-void Hand::add(Card* card) // add a card to hand
+void Hand::add(Card& card) // add a card to hand
 {
-	hand->emplace_back(card); 
+	hand->emplace_back(card);
 }
 
 ostream& operator<<(ostream& ostream, const Hand& h)// print all cards in deck
 {
 	std::string cards = "";
-	for (int i = 0; i < h.hand->size(); i++)
+	for (unsigned int i = 0; i < h.hand->size(); i++)
 	{
 		cards += h.hand->at(i).getType() + "; ";
 	}
