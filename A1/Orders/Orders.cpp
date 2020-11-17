@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-Orders::Orders(std::string s){
+Orders::Orders(std::string s) {
 	orderType = s;
 }
 // there will be constructor overload, depend on the type of orders
@@ -16,126 +16,126 @@ Orders::~Orders()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Orders::validate(){
-	cout<<"varifing the order...the order is invalide"<<endl;
+void Orders::validate() {
+	cout << "varifing the order...the order is invalide" << endl;
 }
-void Orders::execute(){
+void Orders::execute() {
 	Orders::validate();
-	cout<<"implementing the order... the order is invalide"<<endl;
+	cout << "implementing the order... the order is invalide" << endl;
 }
-void Orders::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Orders::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
 
 // Deploy class function declaration
-Deploy::Deploy(){
+Deploy::Deploy() {
 }
 Deploy::~Deploy()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Deploy::validate(){
-	cout<<"varifing the deploy order..."<<endl;
+void Deploy::validate() {
+	cout << "varifing the deploy order..." << endl;
 }
-void Deploy::execute(){
+void Deploy::execute() {
 	Deploy::validate();
-	cout<<"implementing the deploy order... "<<endl;
+	cout << "implementing the deploy order... " << endl;
 }
-void Deploy::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Deploy::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
 
 // Advance class function declaration
-Advance::Advance(){
+Advance::Advance() {
 }
 Advance::~Advance()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Advance::validate(){
-	cout<<"varifing the Advance order..."<<endl;
+void Advance::validate() {
+	cout << "varifing the Advance order..." << endl;
 }
-void Advance::execute(){
+void Advance::execute() {
 	Advance::validate();
-	cout<<"implementing the Advance order... "<<endl;
+	cout << "implementing the Advance order... " << endl;
 }
-void Advance::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Advance::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
 
 // Bomb class function declaration
-Bomb::Bomb(){
+Bomb::Bomb() {
 }
 Bomb::~Bomb()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Bomb::validate(){
-	cout<<"varifing the Bomb order..."<<endl;
+void Bomb::validate() {
+	cout << "varifing the Bomb order..." << endl;
 }
-void Bomb::execute(){
+void Bomb::execute() {
 	Bomb::validate();
-	cout<<"implementing the Bomb order... "<<endl;
+	cout << "implementing the Bomb order... " << endl;
 }
-void Bomb::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Bomb::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
 // Blockade class function declaration
-Blockade::Blockade(){
+Blockade::Blockade() {
 }
 Blockade::~Blockade()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Blockade::validate(){
-	cout<<"varifing the Blockade order..."<<endl;
+void Blockade::validate() {
+	cout << "varifing the Blockade order..." << endl;
 }
-void Blockade::execute(){
+void Blockade::execute() {
 	Blockade::validate();
-	cout<<"implementing the Blockade order... "<<endl;
+	cout << "implementing the Blockade order... " << endl;
 }
-void Blockade::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Blockade::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
 // Airlift class function declaration
-Airlift::Airlift(){
+Airlift::Airlift() {
 }
 Airlift::~Airlift()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Airlift::validate(){
-	cout<<"varifing the Airlift order..."<<endl;
+void Airlift::validate() {
+	cout << "varifing the Airlift order..." << endl;
 }
-void Airlift::execute(){
+void Airlift::execute() {
 	Airlift::validate();
-	cout<<"implementing the Airlift order... "<<endl;
+	cout << "implementing the Airlift order... " << endl;
 }
-void Airlift::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Airlift::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
 
 // Negotiate class function declaration
-Negotiate::Negotiate(){
+Negotiate::Negotiate() {
 }
 Negotiate::~Negotiate()
 {
 }
 // for now, no need to implement the execute() and validate() 
-void Negotiate::validate(){
-	cout<<"varifing the Negotiate order..."<<endl;
+void Negotiate::validate() {
+	cout << "varifing the Negotiate order..." << endl;
 }
-void Negotiate::execute(){
+void Negotiate::execute() {
 	Negotiate::validate();
-	cout<<"implementing the Negotiate order... "<<endl;
+	cout << "implementing the Negotiate order... " << endl;
 }
-void Negotiate::printOrder(){
-	cout<<"The order type is "<< orderType <<endl;
+void Negotiate::printOrder() {
+	cout << "The order type is " << orderType << endl;
 }
 
