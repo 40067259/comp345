@@ -61,7 +61,7 @@ bool Continent::checkTerritory(std::string n)
 }
 
 
-bool Continent::owner(const Player* player)
+bool Continent::owner(Player* player)
 {
 	for (Node* n : territories)
 	{
