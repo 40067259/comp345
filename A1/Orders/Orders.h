@@ -19,7 +19,7 @@ public:
 class Deploy : public Orders
 {
 private:
-	std::string orderType = "deploy"; 
+	std::string orderType = "deploy";
 
 public:
 
@@ -34,7 +34,7 @@ public:
 class Advance : public Orders
 {
 private:
-	std::string orderType = "advance"; 
+	std::string orderType = "advance";
 
 public:
 
@@ -49,7 +49,7 @@ public:
 class Bomb : public Orders
 {
 private:
-	std::string orderType = "bomb"; 
+	std::string orderType = "bomb";
 public:
 
 	Bomb();
@@ -93,7 +93,7 @@ public:
 class Negotiate : public Orders
 {
 private:
-	std::string orderType = "negotiate"; 
+	std::string orderType = "negotiate";
 
 public:
 
