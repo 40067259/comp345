@@ -38,3 +38,8 @@ void OrdersList::printOrders() {
 		std::cout << std::endl;
 	}
 }
+
+std::vector<Orders*> OrdersList::getListOfOrders()
+{
+	return listOfOrders;
+}
