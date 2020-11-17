@@ -1,10 +1,10 @@
 #include "Territory.h"
 
-Territory::Territory() : continent(nullptr), armies(0), index(0)//, owner(nullptr)
+Territory::Territory() : continent(nullptr), armies(0), index(0), owner(nullptr)
 {
 }
 
-Territory::Territory(std::string territoryName, Continent& cont, int a, int i) //: owner(nullptr)
+Territory::Territory(std::string territoryName, Continent& cont, int a, int i) : owner(nullptr)
 {
 	index = i;
 	name = territoryName;
@@ -45,7 +45,7 @@ void Territory::removeArmies(int amount)
 {
 	armies -= amount;
 }
-/*
+
 Player* Territory::getOwner() const
 {
 	return owner;
@@ -55,5 +55,5 @@ void Territory::setOwner(Player* player)
 {
 	owner = player;
 }
-*/
+
 

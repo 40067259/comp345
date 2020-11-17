@@ -1,5 +1,5 @@
 #include "Continent.h"
-//#include "Player.h"
+#include "Player.h"
 #include <iostream>
 
 using std::vector;
@@ -60,7 +60,7 @@ bool Continent::checkTerritory(std::string n)
 	return false;
 }
 
-/*
+
 bool Continent::owner(const Player* player)
 {
 	for (Node* n : territories)
@@ -72,7 +72,7 @@ bool Continent::owner(const Player* player)
 	}
 	return true;
 }
-*/
+
 vector<Node*> Continent::getTerritories() const
 {
 	return territories;
