@@ -16,7 +16,7 @@ class Card {
 public:
 	Card();//no parameter constructor
 	Card(const Card& card);//copy constructor
-    Card(std::string cardType); //pass a string as a card's type
+	Card(std::string cardType); //pass a string as a card's type
 	std::string getType(); //obtain card's type
 	void play(Deck* deck, Hand* hand); // a specific hand(player's) to display the order on the deck
 private:
