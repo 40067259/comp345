@@ -24,3 +24,4 @@ private:
 	std::vector<Card>* availableCards;
 	friend std::ostream& operator<<(std::ostream&, const Deck&);//overwrite the operator <<
 };
+//

@@ -1,5 +1,5 @@
 #include "Continent.h"
-#include "Player.h"
+//#include "Player.h"
 #include <iostream>
 
 using std::vector;
@@ -52,16 +52,16 @@ void Continent::printTerritory()
 // check if a territory in this continent
 bool Continent::checkTerritory(std::string n)
 {
-	for (int i = 0; i < territories.size(); i++){
+	for (int i = 0; i < territories.size(); i++) {
 		if (n == territories[i]->territory->getName()) {
 			return true;
-		}		
+		}
 	}
 	return false;
 }
 
-
-bool Continent::owner(Player* player)
+/*
+bool Continent::owner(const Player* player)
 {
 	for (Node* n : territories)
 	{
@@ -72,7 +72,7 @@ bool Continent::owner(Player* player)
 	}
 	return true;
 }
-
+*/
 vector<Node*> Continent::getTerritories() const
 {
 	return territories;

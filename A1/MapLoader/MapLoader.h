@@ -15,7 +15,7 @@ public:
     // [MapLoader default constructor]
     MapLoader();
     // [MapLoader default constructor]
-    
+
     // [MapLoader destructor]
     ~MapLoader();
     // [MapLoader destructor]
@@ -23,7 +23,7 @@ public:
     // [There is a Map object as a variable in a MapLoader object]
     Map map;
     // [There is a Map object as a variable in a MapLoader object]    
-    
+
     // [The method to load .map file into a Map object which is a variable of the MapLoader object]
     void loadMap(string fileInput);
     // [The method to load .map file into a Map object which is a variable of the MapLoader object]

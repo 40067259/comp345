@@ -16,7 +16,7 @@ Player::Player(std::string name, std::vector<Territory*> territories, Hand* card
     _cards = cards;
     _orderList = orderList;
     reinforcementPool = 0;
-    
+
 }
 
 Player::Player(std::string name) {
@@ -88,6 +88,7 @@ void Player::addReinforcements(int r) {
 
 
 //return territories that player owns
+/* Old toDefend
 std::vector<Territory*> Player::toDefend() {
     std::cout << "Player needs to defend: ";
     for (Territory* terr : _territories)
@@ -95,12 +96,46 @@ std::vector<Territory*> Player::toDefend() {
 
     return _territories;
 }
+*/
+std::vector<Territory*> Player::toDefend() {
+    std::cout << "Player needs to defend: ";
+    for (Territory* terr : _territories)
+        std::cout << terr->getName() << " ";
 
+    int count = 1;
+    int user_input;
+    std::cout << "Which territory would you like to defend?" << "\n";
+
+    for (int i = 0; i < _territories.size(); i++)
+    {
+        std::cout << "Enter \"" << count << "\" for " + _territories.front()->getName() << "\n";
+        count++;
+    }
+    std::cin >> user_input;
+    _territoriesToDefend_priority.push_back(_territories[user_input - 1]);
+
+    std::cout << _territories[user_input - 1] << " will be defended. " << "\n";
+    return _territoriesToDefend_priority;
+}
+
+/* Old toAttack
 //return arbitrary list of territories to attack (As per A1 instructions)
 std::vector<Territory*> Player::toAttack() {
     std::cout << "\nPlayer needs to attack: ";
     for (const Territory* terr : arbitraryTerritoriesToAttack)
         std::cout << terr->getName() << " ";
+    return arbitraryTerritoriesToAttack;
+}
+*/
+std::vector<Territory*> Player::toAttack(Territory* territoryToAttack) {
+
+    arbitraryTerritoriesToAttack.push_back(territoryToAttack);
+
+    std::cout << "\nPlayer needs to attack: ";
+    for (const Territory* terr : arbitraryTerritoriesToAttack)
+        std::cout << terr->getName() << " ";
+
+    //_territoriesToAttack_priority.pushback();
     return arbitraryTerritoriesToAttack;
 }
 
@@ -129,7 +164,6 @@ void Player::issueOrder(int orderType) {
         std::cout << "Bombed!\n";
         break;
     }
-
 
     case 4: {
         Blockade* blockade = new Blockade();

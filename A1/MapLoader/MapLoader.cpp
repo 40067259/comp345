@@ -13,12 +13,12 @@ using std::map;
 
 // [MapLoader default constructor]
 MapLoader::MapLoader()
-{ 
+{
 }
 // [MapLoader default constructor]
 
 // [MapLoader destructor]
- MapLoader::~MapLoader()
+MapLoader::~MapLoader()
 {
 }
 // [MapLoader destructor]
@@ -49,7 +49,7 @@ void MapLoader::loadMap(string fileInput)
 {
 
     // [To check if the file is in the right format]
-    if(fileInput.find(".map") == std::string::npos)
+    if (fileInput.find(".map") == std::string::npos)
     {
         cout << "Wrong format for map. " << "\n";
         return;
@@ -57,7 +57,7 @@ void MapLoader::loadMap(string fileInput)
     // [To check if the file is in the right format]
 
     int count = 1;
-    
+
     // [reference string to read line by line later]
     string line;
     // [reference string to read line by line later]
@@ -134,10 +134,10 @@ void MapLoader::loadMap(string fileInput)
                 indexOrder = std::stoi(indexOrderStr);
                 //cout << "index converted" << "\n";
             }
-            catch (const std::exception& ex) {
+            catch (const std::exception ex) {
                 cout << "no order index";
             }
-            catch (const std::string& ex) {
+            catch (const std::string ex) {
                 cout << "no order index";
             }
             catch (...) {
@@ -151,7 +151,7 @@ void MapLoader::loadMap(string fileInput)
             std::string country = line;
             int emptySpace_country1 = country.find(" ");
             emptySpace_country1 = emptySpace_country1 + 1;
-            country = country.substr(emptySpace_country1, country.length()-1);
+            country = country.substr(emptySpace_country1, country.length() - 1);
             int emptySpace_country2 = country.find(" ");
             country = country.substr(0, emptySpace_country2);
 
@@ -176,10 +176,10 @@ void MapLoader::loadMap(string fileInput)
                 continentNb = std::stoi(continentNbStr);
                 //cout << "index converted" << "\n";
             }
-            catch (const std::exception& ex) {
+            catch (const std::exception ex) {
                 cout << "no index";
             }
-            catch (const std::string& ex) {
+            catch (const std::string ex) {
                 cout << "no index";
             }
             catch (...) {
@@ -188,7 +188,7 @@ void MapLoader::loadMap(string fileInput)
             //convert string to integer for index 
 
             // [convert the number back to the name]
-            string continenttoParse= continentsList[continentNb-1]; //continentNb
+            string continenttoParse = continentsList[continentNb - 1]; //continentNb
             cout << "Territory belongs to (continent): " << continenttoParse << "\n";
             // [convert the number back to the name]
             // [continent number]
@@ -215,10 +215,10 @@ void MapLoader::loadMap(string fileInput)
                 armiesNb = std::stoi(armiesNbStr);
                 //cout << "armies converted" << "\n";
             }
-            catch (const std::exception& ex) {
+            catch (const std::exception ex) {
                 cout << "no armies";
             }
-            catch (const std::string& ex) {
+            catch (const std::string ex) {
                 cout << "no armies";
             }
             catch (...) {
@@ -250,10 +250,10 @@ void MapLoader::loadMap(string fileInput)
                 indexNb = std::stoi(indexNbStr);
                 //cout << "index converted" << "\n";
             }
-            catch (const std::exception& ex) {
+            catch (const std::exception ex) {
                 cout << "no index";
             }
-            catch (const std::string& ex) {
+            catch (const std::string ex) {
                 cout << "no index";
             }
             catch (...) {
@@ -269,10 +269,10 @@ void MapLoader::loadMap(string fileInput)
             countryList.push_back(country);//add country to the vector for later use
         }
         cout << "[End of Territory Section]" << "\n";
-         //[Territories]
+        //[Territories]
 
-        // [Borders]
-        // [to get the borders section]
+       // [Borders]
+       // [to get the borders section]
         while (std::getline(fileToRead, line))
         {
             if (line == "[borders]")
@@ -294,10 +294,10 @@ void MapLoader::loadMap(string fileInput)
                 currentTerritoryNb = std::stoi(currentTerritory);
                 //cout << "index converted" << "\n";
             }
-            catch (const std::exception& ex) {
+            catch (const std::exception ex) {
                 cout << "no conversion";
             }
-            catch (const std::string& ex) {
+            catch (const std::string ex) {
                 cout << "no conversion";
             }
             catch (...) {
@@ -307,7 +307,7 @@ void MapLoader::loadMap(string fileInput)
             currentTerritoryNb = currentTerritoryNb - 1; //everything starts from 0
             //cout << "Current: " << currentTerritoryNb << " "<< countryList[currentTerritoryNb] << "\n";//TODO
 
-            for(int i=1; i< edgesStrList.size(); i++)
+            for (unsigned int i = 1; i < edgesStrList.size(); i++)
             {
                 int edgeNb = 0;
                 try {
@@ -316,10 +316,10 @@ void MapLoader::loadMap(string fileInput)
                     edgesList.push_back(edgeNb);
                     //cout << "index converted" << "\n";
                 }
-                catch (const std::exception& ex) {
+                catch (const std::exception ex) {
                     cout << "no index";
                 }
-                catch (const std::string& ex) {
+                catch (const std::string ex) {
                     cout << "no index";
                 }
                 catch (...) {
@@ -329,10 +329,10 @@ void MapLoader::loadMap(string fileInput)
                 //cout << "The edges numbers " << edgesStrList[i];//TODO
             }
             //convert string to integer for edges 
-           
-            
+
+
             // [Add edges to the map]
-            for (int i = 0; i < edgesList.size(); i++)
+            for (unsigned int i = 0; i < edgesList.size(); i++)
             {
                 map.addEdge(countryList[currentTerritoryNb], *map.getTerritory(countryList[edgesList[i]]));
             }
@@ -344,24 +344,24 @@ void MapLoader::loadMap(string fileInput)
     }
     else
     {
-    cout << "No such file";
+        cout << "No such file";
     }
 
- // [user clear()) to allow further operation]
- fileToRead.clear();
- // [user clear()) to allow further operation]
+    // [user clear()) to allow further operation]
+    fileToRead.clear();
+    // [user clear()) to allow further operation]
 
- // [move the position to the beginning]
- fileToRead.seekg(0, fileToRead.beg);
- // [move the position to the beginning]
+    // [move the position to the beginning]
+    fileToRead.seekg(0, fileToRead.beg);
+    // [move the position to the beginning]
 
- // [Setup continents]
- map.addTerritoriesToContinents();
- // [Setup continents]
+    // [Setup continents]
+    map.addTerritoriesToContinents();
+    // [Setup continents]
 
- // [Close the file which was opened]
- fileToRead.close();
- // [Close the file which was opened]
+    // [Close the file which was opened]
+    fileToRead.close();
+    // [Close the file which was opened]
 
 }
 // [The method to load .map file into a Map object which is a variable of the MapLoader object]
