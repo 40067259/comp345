@@ -15,6 +15,10 @@ public:
 	void deleteOrder(int orderNum);
 	void printOrders();
 
+	//added
+	std::vector<Orders*> getListOfOrders();
+	//added
+	
 private:
 	std::vector<Orders*> listOfOrders;
 
