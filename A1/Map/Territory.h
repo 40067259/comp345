@@ -4,6 +4,7 @@
 
 //class Player;
 class Continent;
+class Player;
 
 class Territory
 {
@@ -18,7 +19,7 @@ public:
 	void setArmies(int a) { armies = a; }
 	void addArmies(int a);
 	void removeArmies(int a);
-	Player* getOwner() const;
+	Player *getOwner() const;
 	void setOwner(Player* player);
 
 private:

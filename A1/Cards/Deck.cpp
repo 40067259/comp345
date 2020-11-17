@@ -58,7 +58,7 @@ Card* Deck::draw(Hand* hand) {
 		Card* card = &(availableCards->at(randIndex));// obtain the card accroding the randomInt
 		std::cout << "The random number is " << randIndex << ", " << *card <<std:: endl;
 		std::cout << "This round of draw finished" << std::endl;
-		hand->add(*card);//hand got a card
+		hand->add(card);//hand got a card
 		availableCards->erase(getAvailableCards()->begin() + randIndex);//deck pile lost a card
 		std::cout << "The deck infomation is : " << *this << std::endl;// after this draw round, the remaiding cards
 		return card;
