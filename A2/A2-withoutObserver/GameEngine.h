@@ -4,16 +4,17 @@
 #include "Map.h"
 #include "Player.h"
 #include "MapLoader.h"
-
+#include "Map.h"
+using std::vector;
 
 class MapLoader;
 class GameEngine {
 public:
     GameEngine();
     void GameStart();
-    
+
 private:
-    Map *map;
+    Map* map;
     int numberOfPlayers;
     vector<Player*> playersVector;
     bool IsObserverOn;
@@ -24,9 +25,4 @@ private:
     void issuingOrderPhase();
     void ordersExectionPhase();
     bool ownsContinent();
-
-    
-    
 };
-
-
