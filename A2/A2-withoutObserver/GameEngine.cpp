@@ -1,24 +1,27 @@
-#include "GameEngine.h"
+#include "GameEngine.hpp"
 #include "Player.h"
 #include <vector>
 #include <iostream>
-using namespace std;
+#include "Map.h"
+#include "Territory.h"
+using std::cout;
+using std::endl;
+using std::cin;
 
 
-
-GameEngine::GameEngine(){
+GameEngine::GameEngine() {
 }
 
 
 //method that starts the game
-void GameEngine::GameStart(){
-    cout<< "======================================="<<endl;
-    cout<< "          LET'S PLAY RISK              "<<endl;
-    cout<< "======================================="<<endl;
-    
+void GameEngine::GameStart() {
+    cout << "=======================================" << endl;
+    cout << "          LET'S PLAY WARZONE           " << endl;
+    cout << "=======================================" << endl;
+
     //Step 1: Select the map
     mapSelection();
-    
+
     //Step 2: Select the amount of players
     playerSelection();
 }
@@ -26,49 +29,49 @@ void GameEngine::GameStart(){
 
 
 //TODO: CHECK HOW TO REJECT A MAP BASED ON THE FACT IF ITS A CONNECTED GRAPH OR NOT
-void GameEngine::mapSelection(){
+void GameEngine::mapSelection() {
     int selectedMap;
-        cout<< "Let's select a map: (1)USA (2)Canada (3)Europe" <<endl;
-        cout<< "Enter an integer 1, 2, or 3"<<endl;
-        cin >> selectedMap;
-    while(selectedMap !=  1 || selectedMap != 2 || selectedMap != 3) {
-        cout<< "You have made an invalid selection. Please choose from one of 3 options."<<endl;
+    cout << "Let's select a map: (1)USA (2)Canada (3)Europe" << endl;
+    cout << "Enter an integer 1, 2, or 3" << endl;
+    cin >> selectedMap;
+    while (selectedMap != 1 || selectedMap != 2 || selectedMap != 3) {
+        cout << "You have made an invalid selection. Please choose from one of 3 options." << endl;
         cin >> selectedMap;
     }
-    
-    MapLoader *mapLoader = new MapLoader();
-    switch(selectedMap) {
-        case 1:
-            mapLoader->loadMap("us.map");
-            break;
-        case 2:
-            mapLoader->loadMap("canada.map");
-            break;
-        case 3:
-            mapLoader->loadMap("europe.map");
-            break;
+
+    MapLoader* mapLoader = new MapLoader();
+    switch (selectedMap) {
+    case 1:
+        mapLoader->loadMap("us.map");
+        break;
+    case 2:
+        mapLoader->loadMap("canada.map");
+        break;
+    case 3:
+        mapLoader->loadMap("europe.map");
+        break;
     }
 }
 
-void GameEngine::playerSelection(){
+void GameEngine::playerSelection() {
     int numberOfPlayersSelected;
-    cout<<"How many players will play? Choose between 2 to 5.";
+    cout << "How many players will play? Choose between 2 to 5.";
     cin >> numberOfPlayersSelected;
-    if (numberOfPlayersSelected < 2 || numberOfPlayersSelected >5){
-        cout<<"Invalid. Select between 2 to 5";
+    if (numberOfPlayersSelected < 2 || numberOfPlayersSelected >5) {
+        cout << "Invalid. Select between 2 to 5";
         cin >> numberOfPlayersSelected;
     }
-    
+
     numberOfPlayers = numberOfPlayersSelected;
-    
-    for(int i=0; i<numberOfPlayers; i++) {
+
+    for (int i = 0; i < numberOfPlayers; i++) {
         string name;
-        cout<<"Enter the name of player "<< i+1 <<endl;
+        cout << "Enter the name of player " << i + 1 << endl;
         cin >> name;
-        Player *player = new Player(name);
+        Player* player = new Player(name);
         playersVector.push_back(player);
     }
-    
+
 }
 
 
@@ -80,35 +83,124 @@ void GameEngine::mainGameLoop() {
     ordersExectionPhase();
 }
 
+void GameEngine::reinforcementPhase() {
+    for (Player* p : playersVector) {
+        int armiesGiven = 3;
 
-//PART 3 - ReinforcementPhase
-void GameEngine::reinforcementPhase(){
-    //For each player playing the game, give them armies
-    for(Player *p : playersVector) {
-        int minimumArmy = 3; //minimum amount of armies
-        int territorialArmies= 0; //armies depending on the amount of territories owned
-        int bonusArmy = 0; //bonus army
-        int totalArmy = 0; // total army, with everything added together
-       
-        
-        
-        //-----Condition 1:If player owns more than 3 territories, give them army-----//
-        int territoriesowned  = p->getTerritories().size(); //territories owned
-            if(territoriesowned>3) {
-                territorialArmies = territoriesowned/3;
-            }
-            
-        //-----Condition 2: If player owns all territories in a continent, give bonus armies-----//
-        unordered_map<string, Continent> tableOfContinents =  map->getContinents();
-        for(auto &continent : tableOfContinents){
-            if(continent.second.owner(p) == true){
-                bonusArmy = continent.second.getNativeArmy();
-            };
+        int territoriesowned = p->getTerritories().size();
+
+
+    }
+}
+
+void GameEngine::issuingOrderPhase()
+{
+    int orderNb;
+
+    for (Player* p : playersVector)
+    {
+        // [Asking for orders]
+        cout << "Issue Order: " << "\n";
+        cout << "Enter 1 for 'deploy'\n";
+        cout << "Enter 2 for 'advance'\n";
+        cout << "Enter 3 for 'bomb'\n";
+        cout << "Enter 4 for 'blockade'\n"; 
+        cout << "Enter 5 for 'airlift'\n";
+        cout << "Enter 6 for 'negotiate'\n";
+        cout << "ENTER 0 TO EXIT\n";
+        cout << ">>";
+        cin >> orderNb;
+        // [Asking for orders]
+
+        // [issue order]
+        if (orderNb == 0) 
+        {
+            break;
         }
-        
-        totalArmy = minimumArmy + territorialArmies + bonusArmy + totalArmy;
-        
-        p->addReinforcements(totalArmy);
+        else if(orderNb == 1)
+        {
+            p->issueOrder(1);
+            //[1. Store order to player's order list]
+            //[2. Print out message]           
+        }
+        else if (orderNb == 2)
+        {
+            p->issueOrder(2);
+            //[1. Store order to player's order list]
+            //[2. Print out message] 
+        }
+        else if (orderNb == 3)
+        {
+            p->issueOrder(3);
+            //[1. Store order to player's order list]
+            //[2. Print out message] 
+        }
+        else if (orderNb == 4)
+        {
+            p->issueOrder(4);
+            //[1. Store order to player's order list]
+            //[2. Print out message] 
+        }
+        else if (orderNb == 5)
+        {
+            p->issueOrder(5); 
+            //[1. Store order to player's order list]
+            //[2. Print out message] 
+        }
+        else if (orderNb == 6)
+        {
+            p->issueOrder(6);
+            //[1. Store order to player's order list]
+            //[2. Print out message]
+        }
+        else
+        {
+            cout << "There is no such option. Please wait for the next round";
+            break;
+        }
+        // [issue order]
+
+        //Round-robin through game engine?
+
+        // [toAttack]
+        std::cout << "Please select Territory to attack: ";
+        int count = 1;
+        for (int i = 0; i < map->size(); i++)
+        {
+            std::cout << "Press \"" << count << "\" to select " << map->getTerritory(i) << "\n";
+            count++;
+        }
+        int user_input;
+        std::cin >> user_input;
+
+        if (std::count(p->getTerritories().begin(), p->getTerritories().end(), map->getTerritory(user_input - 1))) //check if player have the territory already
+        {
+            std::cout << "You have owned the territory already";
+            std::cout << "Please wait for the next round";
+        }
+        else
+        {
+            p->toAttack(map->getTerritory(user_input - 1)); //add the territory to attack to the arbitraryTerritoriesToAttack list
+        }
+        // [toAttack]
+
+        // [toDefend]
+        p->toDefend();
+        // The method will
+        // [toDefend]
         
     }
+    
+}
+// after this method, there will be 3 lists to use
+// player's order list from "issueOrder()"
+// player's arbitraryTerritoriesToAttack list from toAttack()
+// player's _territoriesToDefend_priority list from toDefend()
+// we have to match the orders with the two list in the next phase
+// e.g. bomb, blockade and airlift should only be used with toDefend
+
+
+void GameEngine::ordersExectionPhase()
+{
+
 }
