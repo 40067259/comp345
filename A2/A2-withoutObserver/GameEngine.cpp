@@ -1,4 +1,4 @@
-#include "GameEngine.hpp"
+#include "GameEngine.h"
 #include "Player.h"
 #include <vector>
 #include <iostream>
@@ -13,7 +13,7 @@ GameEngine::GameEngine(){
 //method that starts the game
 void GameEngine::GameStart(){
     cout<< "======================================="<<endl;
-    cout<< "          LET'S PLAY WARZONE           "<<endl;
+    cout<< "          LET'S PLAY RISK              "<<endl;
     cout<< "======================================="<<endl;
     
     //Step 1: Select the map
@@ -80,12 +80,35 @@ void GameEngine::mainGameLoop() {
     ordersExectionPhase();
 }
 
+
+//PART 3 - ReinforcementPhase
 void GameEngine::reinforcementPhase(){
+    //For each player playing the game, give them armies
     for(Player *p : playersVector) {
-        int armiesGiven = 3;
+        int minimumArmy = 3; //minimum amount of armies
+        int territorialArmies= 0; //armies depending on the amount of territories owned
+        int bonusArmy = 0; //bonus army
+        int totalArmy = 0; // total army, with everything added together
+       
         
-        int territoriesowned  = p->getTerritories().size();
         
+        //-----Condition 1:If player owns more than 3 territories, give them army-----//
+        int territoriesowned  = p->getTerritories().size(); //territories owned
+            if(territoriesowned>3) {
+                territorialArmies = territoriesowned/3;
+            }
+            
+        //-----Condition 2: If player owns all territories in a continent, give bonus armies-----//
+        unordered_map<string, Continent> tableOfContinents =  map->getContinents();
+        for(auto &continent : tableOfContinents){
+            if(continent.second.owner(p) == true){
+                bonusArmy = continent.second.getNativeArmy();
+            };
+        }
+        
+        totalArmy = minimumArmy + territorialArmies + bonusArmy + totalArmy;
+        
+        p->addReinforcements(totalArmy);
         
     }
 }

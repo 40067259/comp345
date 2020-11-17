@@ -15,6 +15,8 @@ Player::Player(std::string name, std::vector<Territory*> territories, Hand* card
     _territories = territories;
     _cards = cards;
     _orderList = orderList;
+    reinforcementPool = 0;
+    
 }
 
 Player::Player(std::string name) {
@@ -24,6 +26,7 @@ Player::Player(std::string name) {
     _territories = territories;
     _cards = new Hand();
     _orderList = new OrdersList();
+    reinforcementPool = 0;
 }
 
 Player::Player() {
@@ -33,6 +36,7 @@ Player::Player() {
     _territories = territories;
     _cards = new Hand();
     _orderList = new OrdersList();
+    reinforcementPool = 0;
 }
 
 //==========DESTRUCTORS==========//
@@ -69,10 +73,18 @@ int Player::getArmies() {
     return _armies;
 };
 
+int Player::getReinforcements() {
+    return reinforcementPool;
+}
+
 
 
 
 //==========METHODS==========//
+//add reinforcements to the player
+void Player::addReinforcements(int r) {
+    reinforcementPool += r;
+}
 
 
 //return territories that player owns

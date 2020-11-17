@@ -17,6 +17,7 @@ private:
     string _name;
     int _playerNumber;
     int _armies = 0;
+    int reinforcementPool;
     static int numberOfPlayers;
     
 public:
@@ -32,6 +33,7 @@ public:
    void printPlayerTerritories();
    void giveNewArmy(int num);
    void addTerritory(Territory *terr);
+    void addReinforcements(int r);
     
     
     vector<Territory*> getTerritories();
@@ -39,13 +41,13 @@ public:
     OrdersList* getOrdersList();
     string getName();
     int getArmies();
+    int getReinforcements();
     
 
     
 
 
 };
-
 
 
 
