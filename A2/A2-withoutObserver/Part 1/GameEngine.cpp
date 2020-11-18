@@ -3,11 +3,11 @@
 #include <iostream>
 
 #include <vector>
-#include "Map.h"
-#include "GameEngine.h"
-#include "Player.h"
-#include "Maploader.h"
-#include "Territory.h"
+#include "C:\\Users\\riley\\source\\repos\\A2\\A2\\Map.h"
+#include "C:\\Users\\riley\\source\\repos\\A2\\A2\\GameEngine.h"
+#include "C:\\Users\\riley\\source\\repos\\A2\\A2\\Player.h"
+#include "C:\\Users\\riley\\source\\repos\\A2\\A2\\Maploader.h"
+#include "C:\\Users\\riley\\source\\repos\\A2\\A2\\Territory.h"
 
 //#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION //include this with <experimental/filesystem>
 //#include <filesystem>//this does not work too
@@ -176,9 +176,7 @@ Deck* GameEngine::getDeckCards() {
     return deckCards;
 }
 
-vector<Player*> GameEngine::getPlayersList() {
-    return players;
-}
+
 
 bool GameEngine::getObserverStatus() {
     return activateObservers;
@@ -186,13 +184,15 @@ bool GameEngine::getObserverStatus() {
 delete
 
 */
-
+vector<Player*> GameEngine::getPlayersVector() {
+    return playersVector;
+}
 
 //==========PART 3: MAIN GAME LOOP==========//
 void GameEngine::mainGameLoop() {
-    
+
     reinforcementPhase();
-    
+
     bool notAWinnerYet = true;
     while (notAWinnerYet)
     {
@@ -208,6 +208,7 @@ void GameEngine::mainGameLoop() {
             }
         }
     }
+
 }
 
 
@@ -215,6 +216,9 @@ void GameEngine::mainGameLoop() {
 void GameEngine::reinforcementPhase() {
     //For each player playing the game, give them armies
     for (Player* p : playersVector) { 
+
+        cout << "It is " << p->getName() << "'s Reinforcement Phase now!" << "\n";
+
         int minimumArmy = 3; //minimum amount of armies
         int territorialArmies = 0; //armies depending on the amount of territories owned
         int bonusArmy = 0; //bonus army
@@ -249,6 +253,8 @@ void GameEngine::issuingOrderPhase()
 
     for (Player* p : playersVector) 
     {
+        cout << "It is " << p->getName() << "'s Issuing Orders Phase now!" << "\n";
+
         // [Asking for orders]
         cout << "Issue Order: " << "\n";
         cout << "Enter 1 for 'deploy'\n";
@@ -363,6 +369,9 @@ void GameEngine::ordersExectionPhase()
 
     for (Player* p : playersVector) 
     {
+
+        cout << "It is " << p->getName() << "'s Orders Exection Phase now!" << "\n";
+
         //[get the order type]
         // [Deploy]
         if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Deploy") == 0)
