@@ -1,7 +1,7 @@
 #pragma once
-#include "C:\Users\amadeus\source\repos\part1\part1\Player\Player.h"
+#include "Player.h"
 //#include "GameObservers.h"
-#include "C:\Users\amadeus\source\repos\part1\part1\MapLoader\MapLoader.h"
+#include "MapLoader.h"
 #include<iostream>
 #include<string>
 #include <fstream>
