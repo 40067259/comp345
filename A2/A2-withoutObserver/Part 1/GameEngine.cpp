@@ -201,6 +201,8 @@ void GameEngine::mainGameLoop() {
             if (p->getTerritories().size() == myMap->size())
             {
                 notAWinnerYet = false;
+                cout << p->getName() << " won. " << "\n";
+                cout << "The game is ended" << "\n";
             }
         }
     }
