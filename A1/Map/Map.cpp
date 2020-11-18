@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-#include "C:\Users\amadeus\source\repos\part1\part1\Player\Player.h"
+#include "Player.h"
 #include "Map.h"
 
 Map::Map()
