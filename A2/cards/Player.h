@@ -7,7 +7,7 @@
 #include "Hand.h"
 
 class OrdersList;//why I need this line to avoid errors????
-using namespace std;
+using namespace std;  // why not use std::???
 
 class Player {
 private:
