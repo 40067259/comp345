@@ -44,6 +44,9 @@ public:
     std::string getName();
     int getArmies();
     int getReinforcements();
+    
+    // Added for implementing part2.
+    void setReinforcements(int rp);
 
     //added
     std::vector<Territory*> _territoriesToDefend_priority;
