@@ -12,6 +12,9 @@ int main() {
 
 	int a;
 	std::cin>>a;
+	
+	// Testing code for part2.
+    	game.gameStartupPhase();
 
 	return 0;
 
