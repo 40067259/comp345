@@ -79,6 +79,7 @@ void GameEngine::playerSelection() {
 
 //==========PART 3: MAIN GAME LOOP==========//
 void GameEngine::mainGameLoop() {
+    
     reinforcementPhase();
     issuingOrderPhase();
     ordersExectionPhase();

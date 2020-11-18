@@ -14,10 +14,10 @@ GameEngine::GameEngine() {
 }
 
 GameEngine::~GameEngine() {
-	delete gameMap;
+	delete myMap;
 	delete mapLoader;
 	delete deckCards;
-	gameMap = NULL;
+	myMap = NULL;
 	mapLoader = NULL;
 	deckCards = NULL;
 }
@@ -54,7 +54,7 @@ void GameEngine::GameStart() {
 	playerSelection();
 
 	// create a deck of cards, the number of cards = number of players x 5 kinds of cards x 10 cards of each type
-	deckCards = new Deck(nbOfPlayers);
+	deckCards = new Deck(numberOfPlayers);
 	cout << "A deck of cards created." << endl;
 }
 
@@ -62,10 +62,9 @@ void GameEngine::GameStart() {
 void GameEngine::mapSelection() {
 
 	// get a list of maps from "/path/to/directory";
-	string path1 = "test_maps";
+   string path1 = "test_maps";
 	// print a list of maps
-	cout << "Choose a map from the list below by entering the map's name (e.g. canada.map)" << std::endl;
-
+   cout << "Choose a map from the list below by entering the map's name (e.g. canada.map)" << std::endl;
 	for (auto& entry : std::experimental::filesystem::directory_iterator(path1))
 	{
 		cout << entry.path().filename() << endl;
@@ -74,7 +73,7 @@ void GameEngine::mapSelection() {
 	selectedMap = "";
 	//Get input from the user for the map name
 	cin >> selectedMap;
-	
+
 	// check if the file exists
 	bool exists = false;
 
@@ -99,11 +98,11 @@ void GameEngine::mapSelection() {
 	}
 
 	// try to load a map and check map validity
-	gameMap = new Map();
-	mapLoader = new MapLoader();
-	string path2 = path1 +"\\"+ selectedMap;
-	cout << path2;
-	mapLoader->loadMap(path2);
+    myMap = new Map();
+        mapLoader = new MapLoader();
+        string path2 = path1 +"\\"+ selectedMap;
+        cout << path2;
+        mapLoader->loadMap(path2);
 
 	// map validation test
 	while (!mapLoader->map.validate()) {
@@ -118,7 +117,7 @@ void GameEngine::mapSelection() {
 		mapLoader = new MapLoader();
 		mapLoader->loadMap(selectedMap);
 		}
-	gameMap = & mapLoader->map;
+	myMap = & mapLoader->map;
 	cout << "Map is valide. Map is loaded." << endl;
 	}
 
@@ -126,36 +125,24 @@ void GameEngine::playerSelection() {
 	cout << "How many players will play? Choose between 2 to 5."<<endl;
 	cin.clear();
 	cin.ignore(256, '\n');
-	cin >> nbOfPlayers;
-	while (nbOfPlayers < 1 || nbOfPlayers > 6) {
+	cin >> numberOfPlayers;
+	while ( numberOfPlayers < 1 ||  numberOfPlayers > 6) {
 		cout << "Invalid. Select between 2 to 5";
-		cin >> nbOfPlayers;
+		cin >>  numberOfPlayers;
 	}
 
-	for (int i = 0; i < nbOfPlayers; i++) {
+	for (int i = 0; i < numberOfPlayers; i++) {
 		string name;
 		cout << "Enter the name of player " << i + 1 << endl;
 		cin >> name;
 		Player *player = new Player(name);
-		players.push_back(player);
+		playersVector.push_back(player);
 	}
 
 }
 
-int GameEngine::getNbOfPlayers() {
-	return nbOfPlayers;
-}
 
-Deck* GameEngine::getDeckCards() {
-	return deckCards;
-}
 
-vector<Player*> GameEngine::getPlayersList() {
-	return players;
-}
 
-bool GameEngine::getObserverStatus() {
-	return activateObservers;
-}
 
 

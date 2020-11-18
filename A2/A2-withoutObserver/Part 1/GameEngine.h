@@ -11,30 +11,24 @@
 namespace fs = std::experimental::filesystem;
 class GameEngine {
 public:
-	// Constructors
 	GameEngine();
 	~GameEngine();
 	void GameStart();
-
-	// Accessors
-	int getNbOfPlayers();
-	Deck* getDeckCards();
-	vector<Player*> getPlayersList();
-	bool getObserverStatus();
 	void mapSelection();
 	void playerSelection();
+    vector<Player*> getPlayersVector();
 
 private:
 	std::string selectedMap;
-	int nbOfPlayers;
+	int numberOfPlayers;
 	Deck* deckCards;
-	vector<Player*> players;
-	bool activateObservers;
-	Map* gameMap;
+	vector<Player*> playersVector;
+	Map* myMap;
 	MapLoader* mapLoader;
 	vector<string> mapNames;
 	std::string currentphase;
 };
+
 
 
 
