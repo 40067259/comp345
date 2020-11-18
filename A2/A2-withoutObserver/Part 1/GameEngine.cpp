@@ -9,6 +9,7 @@
 namespace fs = std::experimental::filesystem; // for c++ 14
 //#include <filesystem>  // for c++ 17
 //namespace fs = std::filesystem; // for c++ 17
+//fs::current_path(fs::temp_directory_path());// for c++ 17
 
 
 using std::cout;
