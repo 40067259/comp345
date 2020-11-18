@@ -16,7 +16,13 @@ public:
 	void GameStart();
 	void mapSelection();
 	void playerSelection();
-    vector<Player*> getPlayersVector();
+	vector<Player*> getPlayersVector();
+
+	void mainGameLoop();
+	void reinforcementPhase();
+	void issuingOrderPhase();
+	void ordersExectionPhase();
+	bool ownsContinent();
 
 private:
 	std::string selectedMap;
@@ -27,8 +33,6 @@ private:
 	MapLoader* mapLoader;
 	vector<string> mapNames;
 	std::string currentphase;
+
+
 };
-
-
-
-
