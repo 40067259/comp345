@@ -9,7 +9,6 @@
 #include <experimental/filesystem>  // for C++14
 //#include <filesystem>  // for C++17
 
-namespace fs = std::experimental::filesystem;
 class GameEngine {
 public:
 	GameEngine();
