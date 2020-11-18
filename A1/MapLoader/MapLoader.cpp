@@ -1,5 +1,5 @@
 #include "MapLoader.h"
-#include "C:\Users\amadeus\source\repos\part1\part1\Map\Map.h"
+#include "Map.h"
 #include <list>
 #include <string>
 #include <vector>
