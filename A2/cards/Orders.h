@@ -75,14 +75,12 @@ public:
 
 class Bomb : public Orders
 {
-private:
-	std::string orderType = "bomb";
-public:
 
-	Bomb();
+public:
+	Bomb(Player* player,std::string terName);
 	~Bomb();
 	bool validate(); // verifies if the order is valid.
-	void execute(); // method that will result in some game action being implemented
+	void execute(Map map); // method that will result in some game action being implemented
 	void printOrder();
 
 };

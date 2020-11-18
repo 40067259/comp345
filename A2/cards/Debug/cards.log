@@ -1,6 +1,2 @@
 ﻿  CardsDriver.cpp
-E:\C++\Workplace\cards\CardsDriver.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
-  Player.cpp
-E:\C++\Workplace\cards\Player.cpp(91,23): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
   cards.vcxproj -> E:\C++\Workplace\cards\Debug\cards.exe

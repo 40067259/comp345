@@ -71,6 +71,11 @@ int main() {
 	//attack
 	map.getTerritory("Korea")->setOwner(pl2);
 	map.getTerritory("Japan")->setOwner(ply);
+	map.getTerritory("china")->setOwner(ply);
+	Territory* ter3 = new Territory("china", conti, 20, 2);
+	Territory* ter2 = new Territory("Japan", conti, 60, 1);
+	ply->addTerritory(ter3);
+	
 	//advand--->attack
 	Advance* ad = new Advance(ply, 40, "china", "Korea");
 	ad->execute(map);
@@ -86,19 +91,27 @@ int main() {
 	pl3->getHand()->setAcard("airlift");
 	Territory* ter1 = new Territory("Iran", conti, 70, 4);
 	pl3->addTerritory(ter1);
+	pl3->addTerritory(ter2);
+	/*
 	pl3->issueOrder(5);
-	//OrdersList *list = pl3->getOrdersList();
 	std::vector<Orders*> orders = pl3->getOrdersList()->getOrders();
-	//std::vector<Orders*> orders = list.getOrders();
 	for (int i = 0; i < orders.size(); i++) {
 		orders.at(i)->execute();
-	}
-	//Airlift* airlift = new Airlift(pl3, 80, "Iran", "Korea");
-	//airlift->execute(map);
+	}*/
+	Airlift* airlift = new Airlift(pl3, 80, "Iran", "Korea");
+	airlift->execute(map);
 	
-	//-------------------------------------------------------------------------
-
-
+	//---------------------------------Bomb----------------------------------------
+	cout<<endl;
+	cout << "--------------------------------------bomb---------------------------" << endl;
+	//bomb enimy
+	pl2->getHand()->setAcard("bomb");
+	Bomb* bomb = new Bomb(pl2, "Japan");
+	bomb->execute(map);
+	//bomb self
+	ply->getHand()->setAcard("bomb");
+	Bomb* bomb1 = new Bomb(ply, "china");
+	bomb1->execute(map);
 	//--------------------------------------memory free------------------------------------
 
 

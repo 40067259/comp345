@@ -138,7 +138,10 @@ void Player::issueOrder(int orderType) {
     }
 
     case 3: {
-        Bomb* bomb = new Bomb();
+        cout << "Please input a territory to bomb" << endl;
+        std::string target = "Japan";
+        cin >> target;
+        Bomb* bomb = new Bomb(this,target);
         _orderList->addOrders(bomb);
         std::cout << "Bombed!\n";
         break;

@@ -219,19 +219,37 @@ void Airlift::printOrder() {
 }
 
 // Bomb class function declaration
-Bomb::Bomb() {
+Bomb::Bomb(Player* player,std::string terName):Orders(player,-1,terName) {
+	this->orderType = "bomb";
+	cout << "A bomb is created" << endl;
 }
 Bomb::~Bomb()
 {
 }
 // for now, no need to implement the execute() and validate() 
 bool Bomb::validate() {
-	cout << "varifing the Bomb order..." << endl;
+	if (player->getHand()->getACard("bomb") != nullptr && player->findTerritory(terName) == nullptr) {
+		return true;
+	}
 	return false;
 }
-void Bomb::execute() {
-	Bomb::validate();
-	cout << "implementing the Bomb order... " << endl;
+void Bomb::execute(Map map) {
+	if (Bomb::validate()) {
+		Territory* ter = map.getTerritory(terName);
+		if (ter->getOwner() == nullptr) {
+			cout << "It is a neature area, order cancelled" << endl;
+		}
+		else {
+			cout << ter->getOwner()->getName() << "'s " << ter->getName() << " territory is being bombed by " << player->getName();
+			cout << ", half of its armies are lost, the remaining armies is " << ter->getArmies() / 2 << endl;
+			ter->setArmies(ter->getArmies() / 2);
+		}
+		
+	}
+	else {
+		cout << "Bomb order is invalid, order cancelled " << endl;
+	}
+	
 }
 void Bomb::printOrder() {
 	cout << "The order type is " << orderType << endl;
