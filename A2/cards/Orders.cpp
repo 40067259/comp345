@@ -187,8 +187,7 @@ Airlift::~Airlift()
 }
 // for now, no need to implement the execute() and validate() 
 bool Airlift::validate() {
-	cout<<player->getHand()->getACard("airlift")->getType()<<"<-----------------"<<endl;
-	cout << player->findTerritory(this->terName) << "<--------------" << endl;
+
 	if (player->getHand()->getACard("airlift") != nullptr && player->findTerritory(this->terName) != nullptr) {
 		return true;
 	}
@@ -256,19 +255,31 @@ void Bomb::printOrder() {
 }
 
 // Blockade class function declaration
-Blockade::Blockade() {
+Blockade::Blockade(Player* player, std::string terName) :Orders(player, -1, terName) {
+	this->orderType = "blockade";
+	cout << "A blockade order is created" << endl;
 }
 Blockade::~Blockade()
 {
 }
 // for now, no need to implement the execute() and validate() 
 bool Blockade::validate() {
-	cout << "varifing the Blockade order..." << endl;
+	cout << player->findTerritory(terName)->getName() << "<--------************---" << endl;
+	cout << this->player->getHand()->getACard("blockade")->getType() << "<-----------" << endl;
+	if (this->player->getHand()->getACard("blockade") != nullptr && player->findTerritory(terName) != nullptr) {
+		return true;
+	}
 	return false;
 }
 void Blockade::execute() {
-	Blockade::validate();
-	cout << "implementing the Blockade order... " << endl;
+	if (Blockade::validate()) {
+		Territory* ter = player->findTerritory(terName);
+		ter->setArmies(ter->getArmies() * 2);
+		ter->setOwner(nullptr);
+		cout << player->getName() << "'s territory " << ter->getName() << " is blockaded. ";
+		cout << "the number of army is doubled to " << ter->getArmies() << ", but this territory belongs to nobody" << endl;
+	}
+	cout << "The blockade order is invalid, it will be cancelled " << endl;
 }
 void Blockade::printOrder() {
 	cout << "The order type is " << orderType << endl;

@@ -88,11 +88,9 @@ public:
 class Blockade : public Orders
 {
 private:
-	std::string orderType = "blockade"; // airlift, or negotiate
-
+	
 public:
-
-	Blockade();
+	Blockade(Player* player, std::string terName);
 	~Blockade();
 	bool validate(); // verifies if the order is valid.
 	void execute(); // method that will result in some game action being implemented

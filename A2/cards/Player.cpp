@@ -149,7 +149,10 @@ void Player::issueOrder(int orderType) {
 
 
     case 4: {
-        Blockade* blockade = new Blockade();
+        cout << "Please input a territory to blockade" << endl;
+        std::string target = "Japan";
+        cin >> target;
+        Blockade* blockade = new Blockade(this,target);
         _orderList->addOrders(blockade);
         std::cout << "Blockade!\n";
         break;

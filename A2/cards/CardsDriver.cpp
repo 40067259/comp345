@@ -46,7 +46,53 @@ int main() {
 	std::cout << "After play action: " << std::endl;// after played all cards in hand, show the info of hand and deck
 	std::cout << "Hand information is: " << *hand1 << std::endl;
 	std::cout << "Deck information is: " << *deck << std::endl;
-	
+	cout << endl;
+	cout << "**************************************A2**********************************" << endl;
+
+	/*
+	//create a continent
+	Continent conti("Asia", 12);
+	//add continent and territory to map
+	Map map;
+	map.addContinent("Asia", 800);
+	map.addTerritory("Korea", "Asia", 80, 3);
+	map.addTerritory("china", "Asia", 20, 0);
+	map.addTerritory("Japan", "Asia", 60, 2);
+	map.addTerritory("Iran", "Asia", 70, 1);
+	map.addTerritory("Malisia", "Asia", 50, 4);
+	//create 3 players to play
+	Player* ply = new Player("Lee");
+	ply->giveNewArmy(100);
+	Player* pl2 = new Player("Simida");
+	pl2->giveNewArmy(60);
+	Player* pl3 = new Player("Ali");
+	pl3->giveNewArmy(70);
+	Player* pl4 = new Player("Tom");
+	pl4->giveNewArmy(100);
+	//create 4 territories and related to territories in the map
+	Territory* ter = new Territory("china", conti, 20, 0);
+	Territory* ter2 = new Territory("Japan", conti, 60, 2);
+	Territory* ter3 = new Territory("Korea", conti, 80, 3);
+	Territory* ter1 = new Territory("Iran", conti, 70, 1);
+	Territory* ter4 = new Territory("Malisia", conti, 50, 4);
+
+	// players connect to territories
+	ply->addTerritory(ter);//china
+	pl3->addTerritory(ter1);//Iran
+	pl3->addTerritory(ter2);//Japan
+	pl2->addTerritory(ter3);//Korea
+	pl4->addTerritory(ter4);//Malisia
+	//
+
+	map.getTerritory("Korea")->setOwner(pl2);
+	map.getTerritory("Japan")->setOwner(pl3);
+	map.getTerritory("china")->setOwner(ply);
+	map.getTerritory("Iran")->setOwner(pl3);
+	map.getTerritory("Malisia")->setOwner(pl4);
+
+	*/
+
+
 	cout << "--------------------------------Depoly Demo--------------------" << endl;
 	Player* ply = new Player();
 	ply->giveNewArmy(100);
@@ -66,6 +112,7 @@ int main() {
 	map.addTerritory("Korea","Asia",80,3);
 	map.addTerritory("china", "Asia", 20, 2);
 	map.addTerritory("Japan", "Asia", 60, 1);
+	map.addTerritory("Malisia", "Asia", 50, 4);
 	Player* pl2 = new Player("Simida");
 	pl2->giveNewArmy(60);
 	//attack
@@ -112,16 +159,19 @@ int main() {
 	ply->getHand()->setAcard("bomb");
 	Bomb* bomb1 = new Bomb(ply, "china");
 	bomb1->execute(map);
-	//--------------------------------------memory free------------------------------------
+
+	cout << "------------------------------Blockade------------------------------------------" << endl;
+
+	Player* pl4 = new Player("Tom");
+	pl4->giveNewArmy(100);
+	Territory* ter4 = new Territory("Malisia", conti, 50, 4);
+	pl4->addTerritory(ter4);
+	pl4->getHand()->setAcard("blockade");
+	Blockade* bl = new Blockade(pl4,"Malisia");
+	bl->execute();
 
 
-
-
-
-
-
-
-
+	cout << "//--------------------------------------memory free------------------------------------" << endl;
 
 
 	//free the momery

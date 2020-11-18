@@ -1,2 +1,8 @@
 ﻿  CardsDriver.cpp
-  cards.vcxproj -> E:\C++\Workplace\cards\Debug\cards.exe
+  Orders.cpp
+C:\Users\isa20\Desktop\Card\Orders.cpp(65,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\Card\Orders.cpp(117,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\isa20\Desktop\Card\Orders.cpp(118,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\isa20\Desktop\Card\Orders.cpp(122,16): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  cards.vcxproj -> C:\Users\isa20\Desktop\Card\Debug\cards.exe
