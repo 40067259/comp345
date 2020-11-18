@@ -1,5 +1,5 @@
 #include "GameEngine.h"
-#include "C:\Users\amadeus\source\repos\part1\part1\Maploader\Maploader.h"
+#include "Maploader.h"
 
 #include <vector>
 #include <iostream>
