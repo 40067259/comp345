@@ -190,9 +190,20 @@ delete
 
 //==========PART 3: MAIN GAME LOOP==========//
 void GameEngine::mainGameLoop() {
-    reinforcementPhase();
-    issuingOrderPhase();
-    ordersExectionPhase();
+    bool notAWinnerYet = true;
+    while (notAWinnerYet)
+    {
+        reinforcementPhase();
+        issuingOrderPhase();
+        ordersExectionPhase();
+
+        for (Player* p : playersVector) {
+            if (p->getTerritories().size() == myMap->size())
+            {
+                notAWinnerYet = false;
+            }
+        }
+    }
 }
 
 
