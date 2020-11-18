@@ -1,29 +1,42 @@
-#pragma once
-#include <stdio.h>
-#include <iostream>
-#include "Map.h"
-#include "Player.h"
-#include "MapLoader.h"
-#include "Map.h"
-using std::vector;
 
-class MapLoader;
+#pragma once
+#include "Player.h"
+//#include "GameObservers.h"
+#include "MapLoader.h"
+#include<iostream>
+#include<string>
+#include <fstream>
+#include <cstdint>
+#include <filesystem>
+
+namespace fs = std::experimental::filesystem;
 class GameEngine {
 public:
-    GameEngine();
-    void GameStart();
+	// Constructors
+	GameEngine();
+	~GameEngine();
+	void GameStart();
+
+	// Accessors
+	int getNbOfPlayers();
+	Deck* getDeckCards();
+	vector<Player*> getPlayersList();
+	bool getObserverStatus();
+	void mapSelection();
+	void playerSelection();
+	void randomOrderOfPlayers();
+	void territoriesAssignment();
+	void armiesInitialization();
+	void gameStartupPhase();
 
 private:
-    Map* map;
-    int numberOfPlayers;
-    vector<Player*> playersVector;
-    bool IsObserverOn;
-    void mapSelection();
-    void playerSelection();
-    void mainGameLoop();
-    void reinforcementPhase();
-    void issuingOrderPhase();
-    void ordersExectionPhase();
-    bool ownsContinent();
+	std::string selectedMap;
+	int nbOfPlayers;
+	Deck* deckCards;
+	vector<Player*> players;
+	bool activateObservers;
+	Map* gameMap;
+	MapLoader* mapLoader;
+	vector<string> mapNames;
+	std::string currentphase;
 };
-//
