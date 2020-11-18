@@ -77,6 +77,11 @@ int Player::getReinforcements() {
     return reinforcementPool;
 }
 
+// Added line of code for implementing part2.
+void Player::setReinforcements(int rp) {
+    reinforcementPool = rp;
+}
+
 
 
 
