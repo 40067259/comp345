@@ -190,10 +190,12 @@ delete
 
 //==========PART 3: MAIN GAME LOOP==========//
 void GameEngine::mainGameLoop() {
+    
+    reinforcementPhase();
+    
     bool notAWinnerYet = true;
     while (notAWinnerYet)
     {
-        reinforcementPhase();
         issuingOrderPhase();
         ordersExectionPhase();
 
