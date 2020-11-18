@@ -4,8 +4,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem;
+// If you use the latest version of c++ (c++17), please replace the lines commented as "for c++14" by the ones marked as "for c++17"
+#include <experimental/filesystem>  // for c++ 14 
+namespace fs = std::experimental::filesystem; // for c++ 14
+//#include <filesystem>  // for c++ 17
+//namespace fs = std::filesystem; // for c++ 17
+
+
 using std::cout;
 using std::cin;
 using std::string;
@@ -65,7 +70,8 @@ void GameEngine::mapSelection() {
    string path1 = "test_maps";
 	// print a list of maps
    cout << "Choose a map from the list below by entering the map's name (e.g. canada.map)" << std::endl;
-	for (auto& entry : std::experimental::filesystem::directory_iterator(path1))
+	for (auto& entry : std::experimental::filesystem::directory_iterator(path1))  // for c++14
+	//for (auto& entry : std::filesystem::directory_iterator(path1))  // for c++17	
 	{
 		cout << entry.path().filename() << endl;
 	}
@@ -77,7 +83,8 @@ void GameEngine::mapSelection() {
 	// check if the file exists
 	bool exists = false;
 
-	for (auto& entry : std::experimental::filesystem::directory_iterator(path1))
+	for (auto& entry : std::experimental::filesystem::directory_iterator(path1)) // for c++14
+	//for (auto& entry : std::filesystem::directory_iterator(path1)) // for c++17
 	{
 		if (entry.path().filename() == selectedMap) {
 			exists = true;
@@ -89,7 +96,8 @@ void GameEngine::mapSelection() {
 		cin.ignore(256, '\n');
 		cout << "Please enter a valid map name" << endl;
 		cin >> selectedMap;
-		for (auto& entry : std::experimental::filesystem::directory_iterator(path1))
+		for (auto& entry : std::experimental::filesystem::directory_iterator(path1)) // for c++14
+		//for (auto& entry : std::filesystem::directory_iterator(path1)) // for c++17	
 		{
 			if (entry.path().filename() == selectedMap) {
 				exists = true;
