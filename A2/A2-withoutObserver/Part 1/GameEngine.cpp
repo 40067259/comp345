@@ -6,6 +6,12 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
+#include <fstream>
+#include <experimental/filesystem>
+#include <ctime>
+#include <algorithm>
+#include <iostream>
+#include <utility>
 #include <random>
 #include <cmath>
 // If you use the latest version of c++ (c++17), please replace the lines commented as "for c++14" by the ones marked as "for c++17"
@@ -154,7 +160,7 @@ void GameEngine::playerSelection() {
 	}
 
 }
-
+/*
 //---------------------------Part 2: Game play: game startup phase----------------------------------
 void GameEngine::gameStartupPhase() {
 
@@ -219,7 +225,6 @@ void GameEngine::territoriesAssignment() {
     }
 }
 
-
 // 3. Players are given a number of initial armies.
 void GameEngine::armiesInitialization() {
 
@@ -255,6 +260,57 @@ void GameEngine::armiesInitialization() {
     }
 }
 
+*/
+bool GameEngine::getObserverStatus() {
+	return activateObservers;
+}
+
+int GameEngine::getNbOfPlayers() {
+	return numberOfPlayers;
+}
+
+==============================================   Part 2 =====================================================
+void GameEngine::startupPhase()
+{
+	//Shuffle the order of the players, order is determined randomly.
+	random_shuffle(playersVector.begin(), playersVector.end());
+
+	//Create a vector of not distributed territories
+	vector<int> remaining;
+	for (int i = 0; i < myMap->size(); i++)
+	{
+		remaining.push_back(i);
+	}
+
+	//Assign a remaining territory to each currentPlayerTurn, one by one
+	for (int i = 0; i < myMap->size(); i++)
+	{
+		//Get random member of remaining, obtain it's index value, then remove it
+		int j = rand() % remaining.size();
+		int index = remaining[j];
+		remaining.erase(remaining.begin() + j);
+		//Find the territory at the given index and set it's new owner
+		Territory* territory = myMap->getTerritory(index);
+		Player* p = playersVector.at(i % numberOfPlayers);
+
+		territory->setOwner(p);
+		p->addTerritory(territory);
+	}
+
+	//Players are given a number of initial armies (A), where A is:			
+	// 2 players, A = 40
+	// 3 players, A = 35
+	// 4 players, A = 30
+	// 5 players, A = 25
+	int armies = 40 - (numberOfPlayers - 2) * 5;
+
+		// Players are given a number of armies;
+	for (int j = 0; j < nbOfPlayers; j++){
+			playersVector.at(j)->addReinforcements(armies);
+		}
+
+}
+=============================================================================================================
 vector<Player*> GameEngine::getPlayersVector() {
     return playersVector;
 }
@@ -463,17 +519,18 @@ void GameEngine::ordersExectionPhase()
         // [Deploy]
         if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Deploy") == 0)
         {
-            orders = new Deploy();
-
             // [Deploy is for defense, so get the land from "p->_territoriesToDefend_priority"]
             cout << "Deploy armies to " << p->_territoriesToDefend_priority.front()->getName() << "\n";
-
-            // exceute()
 
             // [pop the begin() of p->_territoriesToDefend_priority]
             p->_territoriesToDefend_priority.erase(p->_territoriesToDefend_priority.begin());
             // [pop the begin() of p->_territoriesToDefend_priority]
             
+            //[Execute Deploy]
+            orders = new Deploy();
+            orders->execute();
+            //[Execute Deploy]
+
             // The order will be pop at the end
         }
         // [Deploy]
@@ -495,15 +552,13 @@ void GameEngine::ordersExectionPhase()
             // [Depends on the choice]
             if (user_choice == 1)
             {
+
                 // [Send army for Offense]
                 cout << "Advance: Deploy army to attack " << p->arbitraryTerritoriesToAttack.front()->getName() << "\n";
-
-                // exceute()
 
                 // [pop the items from p->arbitraryTerritoriesToAttack]
                 p->arbitraryTerritoriesToAttack.erase(p->arbitraryTerritoriesToAttack.begin());
                 // [pop the items from p->arbitraryTerritoriesToAttack]
-
 
                 // [Send army for Offense]
             }
@@ -511,13 +566,6 @@ void GameEngine::ordersExectionPhase()
             {
                 // [Deploy army for Defense]
                 cout << "Advance: Deploy army to defend " << p->_territoriesToDefend_priority.front()->getName() << "\n";
-
-                // [Deploy armies to the targeted player's territory]
-                // how to do it?
-                // get the source army?
-                // [Deploy armies to the targeted player's territory]
-
-                // exceute()
 
                 // [pop the items from p->_territoriesToDefend_priority]
                 p->_territoriesToDefend_priority.erase(p->_territoriesToDefend_priority.begin());
@@ -530,6 +578,11 @@ void GameEngine::ordersExectionPhase()
                 cout << "The selection is not recognized. See you next round. " << "\n";
             }
             // [Depends on the choice]
+
+            //[Execute Advance]
+            orders = new Advance();
+            orders->execute();
+            //[Execute Advance]
 
             // The order will be pop at the end
         }
@@ -549,6 +602,11 @@ void GameEngine::ordersExectionPhase()
             p->arbitraryTerritoriesToAttack.erase(p->arbitraryTerritoriesToAttack.begin());
             // [pop the items from p->arbitraryTerritoriesToAttack]
 
+            //[Execute Bomb]
+            orders = new Advance();
+            orders->execute();
+            //[Execute Bomb]
+
         }
         // [Bomb]
 
@@ -565,6 +623,11 @@ void GameEngine::ordersExectionPhase()
 
             // exceute()
 
+            //[Execute Blockade]
+            orders = new Blockade(p, p->_territoriesToDefend_priority.front());
+            orders->execute();
+            //[Execute Blockade]
+
             // [pop the items from p->_territoriesToDefend_priority]
             p->_territoriesToDefend_priority.erase(p->_territoriesToDefend_priority.begin());
             // [pop the items from p->_territoriesToDefend_priority]
@@ -580,7 +643,22 @@ void GameEngine::ordersExectionPhase()
             // Armies will be taken from the player's territory to the targeted territory
             cout << "The selected number of armies is attacking "<< p->arbitraryTerritoriesToAttack.front()->getName() << "\n";
 
-            // exceute()
+            int userinput;
+            cout << "How many army you are gonna send? " << "\n";
+            cout << "You have " << p->getArmies() << "." << "\n";
+            cout << "Please enter the number of armies you are gonna send" << "\n";
+            cin >> userinput;
+            while (userinput > p->getArmies())
+            {
+                cout << "Invalid numbers, please enter again.";
+                cin >> userinput;
+            }
+
+            //TODO: i have no idea how to execute
+            //[Execute Airlift]
+            orders = new Airlift(p, userinput, p->_territoriesToDefend_priority.front(), p->_territoriesToDefend_priority.front()->getName());
+            orders->execute();
+            //[Execute Airlift]
 
             // [pop the items from p->arbitraryTerritoriesToAttack]
             p->arbitraryTerritoriesToAttack.erase(p->arbitraryTerritoriesToAttack.begin());
@@ -597,7 +675,10 @@ void GameEngine::ordersExectionPhase()
 
             cout << "Negotiate with " << p->arbitraryTerritoriesToAttack.front()->getName() << "'s Owner: " << p->arbitraryTerritoriesToAttack.front()->getOwner()->getName() << "\n";
 
-            // exceute()
+            //[Execute Negotiate]
+            orders = new Negotiate(p, p->arbitraryTerritoriesToAttack.front()->getOwner());
+            orders->execute();
+            //[Execute Negotiate]
 
             // [pop the items from p->arbitraryTerritoriesToAttack]
             p->arbitraryTerritoriesToAttack.erase(p->arbitraryTerritoriesToAttack.begin());
