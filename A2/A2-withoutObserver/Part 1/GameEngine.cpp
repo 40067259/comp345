@@ -194,22 +194,24 @@ void GameEngine::mainGameLoop() {
     reinforcementPhase();
 
     bool notAWinnerYet = true;
-    
-    //check if a player owns no land
-    int count = 0;
-    for (Player* p : playersVector) {
-        if (p->getTerritories().size() == 0) {
-            playersVector.erase(playersVector.begin()+count);
-            cout << "Since you own no land, you are kicked out from the game. Bye." << "\n";
-        }
-        count++;
-    }
-    
+
     while (notAWinnerYet)
     {
+
+        //check if a player owns no land
+        int count = 0;
+        for (Player* p : playersVector) {
+            if (p->getTerritories().size() == 0) {
+                playersVector.erase(playersVector.begin() + count);
+                cout << "Since you own no land, you are kicked out from the game. Bye." << "\n";
+            }
+            count++;
+        }
+
         issuingOrderPhase();
         ordersExectionPhase();
 
+        //check winner
         for (Player* p : playersVector) {
             if (p->getTerritories().size() == myMap->size())
             {
@@ -219,6 +221,7 @@ void GameEngine::mainGameLoop() {
             }
         }
     }
+
 
 }
 
