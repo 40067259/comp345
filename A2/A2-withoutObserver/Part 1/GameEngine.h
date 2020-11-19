@@ -8,6 +8,8 @@
 #include <fstream>
 #include <cstdint>
 #include <filesystem>
+#include <experimental/filesystem>//for c++14
+namespace fs = std::experimental::filesystem;
 
 class GameEngine {
 public:
@@ -17,29 +19,33 @@ public:
     void mapSelection();
     void playerSelection();
     vector<Player*> getPlayersVector();
-    
+    Map* myMap;
+    vector<Player*> playersVector;
     void randomOrderOfPlayers();
     void territoriesAssignment();
     void armiesInitialization();
     void gameStartupPhase();
+    int getNbOfPlayers();
+    bool getObserverStatus();
+    Deck* getDeckCards();numberOfPlayers
+    void startupPhase(); // for part 2
     
 	//added for part 3
     void mainGameLoop();
-	void reinforcementPhase();
-	void issuingOrderPhase();
-	void ordersExectionPhase();
-	bool ownsContinent();
+    void reinforcementPhase();
+    void issuingOrderPhase();
+    void ordersExectionPhase();
+    bool ownsContinent();
 	//added for part 3
 
 
 private:
     std::string selectedMap;
     int numberOfPlayers;
+    bool activateObservers;
     Deck* deckCards;
-    vector<Player*> playersVector;
-    Map* myMap;
-    MapLoader* mapLoader;
     vector<string> mapNames;
+    MapLoader* mapLoader;
     std::string currentphase;
 };
 
