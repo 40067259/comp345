@@ -65,6 +65,7 @@ private:
 	Territory* desName;
 
 public:
+	Airlift(); //Added 2020-11-19
 	Airlift(Player* player, int number, Territory* terName, Territory* desName);
 	~Airlift();
 	bool validate(); // verifies if the order is valid.
