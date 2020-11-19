@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include"C:\Users\amadeus\source\repos\part1\part1\Player\Player.h"
-#include"C:\Users\amadeus\source\repos\part1\part1\Map\Territory.h"
+#include"Player.h"
+#include"Territory.h"
 
 class Player;
 class Territory;
@@ -16,13 +16,11 @@ public:
 	~Orders();
 	int getNumber() { return number; }
 	Player* getPlayer() { return player; }
-	//std::string getTerName() { return terName; }
 	void setNumber(int number);
 	void setPlayer(Player* player);
-	//void setTerName(std::string name);
 	void setType(std::string type);
 	virtual bool validate(); // verifies if the order is valid.
-	virtual void execute() = 0; // method that will result in some game action being implemented
+	virtual void execute() = 0; // pure virtural function
 	virtual void printOrder();
 	std::string getOrderType();
 protected:
