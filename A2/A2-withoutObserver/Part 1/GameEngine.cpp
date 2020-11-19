@@ -160,107 +160,7 @@ void GameEngine::playerSelection() {
 	}
 
 }
-/*
-//---------------------------Part 2: Game play: game startup phase----------------------------------
-void GameEngine::gameStartupPhase() {
 
-    cout << "GAME PLAY: initializing game startup phase..." << endl;
-
-    // 1. The order of play of the players in the game is determined randomly.
-    randomOrderOfPlayers();
-
-    // 2. All territories in the map are randomly assigned to players one by one in a round-robin fashion.
-    territoriesAssignment();
-
-    // 3. Players are given a number of initial armies.
-    armiesInitialization();
-}
-
-
-// 1. The order of play of the players in the game is determined randomly.
-void GameEngine::randomOrderOfPlayers() {
-
-    cout << "\nThe order of play of the players in the game is determined randomly..." << endl;
-
-    std::random_device device;
-    std::mt19937 generator(device());
-
-    shuffle(playersVector.begin(), playersVector.end(), generator);
-
-    for (int i = 0; i < playersVector.size(); i++) {
-        cout << "\nThe order of play for player  " << playersVector[i]->getName() << " is: " << i << "." << endl;
-    }
-}
-
-
-// 2. All territories in the map are randomly assigned to players one by one in a round-robin fashion.
-void GameEngine::territoriesAssignment() {
-
-    cout << "\nRandomly assign all territories in the map to players one by one in a round-robin fashion..." << endl;
-
-    // Create a mapVector of size myMap->size() and it stores value between 0 and myMap->size()-1.
-    vector<int> mapVector(myMap->size());
-    std::random_device device;
-    std::mt19937 generator(device());
-
-    for (int i = 0; i < myMap->size(); i++) {
-        mapVector[i] = i;
-    }
-
-    // Shuffle the mapVector and each value is used to randomly assign a territory to a player.
-    shuffle(mapVector.begin(), mapVector.end(), generator);
-
-    int index = 0;
-    for (int i = 0; i < myMap->size(); i++) {
-
-        if (index == playersVector.size()) {
-            index = 0;
-        }
-
-        playersVector[index % playersVector.size()]->addTerritory(myMap->getTerritory(mapVector[i]));
-        index++;
-
-        cout << "\nTerritory \"" << myMap->getTerritory(mapVector[i])->getName() << "\" is assigned to player: "
-             << playersVector[index]->getName() << "." << endl;
-    }
-}
-
-// 3. Players are given a number of initial armies.
-void GameEngine::armiesInitialization() {
-
-    cout << "\nPlayers are given a number of initial armies..." << endl;
-
-    if (playersVector.size() == 2) {
-        for (int i = 0; i < playersVector.size(); i++) {
-            playersVector[i]->setReinforcements(40);
-        }
-    }
-    else if (playersVector.size() == 3) {
-        for (int i = 0; i < playersVector.size(); i++) {
-            playersVector[i]->setReinforcements(35);
-        }
-    }
-    else if (playersVector.size() == 4) {
-        for (int i = 0; i < playersVector.size(); i++) {
-            playersVector[i]->setReinforcements(30);
-        }
-    }
-    else if (playersVector.size() == 5) {
-        for (int i = 0; i < playersVector.size(); i++) {
-            playersVector[i]->setReinforcements(25);
-        }
-    }
-
-    cout << "\nThere are " << playersVector.size() << " players and each of them is given "
-         << playersVector[0]->getReinforcements() << " number of initial armies." << endl;
-
-    for(int i = 0; i < playersVector.size(); i++){
-        cout << playersVector[i]->getName() << " has " << playersVector[i]->getReinforcements()
-        << " initialized armies placed in the reinforcement pool." << endl;
-    }
-}
-
-*/
 bool GameEngine::getObserverStatus() {
 	return activateObservers;
 }
@@ -269,7 +169,7 @@ int GameEngine::getNbOfPlayers() {
 	return numberOfPlayers;
 }
 
-==============================================   Part 2 =====================================================
+//==============================================   Part 2 =====================================================
 void GameEngine::startupPhase()
 {
 	//Shuffle the order of the players, order is determined randomly.
@@ -310,7 +210,7 @@ void GameEngine::startupPhase()
 		}
 
 }
-=============================================================================================================
+
 vector<Player*> GameEngine::getPlayersVector() {
     return playersVector;
 }
