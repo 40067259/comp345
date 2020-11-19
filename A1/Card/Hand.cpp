@@ -30,6 +30,19 @@ vector<Card>* Hand::getHand() // get cards of deck
 	return hand;
 }
 
+Card* Hand::getACard(std::string name) {
+	for (int i = 0; i < hand->size(); i++) {
+
+		if (hand->at(i).getType() == name) {
+			Card *c = new Card();
+			c = &hand->at(i);
+			return c;
+		}
+	}
+	return nullptr;
+
+}
+
 void Hand::setHand(vector<Card>* toSet)// assign a vector to cards of deck
 {
 	hand = toSet;

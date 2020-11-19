@@ -1,41 +1,29 @@
 #pragma once
+#include <stdio.h>
+#include <iostream>
+#include "Map.h"
 #include "Player.h"
-#include "GameObservers.h"
-#include<iostream>
-using namespace std;
+#include "MapLoader.h"
+#include "Map.h"
+using std::vector;
 
-class GameEngine : public Observable{
-    public:
-        // Constructors
-        GameEngine();
-        void GameStart();
+class MapLoader;
+class GameEngine {
+public:
+    GameEngine();
+    void GameStart();
 
-        // Accessors
-        int getNbOfPlayers();
-        Deck* getDeckCards();
-        vector<Player*> getPlayersList();
-        bool getObserverStatus();
-        void setObserverStatus(bool status);
-        Map* getMap();
-        void setPhase(string s);
-        string getPhase();
-
-        // Methods
-        void startupPhase();
-        void mainGameLoop();
-        
-    private:
-        int nbOfPlayers;
-        Deck* deckCards;
-        vector<Player*> players;
-        bool activateObservers;
-        Map* gameMap;
-        bool isMapInDirectory(string fileName);
-        bool equals(const string& a, const string& b);
-        void setNbOfPlayers();
-        void toggleObservers();
-        string selectMap();
-        string currentphase;
+private:
+    Map* map;
+    int numberOfPlayers;
+    vector<Player*> playersVector;
+    bool IsObserverOn;
+    void mapSelection();
+    void playerSelection();
+    void mainGameLoop();
+    void reinforcementPhase();
+    void issuingOrderPhase();
+    void ordersExectionPhase();
+    bool ownsContinent();
 };
-
-
+//

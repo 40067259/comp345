@@ -8,18 +8,22 @@
 #include"Deck.h"
 
 
-Deck::Deck() {
+Deck::Deck(int numberOfPlayers) {
+
+	// create a Deck of cards, the number of cards is 10 x number of players x 5 kinds of cards
 	availableCards = new std::vector<Card>();
-	availableCards->emplace_back("Spy");
-	availableCards->emplace_back("Bomb");
-	availableCards->emplace_back("Reinforcement");
-	availableCards->emplace_back("Blockade");
-	availableCards->emplace_back("Airlift");
-	availableCards->emplace_back("Diplomacy");
-	std::cout << "Initialize Deck: " << std::endl;
-	for (unsigned int i = 0; i < availableCards->size(); i++) {
-		std::cout << availableCards->at(i) << std::endl;
+	for (int z = 0; z < (10 * numberOfPlayers); z++) {
+		availableCards->emplace_back("Spy");
+		availableCards->emplace_back("Bomb");
+		availableCards->emplace_back("Reinforcement");
+		availableCards->emplace_back("Blockade");
+		availableCards->emplace_back("Airlift");
+		availableCards->emplace_back("Diplomacy");
 	}
+		std::cout << "Initialize a Deck of " << availableCards->size() <<"cards."<< std::endl;
+		/*for (auto i = 0; i < availableCards->size(); i++) {
+				std::cout << availableCards->at(i) << std::endl;
+			}*/
 }
 
 Deck::Deck(const Deck& deck)

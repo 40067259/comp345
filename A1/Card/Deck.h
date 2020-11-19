@@ -14,7 +14,7 @@ class Card;
 
 class Deck {
 public:
-	Deck();
+	Deck(int numberOfPlayers);
 	Deck(const Deck& deck);
 	~Deck();//deconstructor because of its object instace variable
 	Card* draw(Hand* hand); // draw a card from deck randomly and add it to a hand

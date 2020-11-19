@@ -170,7 +170,11 @@ void Player::issueOrder(int orderType) {
 
 
     case 6: {
-        Negotiate* negotiate = new Negotiate();
+        cout << "please input a player name who you want to negotiate" << endl;
+        std::string name = "";
+        cin >> name;
+        Player* pl = new Player(name);
+        Negotiate* negotiate = new Negotiate(this,pl);
         _orderList->addOrders(negotiate);
         std::cout << "Negotiating...";
         break;

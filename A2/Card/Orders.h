@@ -20,15 +20,13 @@ public:
 	void setTerName(std::string name);
 	void setType(std::string type);
 	virtual bool validate(); // verifies if the order is valid.
-	virtual void execute(); // method that will result in some game action being implemented
+	virtual void execute(Map* map, Deck* deck) = 0; // pure virtual to be inheritanced
 	virtual void printOrder();
 protected:
 	std::string orderType = " none"; //deploy, advance, bomb, blockade, airlift, or negotiate
 	Player* player;
 	int number;
 	std::string terName;
-
-
 };
 
 class Deploy : public Orders
@@ -38,7 +36,7 @@ public:
 	Deploy(Player *player,int number,std::string terName);
 	~Deploy();
 	bool validate(); // verifies if the order is valid.
-	void execute(); // method that will result in some game action being implemented
+	void execute(Map* map, Deck* deck); // method that will result in some game action being implemented
 	void printOrder();
 
 };
@@ -46,7 +44,7 @@ public:
 class Advance : public Orders
 {
 private:
-	std::string desName;
+	std::string desName; //need an extra variable to know the target territory
 
 public:
 
@@ -81,7 +79,7 @@ public:
 	Bomb(Player* player,std::string terName);
 	~Bomb();
 	bool validate(); // verifies if the order is valid.
-	void execute(Map *map); // method that will result in some game action being implemented
+	void execute(Map *map,Deck* deck); // method that will result in some game action being implemented
 	void printOrder();
 
 };
@@ -94,7 +92,7 @@ public:
 	Blockade(Player* player, std::string terName);
 	~Blockade();
 	bool validate(); // verifies if the order is valid.
-	void execute(); // method that will result in some game action being implemented
+	void execute(Map* map, Deck* deck); // method that will result in some game action being implemented
 	void printOrder();
 
 };
@@ -103,14 +101,12 @@ public:
 class Negotiate : public Orders
 {
 private:
-	std::string orderType = "negotiate";
-
+	Player* targetplayer;
 public:
-
-	Negotiate();
+	Negotiate(Player* player,Player* targetPlayer);
 	~Negotiate();
 	bool validate(); // verifies if the order is valid.
-	void execute(); // method that will result in some game action being implemented
+	void execute(Map* map, Deck* deck); // method that will result in some game action being implemented
 	void printOrder();
 
 };

@@ -30,11 +30,15 @@ void OrdersList::deleteOrder(int orderNum) {
 }
 
 void OrdersList::printOrders() {
+	 Map* map = new Map();
+	 Deck* deck = new Deck();
 	for (int i = 0; i < size(); i++)
 	{
 		Orders* p = listOfOrders.at(i);
 		p->printOrder();
-		p->execute();
+		p->execute(map,deck);
 		std::cout << std::endl;
 	}
+	delete map;
+	delete deck;
 }

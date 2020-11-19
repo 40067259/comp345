@@ -9,7 +9,7 @@
 
 using namespace std;
 //predefine the classed
-class Cards;
+class Card;
 class Deck;
 
 class Hand {
@@ -18,6 +18,7 @@ public:
 	Hand(const Hand& hand);// a copy constructor
 	~Hand(); //deconstructor because of vector instace variable
 	vector<Card>* getHand();
+	Card* getACard(std::string name);
 	void setHand(vector<Card>* toSet);// set a vector to hand
 	void add(Card& card); // add a card to hand
 private:

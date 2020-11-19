@@ -37,7 +37,7 @@ int main() {
     cards.push_back(c2);
     Hand *hand = new Hand();
     for (Card *card : cards)
-        hand->add(card);
+        hand->add(*card);
 
     
     //SETTING ORDERS

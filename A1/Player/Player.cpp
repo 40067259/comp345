@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include "Player.h"
+#include "Orders.h"
 #include <string>
 
 
@@ -52,7 +53,13 @@ Player::~Player() {
     delete _orderList;
     _orderList = nullptr;
 }
-
+//-----------findTer by name------------//
+Territory* Player::findTerritory(std::string terName) {
+	for (int i = 0; i < this->getTerritories().size(); i++) {
+		if (this->_territories[i]->getName() == terName) return _territories[i];
+	}
+	return nullptr;
+}
 //=====GETTERS AND SETTERS====//
 std::vector<Territory*> Player::getTerritories() {
     return _territories;
@@ -75,6 +82,11 @@ int Player::getArmies() {
 
 int Player::getReinforcements() {
     return reinforcementPool;
+}
+
+// Added line of code for implementing part2.
+void Player::setReinforcements(int rp) {
+    reinforcementPool = rp;
 }
 
 
@@ -139,7 +151,7 @@ std::vector<Territory*> Player::toAttack(Territory* territoryToAttack) {
     return arbitraryTerritoriesToAttack;
 }
 
-
+/*
 //issue the order depending on what the player wants
 void Player::issueOrder(int orderType) {
 
@@ -189,7 +201,50 @@ void Player::issueOrder(int orderType) {
 
     }
 }
+*/
+//issue the order 
+void Player::issueOrder(string orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
 
+	if (orderName._Equal("deploy")) {
+		Deploy* deploy = new Deploy(p1, numberOfArmies, target);
+        _orderList->addOrders(deploy);
+        std::cout << "Troops deployed!\n";
+    }
+
+	else if (orderName._Equal("advance")) {
+		Advance* advance = new Advance(p1, numberOfArmies, source, target);
+        _orderList->addOrders(advance);
+        std::cout << "Troops advanced!\n";
+    }
+
+	else if (orderName._Equal("airlift")) {
+		Airlift* airlift = new Airlift(p1, numberOfArmies, source, target);
+        _orderList->addOrders(airlift);
+        std::cout << "Calling Airlift!\n";
+    }
+
+	else if (orderName._Equal("bomb")) {
+		Bomb* bomb = new Bomb(p1, target);
+        _orderList->addOrders(bomb);
+        std::cout << "Bombed!\n";
+    }
+
+	else if (orderName._Equal("blockade")) {
+		Blockade* blockade = new Blockade(p1, target);
+        _orderList->addOrders(blockade);
+        std::cout << "Blockade!\n";
+    }
+
+
+	else if (orderName._Equal("negotiate")) {
+		Negotiate* negotiate = new Negotiate(p1, p2);
+        _orderList->addOrders(negotiate);
+        std::cout << "Negotiating...";
+    }
+	else {
+		cout << "ERROR: invalide order!" << endl;
+    }
+}
 //add territory
 void Player::addTerritory(Territory* terr) {
     this->_territories.push_back(terr);

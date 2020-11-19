@@ -30,6 +30,7 @@ void Orders::printOrder() {
 
 // Deploy class function declaration
 Deploy::Deploy() {
+	orderType = "Deploy";
 }
 Deploy::~Deploy()
 {
@@ -49,6 +50,7 @@ void Deploy::printOrder() {
 
 // Advance class function declaration
 Advance::Advance() {
+	orderType = "Advance";
 }
 Advance::~Advance()
 {
@@ -68,6 +70,7 @@ void Advance::printOrder() {
 
 // Bomb class function declaration
 Bomb::Bomb() {
+	orderType = "Bomb";
 }
 Bomb::~Bomb()
 {
@@ -86,6 +89,7 @@ void Bomb::printOrder() {
 
 // Blockade class function declaration
 Blockade::Blockade() {
+	orderType = "Blockade";
 }
 Blockade::~Blockade()
 {
@@ -104,6 +108,7 @@ void Blockade::printOrder() {
 
 // Airlift class function declaration
 Airlift::Airlift() {
+	orderType = "Airlift";
 }
 Airlift::~Airlift()
 {
@@ -123,6 +128,7 @@ void Airlift::printOrder() {
 
 // Negotiate class function declaration
 Negotiate::Negotiate() {
+	orderType = "Negotiate";
 }
 Negotiate::~Negotiate()
 {

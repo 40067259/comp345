@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-//#include "Player.h"
+#include "Player.h"
 #include "Map.h"
 
 Map::Map()
@@ -137,6 +137,7 @@ bool Map::validate()
 {
 	// check if the map is a connected graph 
 	// by verifying if every node/territory can reach all the rest nodes/territories
+	if(map.size()==0) return false; 
 	for (int i = 0; i < map.size(); i++)
 	{
 		std::string t1 = map[i].territory->getName();

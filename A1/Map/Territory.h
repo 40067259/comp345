@@ -2,7 +2,7 @@
 
 #include <string>
 
-//class Player;
+class Player;
 class Continent;
 class Player;
 
@@ -19,12 +19,9 @@ public:
 	void setArmies(int a) { armies = a; }
 	void addArmies(int a);
 	void removeArmies(int a);
-
-	Player *getOwner() const;
+	Player* getOwner() const;
 	void setOwner(Player* player);
 
-	//Player* getOwner() const;
-	//void setOwner(Player* player);
 
 
 private:
@@ -32,5 +29,5 @@ private:
 	std::string name;
 	int armies;
 	int index;
-	//Player* owner;
+	Player* owner;
 };

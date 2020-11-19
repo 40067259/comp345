@@ -1,5 +1,5 @@
 #include "Map.h"
-//#include "MapLoader.h"
+#include "MapLoader.h"
 #include <iostream>
 #include <string>
 
