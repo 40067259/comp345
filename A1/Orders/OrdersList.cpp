@@ -49,6 +49,7 @@ void OrdersList::addOrders(Orders* newOrder) {
 			listOfOrders.push_back(o);
 			std::cout << "Moved Airlift";
 		}
+		count++;
 	}
 
 	// Then, put Deploy to the front
@@ -61,6 +62,7 @@ void OrdersList::addOrders(Orders* newOrder) {
 			listOfOrders.push_back(o);
 			std::cout << "Moved Deploy";
 		}
+		count++;
 	}
 	// [Sort the List with priorities]
 }
