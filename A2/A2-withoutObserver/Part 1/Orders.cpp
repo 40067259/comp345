@@ -49,6 +49,16 @@ void Orders::printOrder() {
 	cout << "The order type is " << orderType << endl;
 }
 
+//========================================================
+//added to get the orderType, 
+//and the child class is able to use it, right?
+std::string Orders::getOrderType()
+{
+	return orderType;
+}
+//========================================================
+
+
 //-----------------------------------Deploy--------------------------------------
 
 // Deploy class function declaration
