@@ -36,9 +36,7 @@ Orders::~Orders()
 
 void Orders::setNumber(int number) { this->number = number; }
 void Orders::setPlayer(Player* player) { this->player = player; }
-//void Orders::setTerName(std::string name) { this->terName = name; }
 void Orders::setType(std::string type) { this->orderType = type; }
-// for now, no need to implement the execute() and validate() 
 
 bool Orders::validate() {
 	cout << "From Order: varifing the order..." << endl;
@@ -51,7 +49,7 @@ void Orders::printOrder() {
 
 //========================================================
 //added to get the orderType, 
-//and the child class is able to use it, right?
+//and the child class is able to use it, right? Yes!
 std::string Orders::getOrderType()
 {
 	return orderType;
@@ -73,7 +71,7 @@ Deploy::~Deploy()
 	Orders::~Orders();
 	cout << "Deploy is destroied" << endl;
 }
-// for now, no need to implement the execute() and validate() 
+
 bool Deploy::validate() {
 	std::vector<Territory*> vec = (player->getTerritories());
 	for (int i = 0; i < vec.size(); i++) {
@@ -135,7 +133,7 @@ int Advance::fight(int attack, int defend) {
 
 	return ration * (attack + defend);
 }
-// for now, no need to implement the execute() and validate() 
+
 bool Advance::validate() {
 	Territory* ter = player->findTerritory(terName->getName());
 	if (ter != nullptr && ter->getArmies() >= number) {
@@ -199,7 +197,7 @@ Airlift::Airlift(Player* player, int number, Territory* terName, Territory* desN
 Airlift::~Airlift()
 {
 }
-// for now, no need to implement the execute() and validate() 
+
 bool Airlift::validate() {
 	cout << player->getHand()->getACard("airlift")->getType() << "<-----------------" << endl;
 	cout << player->findTerritory(terName->getName()) << "<--------------" << endl;
@@ -240,7 +238,7 @@ Bomb::Bomb(Player* player, Territory* terName) :Orders(player, -1, terName) {
 Bomb::~Bomb()
 {
 }
-// for now, no need to implement the execute() and validate() 
+
 bool Bomb::validate() {
 	if (player->getHand()->getACard("bomb") != nullptr && player->findTerritory(terName->getName()) == nullptr) {
 		return true;
@@ -277,7 +275,7 @@ Blockade::Blockade(Player* player, Territory* terName) :Orders(player,0, terName
 Blockade::~Blockade()
 {
 }
-// for now, no need to implement the execute() and validate() 
+
 bool Blockade::validate() {
 	if (this->player->getHand()->getACard("blockade") != nullptr && player->findTerritory(terName->getName()) != nullptr) {
 		return true;
