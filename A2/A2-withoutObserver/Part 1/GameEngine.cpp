@@ -654,16 +654,24 @@ void GameEngine::ordersExectionPhase()
                 cin >> userinput;
             }
 
-            //TODO: i have no idea how to execute
+            int count = 0;
+            int userinput_armySource;
+            cout << "Which Territory you would like to take the army from?" << "\n";
+            for (Territory* t : p->getTerritories())
+            {
+                cout << "Press " << count << " for " << t->getName() << "\n";
+                count++;
+            }
+            cin >> userinput_armySource;
+
             //[Execute Airlift]
-            orders = new Airlift(p, userinput, p->_territoriesToDefend_priority.front(), p->_territoriesToDefend_priority.front()->getName());
+            orders = new Airlift(p, userinput, p->getTerritories()[userinput_armySource], p->arbitraryTerritoriesToAttack.front());
             orders->execute();
             //[Execute Airlift]
 
             // [pop the items from p->arbitraryTerritoriesToAttack]
             p->arbitraryTerritoriesToAttack.erase(p->arbitraryTerritoriesToAttack.begin());
             // [pop the items from p->arbitraryTerritoriesToAttack]
-
         }
         // [Airlift]
 
