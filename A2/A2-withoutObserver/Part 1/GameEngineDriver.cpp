@@ -14,17 +14,17 @@ int main() {
 	// Part 2
 	// 1) all territories in the map have been assigned to one and only one player
 	game->startupPhase();
-	game->gameMap->printMapInfo();
+	game->myMap->printMapInfo();
 	// 2) Players are given a number of armies;
 	int num = game->getNbOfPlayers();
 	for (int i = 0; i < num; i++){
 		std::cout<<"Player "<<game->players.at(i)->getName()<<" owns ";
-		std::cout << game->players.at(i)->getReinforcements() <<" armies."<<std::endl;
+		std::cout << game->playersVector.at(i)->getReinforcements() <<" armies."<<std::endl;
 	}
 	// 3) all players have all the orders for playing in a turn.
 	std::cout << "The order of players in game:" << std::endl;
-	for (int i = 0; i < game->players.size(); i++) {
-		std::cout << " Player " << game->players.at(i)->getName() << " : "<< i << std::endl;
+	for (int i = 0; i < game->playersVector.size(); i++) {
+		std::cout << " Player " << game->playersVector.at(i)->getName() << " : "<< i << std::endl;
 	}
 	int a;
 	cin >> a;
