@@ -6,6 +6,12 @@
 #include <iostream>
 #include <string>
 #include <filesystem>
+#include <fstream>
+#include <experimental/filesystem>
+#include <ctime>
+#include <algorithm>
+#include <iostream>
+#include <utility>
 #include <random>
 #include <cmath>
 // If you use the latest version of c++ (c++17), please replace the lines commented as "for c++14" by the ones marked as "for c++17"
@@ -154,7 +160,7 @@ void GameEngine::playerSelection() {
 	}
 
 }
-
+/*
 //---------------------------Part 2: Game play: game startup phase----------------------------------
 void GameEngine::gameStartupPhase() {
 
@@ -219,7 +225,6 @@ void GameEngine::territoriesAssignment() {
     }
 }
 
-
 // 3. Players are given a number of initial armies.
 void GameEngine::armiesInitialization() {
 
@@ -255,6 +260,57 @@ void GameEngine::armiesInitialization() {
     }
 }
 
+*/
+bool GameEngine::getObserverStatus() {
+	return activateObservers;
+}
+
+int GameEngine::getNbOfPlayers() {
+	return numberOfPlayers;
+}
+
+==============================================   Part 2 =====================================================
+void GameEngine::startupPhase()
+{
+	//Shuffle the order of the players, order is determined randomly.
+	random_shuffle(playersVector.begin(), playersVector.end());
+
+	//Create a vector of not distributed territories
+	vector<int> remaining;
+	for (int i = 0; i < myMap->size(); i++)
+	{
+		remaining.push_back(i);
+	}
+
+	//Assign a remaining territory to each currentPlayerTurn, one by one
+	for (int i = 0; i < myMap->size(); i++)
+	{
+		//Get random member of remaining, obtain it's index value, then remove it
+		int j = rand() % remaining.size();
+		int index = remaining[j];
+		remaining.erase(remaining.begin() + j);
+		//Find the territory at the given index and set it's new owner
+		Territory* territory = myMap->getTerritory(index);
+		Player* p = playersVector.at(i % numberOfPlayers);
+
+		territory->setOwner(p);
+		p->addTerritory(territory);
+	}
+
+	//Players are given a number of initial armies (A), where A is:			
+	// 2 players, A = 40
+	// 3 players, A = 35
+	// 4 players, A = 30
+	// 5 players, A = 25
+	int armies = 40 - (numberOfPlayers - 2) * 5;
+
+		// Players are given a number of armies;
+	for (int j = 0; j < nbOfPlayers; j++){
+			playersVector.at(j)->addReinforcements(armies);
+		}
+
+}
+=============================================================================================================
 vector<Player*> GameEngine::getPlayersVector() {
     return playersVector;
 }
