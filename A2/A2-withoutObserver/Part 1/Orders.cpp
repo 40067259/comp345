@@ -231,6 +231,12 @@ void Airlift::printOrder() {
 }
 
 // Bomb class function declaration
+//Added 2020-11-19
+Bomb::Bomb() {
+	this->orderType = "bomb";
+	cout << "A bomb is created" << endl;
+}
+//Added 2020-11-19
 Bomb::Bomb(Player* player, Territory* terName) :Orders(player, -1, terName) {
 	this->orderType = "bomb";
 	cout << "A bomb is created" << endl;
@@ -268,6 +274,12 @@ void Bomb::printOrder() {
 }
 
 // Blockade class function declaration
+//Added 2020-11-19
+Blockade::Blockade() {
+	this->orderType = "blockade";
+	cout << "A blockade order is created" << endl;
+}
+//Added 2020-11-19
 Blockade::Blockade(Player* player, Territory* terName) :Orders(player,0, terName) {
 	this->orderType = "blockade";
 	cout << "A blockade order is created" << endl;
