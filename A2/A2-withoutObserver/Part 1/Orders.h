@@ -110,7 +110,7 @@ private:
 	std::string orderType = "negotiate";
 	Player* p2;
 public:
-
+	Negotiate(); //Added 2020-11-19
 	Negotiate(Player* player1, Player* player2 );
 	~Negotiate();
 	bool validate(); // verifies if the order is valid.
