@@ -1,0 +1,12 @@
+﻿  Deck.cpp
+C:\Users\isa20\Desktop\Card\Deck.cpp(20,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\Card\Deck.cpp(28,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\Card\Deck.cpp(38,20): warning C4018: '<': signed/unsigned mismatch
+  Orders.cpp
+C:\Users\isa20\Desktop\Card\Orders.cpp(65,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\Card\Orders.cpp(117,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\isa20\Desktop\Card\Orders.cpp(118,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\isa20\Desktop\Card\Orders.cpp(122,16): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+C:\Users\isa20\Desktop\Card\Deck.cpp(72): warning C4715: 'Deck::draw': not all control paths return a value
+  cards.vcxproj -> C:\Users\isa20\Desktop\Card\Debug\cards.exe
