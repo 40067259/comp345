@@ -27,7 +27,7 @@ public:
     void gameStartupPhase();
     int getNbOfPlayers();
     bool getObserverStatus();
-    Deck* getDeckCards();numberOfPlayers
+    Deck* getDeckCards();
     void startupPhase(); // for part 2
     
 	//added for part 3
