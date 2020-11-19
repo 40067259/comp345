@@ -10,6 +10,7 @@
 
 class Hand;
 class Cards;
+class OrdersList;
 
 class Player {
 private:
@@ -31,7 +32,9 @@ public:
     std::vector<Territory*> toDefend();
     //std::vector<Territory*> toAttack();
     std::vector<Territory*> toAttack(Territory* territoryToAttack);
-    void issueOrder(int orderType);
+    Territory* findTerritory(std::string terName);
+    //void issueOrder(int orderType);
+    void issueOrder(string orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
     void printPlayerOrders();
     void printPlayerTerritories();
     void giveNewArmy(int num);
