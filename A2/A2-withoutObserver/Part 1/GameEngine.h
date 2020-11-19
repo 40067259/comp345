@@ -23,11 +23,13 @@ public:
     void armiesInitialization();
     void gameStartupPhase();
     
+	//added for part 3
     void mainGameLoop();
 	void reinforcementPhase();
 	void issuingOrderPhase();
 	void ordersExectionPhase();
 	bool ownsContinent();
+	//added for part 3
 
 
 private:
