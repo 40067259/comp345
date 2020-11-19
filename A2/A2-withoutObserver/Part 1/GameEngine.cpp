@@ -64,7 +64,7 @@ void GameEngine::GameStart() {
 
 	// Select the map and check the validation
 	mapSelection();
-	
+
 
 	// Select the amount of players
 	// when each player is created, an empty hand of cards and an empty order list is assigned.
@@ -75,13 +75,13 @@ void GameEngine::GameStart() {
 	cout << "A deck of cards created." << endl;
 }
 
-	// select a map to load and check map validation
+// select a map to load and check map validation
 void GameEngine::mapSelection() {
 
 	// get a list of maps from "/path/to/directory";
-   string path1 = "test_maps";
+	string path1 = "test_maps";
 	// print a list of maps
-   cout << "Choose a map from the list below by entering the map's name (e.g. canada.map)" << std::endl;
+	cout << "Choose a map from the list below by entering the map's name (e.g. canada.map)" << std::endl;
 	for (auto& entry : std::experimental::filesystem::directory_iterator(path1))  // for c++14
 	//for (auto& entry : std::filesystem::directory_iterator(path1))  // for c++17	
 	{
@@ -102,7 +102,7 @@ void GameEngine::mapSelection() {
 			exists = true;
 		}
 	}
-	while(!exists)
+	while (!exists)
 	{
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -118,15 +118,15 @@ void GameEngine::mapSelection() {
 	}
 
 	// try to load a map and check map validity
-    myMap = new Map();
-        mapLoader = new MapLoader();
-        string path2 = path1 +"\\"+ selectedMap;
-        cout << path2;
-        mapLoader->loadMap(path2);
+	myMap = new Map();
+	mapLoader = new MapLoader();
+	string path2 = path1 + "\\" + selectedMap;
+	cout << path2;
+	mapLoader->loadMap(path2);
 
 	// map validation test
 	while (!mapLoader->map.validate()) {
-		
+
 		cout << "Invalide map." << endl;
 		cin.clear();
 		cin.ignore(256, '\n');
@@ -136,19 +136,19 @@ void GameEngine::mapSelection() {
 		delete mapLoader;
 		mapLoader = new MapLoader();
 		mapLoader->loadMap(selectedMap);
-		}
-	myMap = & mapLoader->map;
-	cout << "Map is valide. Map is loaded." << endl;
 	}
+	myMap = &mapLoader->map;
+	cout << "Map is valide. Map is loaded." << endl;
+}
 
 void GameEngine::playerSelection() {
-	cout << "How many players will play? Choose between 2 to 5."<<endl;
+	cout << "How many players will play? Choose between 2 to 5." << endl;
 	cin.clear();
 	cin.ignore(256, '\n');
 	cin >> numberOfPlayers;
-	while ( numberOfPlayers < 1 ||  numberOfPlayers > 6) {
+	while (numberOfPlayers < 1 || numberOfPlayers > 6) {
 		cout << "Invalid. Select between 2 to 5";
-		cin >>  numberOfPlayers;
+		cin >> numberOfPlayers;
 	}
 
 	for (int i = 0; i < numberOfPlayers; i++) {
@@ -169,9 +169,8 @@ int GameEngine::getNbOfPlayers() {
 	return numberOfPlayers;
 }
 
-//==============================================   Part 2 =====================================================
-void GameEngine::startupPhase()
-{
+//==============================================   Part 2 ==================================================== =
+void GameEngine::startupPhase(){
 	//Shuffle the order of the players, order is determined randomly.
 	random_shuffle(playersVector.begin(), playersVector.end());
 
@@ -204,15 +203,15 @@ void GameEngine::startupPhase()
 	// 5 players, A = 25
 	int armies = 40 - (numberOfPlayers - 2) * 5;
 
-		// Players are given a number of armies;
-	for (int j = 0; j < nbOfPlayers; j++){
-			playersVector.at(j)->addReinforcements(armies);
-		}
+	// Players are given a number of armies;
+	for (int j = 0; j < numberOfPlayers; j++) {
+		playersVector.at(j)->addReinforcements(armies);
+	}
 
 }
 
 vector<Player*> GameEngine::getPlayersVector() {
-    return playersVector;
+	return playersVector;
 }
 
 //====================================================================added for Part 3 =====================================================================================
