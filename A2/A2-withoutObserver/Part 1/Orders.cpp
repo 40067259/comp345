@@ -189,6 +189,13 @@ void Advance::printOrder() {
 }
 //------------------------------------------------Airlift--------------------------------------------------
 // Airlift class function declaration
+//Added 2020-11-19
+Airlift::Airlift()
+{
+	this->orderType = "airlift";
+	cout << "An airlift is created" << endl;
+}
+//Added 2020-11-19
 Airlift::Airlift(Player* player, int number, Territory* terName, Territory* desName) : Orders(player, number, terName) {
 	this->desName = desName;
 	this->orderType = "airlift";
