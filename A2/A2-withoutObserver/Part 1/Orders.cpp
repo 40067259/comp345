@@ -319,6 +319,11 @@ void Blockade::printOrder() {
 
 
 // Negotiate class function declaration
+//Added 2020-11-19
+Negotiate::Negotiate() {
+	orderType = "Negotiate";
+}
+//Added 2020-11-19
 Negotiate::Negotiate(Player* player1, Player* player2) :Orders(player1) {
 	p2 = player2;
 }
