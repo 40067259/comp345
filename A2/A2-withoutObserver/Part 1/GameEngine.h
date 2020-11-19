@@ -17,10 +17,18 @@ public:
     void mapSelection();
     void playerSelection();
     vector<Player*> getPlayersVector();
+    
     void randomOrderOfPlayers();
     void territoriesAssignment();
     void armiesInitialization();
     void gameStartupPhase();
+    
+    void mainGameLoop();
+	void reinforcementPhase();
+	void issuingOrderPhase();
+	void ordersExectionPhase();
+	bool ownsContinent();
+
 
 private:
     std::string selectedMap;
