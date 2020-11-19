@@ -24,6 +24,7 @@ public:
 	virtual bool validate(); // verifies if the order is valid.
 	virtual void execute() = 0; // method that will result in some game action being implemented
 	virtual void printOrder();
+	std::string getOrderType();
 protected:
 	std::string orderType = " none"; //deploy, advance, bomb, blockade, airlift, or negotiate
 	Player* player;
