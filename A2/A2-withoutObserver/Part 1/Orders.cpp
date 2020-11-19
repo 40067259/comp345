@@ -60,7 +60,7 @@ std::string Orders::getOrderType()
 //-----------------------------------Deploy--------------------------------------
 
 // Deploy class function declaration
-Deploy::Deploy() :Orders() {}
+Deploy::Deploy() :Orders() {	this->orderType = "deploy";} //Added 2020-11-19
 Deploy::Deploy(Player* inputPlayer, int inputNumber, Territory* inputName) : Orders(inputPlayer, inputNumber,  inputName) {
 	this->orderType = "deploy";
 	cout << "A Deploy is created" << endl;
@@ -104,6 +104,7 @@ void Deploy::printOrder() {
 //------------------------------------------Advance-----------------------------------------------
 // Advance class function declaration
 Advance::Advance() :Orders() {
+	this->orderType = "advance"; //Added 2020-11-19
 }
 Advance::Advance(Player* player, int number, Territory* terName, Territory* desName) : Orders(player, number, terName) {
 	this->desName = desName;
@@ -321,7 +322,7 @@ void Blockade::printOrder() {
 // Negotiate class function declaration
 //Added 2020-11-19
 Negotiate::Negotiate() {
-	orderType = "Negotiate";
+	orderType = "negotiate";
 }
 //Added 2020-11-19
 Negotiate::Negotiate(Player* player1, Player* player2) :Orders(player1) {
