@@ -16,7 +16,7 @@ int OrdersList::size() const
 
 void OrdersList::addOrders(Orders* newOrder) {
 	listOfOrders.emplace_back(newOrder);
-	
+
 	// [Sort the List with priorities]
 	// 1) Deploy
 	// 2) Airlift
@@ -28,9 +28,9 @@ void OrdersList::addOrders(Orders* newOrder) {
 	// Put Blockade to the front
 	for (Orders* o : listOfOrders)
 	{
-		if ((o->orderType).compare("Blockade"))
+		if ((o->getOrderType()).compare("Blockade"))
 		{
-			listOfOrders.erase((listOfOrders.begin())+count); //so it will remove the elements at position 0 + count
+			listOfOrders.erase((listOfOrders.begin()) + count); //so it will remove the elements at position 0 + count
 			//add it to the front of the vector
 			listOfOrders.push_back(o);
 			std::cout << "Moved Blockade";
@@ -41,7 +41,7 @@ void OrdersList::addOrders(Orders* newOrder) {
 	//After that, put Airlift to the front
 	for (Orders* o : listOfOrders)
 	{
-		if ((o->orderType).compare("Airlift"))
+		if ((o->getOrderType()).compare("Airlift"))
 		{
 			listOfOrders.erase((listOfOrders.begin()) + count); //so it will remove the elements at position 0 + count
 			//add it to the front of the vector
@@ -53,8 +53,8 @@ void OrdersList::addOrders(Orders* newOrder) {
 
 	// Then, put Deploy to the front
 	for (Orders* o : listOfOrders)
-	{ 
-		if ((o->orderType).compare("Deploy"))
+	{
+		if ((o->getOrderType()).compare("Deploy"))
 		{
 			listOfOrders.erase((listOfOrders.begin()) + count); //so it will remove the elements at position 0 + count
 			//add it to the front of the vector
