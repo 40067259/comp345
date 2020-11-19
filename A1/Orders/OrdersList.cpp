@@ -28,7 +28,7 @@ void OrdersList::addOrders(Orders* newOrder) {
 	// Put Blockade to the front
 	for (Orders* o : listOfOrders)
 	{
-		if ((o->getOrderType()).compare("Blockade"))
+		if ((o->getOrderType()).compare("blockade"))
 		{
 			listOfOrders.erase((listOfOrders.begin()) + count); //so it will remove the elements at position 0 + count
 			//add it to the front of the vector
@@ -41,7 +41,7 @@ void OrdersList::addOrders(Orders* newOrder) {
 	//After that, put Airlift to the front
 	for (Orders* o : listOfOrders)
 	{
-		if ((o->getOrderType()).compare("Airlift"))
+		if ((o->getOrderType()).compare("airlift"))
 		{
 			listOfOrders.erase((listOfOrders.begin()) + count); //so it will remove the elements at position 0 + count
 			//add it to the front of the vector
@@ -54,7 +54,7 @@ void OrdersList::addOrders(Orders* newOrder) {
 	// Then, put Deploy to the front
 	for (Orders* o : listOfOrders)
 	{
-		if ((o->getOrderType()).compare("Deploy"))
+		if ((o->getOrderType()).compare("deploy"))
 		{
 			listOfOrders.erase((listOfOrders.begin()) + count); //so it will remove the elements at position 0 + count
 			//add it to the front of the vector
