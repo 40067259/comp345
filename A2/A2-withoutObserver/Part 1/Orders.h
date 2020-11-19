@@ -78,6 +78,7 @@ class Bomb : public Orders
 {
 
 public:
+	Bomb(); //Added 2020-11-19
 	Bomb(Player* player, Territory* terName);
 	~Bomb();
 	bool validate(); // verifies if the order is valid.
@@ -92,7 +93,7 @@ private:
 	std::string orderType = "blockade"; // airlift, or negotiate
 
 public:
-
+	Blockade(); //Added 2020-11-19
 	Blockade(Player* player, Territory* terName);
 	~Blockade();
 	bool validate(); // verifies if the order is valid.
