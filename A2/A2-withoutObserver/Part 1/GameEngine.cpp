@@ -36,7 +36,7 @@ GameEngine::~GameEngine() {
 //method that starts the game
 void GameEngine::GameStart() {
 	cout << "=======================================" << endl;
-	cout << "          LET'S PLAY RISK              " << endl;
+	cout << "          LET'S PLAY WARZONE           " << endl;
 	cout << "=======================================" << endl;
 
 	// Step 1: turn on/off Observer
