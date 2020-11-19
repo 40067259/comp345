@@ -28,6 +28,9 @@ int main() {
 	}
 	int a;
 	cin >> a;
+	
+	//Part 3
+	//game->mainGameLoop();
 
 	return 0;
 
