@@ -546,7 +546,3 @@ void GameEngine::ordersExectionPhase()
     }
 }
 
-bool GameEngine::ownsContinent()
-{
-    return true;
-}
