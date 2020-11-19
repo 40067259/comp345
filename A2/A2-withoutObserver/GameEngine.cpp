@@ -248,7 +248,7 @@ void GameEngine::ordersExectionPhase()
     {
         //[get the order type]
         // [Deploy]
-        if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Deploy") == 0)
+        if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("deploy") == 0)
         {
             orders = new Deploy();
 
@@ -266,7 +266,7 @@ void GameEngine::ordersExectionPhase()
         // [Deploy]
 
         // [Advance]
-        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Advance") == 0)
+        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("advance") == 0)
         {
             int user_choice; // Let the player choose whether the player wanna send army for offense or defense
 
@@ -323,7 +323,7 @@ void GameEngine::ordersExectionPhase()
         // [Advance]
 
         // [Bomb]
-        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Bomb") == 0)
+        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("bomb") == 0)
         {
             // Bomb is for offense
             cout << "Bomb " << p->arbitraryTerritoriesToAttack.front()->getName() << "\n";
@@ -340,7 +340,7 @@ void GameEngine::ordersExectionPhase()
         // [Bomb]
 
         // [Blockade]
-        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Blockade") == 0)
+        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("blockade") == 0)
         {
             // Blockade is target the player's own land (Territory from p->_territoriesToDefend_priority)
             // The number of armies on the territory is doubled
@@ -360,7 +360,7 @@ void GameEngine::ordersExectionPhase()
         // [Blockade]
 
         // [Airlift]
-        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Airlift") == 0)
+        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("airlift") == 0)
         {
             // Airlift is for offense
             // The selected number of armies is attacking that territory
@@ -377,7 +377,7 @@ void GameEngine::ordersExectionPhase()
         // [Airlift]
 
         // [Negotiate]
-        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("Negotiate") == 0)
+        else if ((p->getOrdersList()->getListOfOrders().front()->orderType).compare("negotiate") == 0)
         {
             // Negotiate targets opponents' territory
             // The effect is that any attack that may be declared between territories of the player issuing the negotiate orderand the target player will result in an invalid order.
