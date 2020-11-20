@@ -413,7 +413,22 @@ void GameEngine::issuingOrderPhase()
 		}
 		int user_input;
 		std::cin >> user_input;
-
+		
+		for (Territory* t : p->getTerritories())
+		{
+			if ((myMap->getTerritory(user_input)->getName()).compare(t->getName()))
+			{
+			std::cout << "You have owned the territory already";
+			std::cout << "Please wait for the next round";
+			}
+			else
+			{
+				p->toAttack(myMap->getTerritory(user_input - 1)); //add the territory to attack to the arbitraryTerritoriesToAttack list
+			}
+		}
+		
+		//Problem is in here: the following way of comparison caused issue
+		/*
 		if (std::count(p->getTerritories().begin(), p->getTerritories().end(), myMap->getTerritory(user_input - 1))) //check if player have the territory already 
 		{
 			std::cout << "You have owned the territory already";
@@ -426,7 +441,8 @@ void GameEngine::issuingOrderPhase()
 		// [toAttack]
 		// This method will ask the player to choose a territory to attack
 		// After checking that the territory can be attacked, the territory will be placed into "arbitraryTerritoriesToAttack" list of that player
-
+		*/
+		
 		// [toDefend]
 		p->toDefend();
 		// [toDefend]
