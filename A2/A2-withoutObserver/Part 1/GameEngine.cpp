@@ -321,6 +321,15 @@ void GameEngine::issuingOrderPhase()
 			cout << "Enter number of armies you want to deploy:" << endl;
 			cin >> numberOfArmies;
 			string sourceTerritory;
+			
+			//Show the territories owned by the player
+			cout << "Your territories: " << "\n";
+			for(Terrifory* t: p->getTerritories())
+			{
+				cout << t->getName() << "\n";
+			}
+			cout << "\n";
+			
 			cout << "Enter name of territory that you want deploy from:" << endl;
 			cin >> sourceTerritory;
 			string targetTerritory;
@@ -404,11 +413,11 @@ void GameEngine::issuingOrderPhase()
 
 
 		// [toAttack]
-		std::cout << "Please select Territory to attack: ";
-		int count = 1;
+		std::cout << "Please select Territory to attack: " << "\n";
+		int count = 0;
 		for (int i = 0; i < myMap->size(); i++)
 		{
-			std::cout << "Press \"" << count << "\" to select " << myMap->getTerritory(i) << "\n";
+			std::cout << "Press \"" << count << "\" to select " << myMap->getTerritory(i)->getName() << "\n";
 			count++;
 		}
 		int user_input;
@@ -418,12 +427,13 @@ void GameEngine::issuingOrderPhase()
 		{
 			if ((myMap->getTerritory(user_input)->getName()).compare(t->getName()))
 			{
-			std::cout << "You have owned the territory already";
-			std::cout << "Please wait for the next round";
+			std::cout << "You have owned the territory already. You cannot attack your own land" << "\n";
+			std::cout << "Please wait for the next round" << "\n";
 			}
 			else
 			{
 				p->toAttack(myMap->getTerritory(user_input - 1)); //add the territory to attack to the arbitraryTerritoriesToAttack list
+				break; // need to break from the loop when condition is met.
 			}
 		}
 		
