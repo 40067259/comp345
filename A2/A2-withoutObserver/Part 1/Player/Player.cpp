@@ -116,21 +116,20 @@ std::vector<Territory*> Player::toDefend() {
 std::vector<Territory*> Player::toDefend() {
     std::cout << "Player needs to defend: ";
     for (Territory* terr : _territories)
-        std::cout << terr->getName() << " ";
+        std::cout << terr->getName() << "\n";
 
-    int count = 1;
+    //int count = 1; //should be deleted
     int user_input;
     std::cout << "Which territory would you like to defend?" << "\n";
 
     for (int i = 0; i < _territories.size(); i++)
     {
-        std::cout << "Enter \"" << count << "\" for " + _territories.front()->getName() << "\n";
-        count++;
+        std::cout << "Enter \"" << i << "\" for " + _territories[i]->getName() << "\n";
     }
     std::cin >> user_input;
-    _territoriesToDefend_priority.push_back(_territories[user_input - 1]);
+    _territoriesToDefend_priority.push_back(_territories[user_input]);
 
-    std::cout << _territories[user_input - 1] << " will be defended. " << "\n";
+    std::cout << _territories[user_input]->getName() << " will be defended. " << "\n";
     return _territoriesToDefend_priority;
 }
 
@@ -149,7 +148,10 @@ std::vector<Territory*> Player::toAttack(Territory* territoryToAttack) {
 
     std::cout << "\nPlayer needs to attack: ";
     for (const Territory* terr : arbitraryTerritoriesToAttack)
-        std::cout << terr->getName() << " ";
+    {
+        std::cout << terr->getName() << "\n";
+    }
+	std::cout << "===From Player: toAttack()===" << "\n";
 
     //_territoriesToAttack_priority.pushback();
     return arbitraryTerritoriesToAttack;
