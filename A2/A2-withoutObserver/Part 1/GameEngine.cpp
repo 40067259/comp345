@@ -427,8 +427,9 @@ void GameEngine::issuingOrderPhase()
 		{
 			if ((myMap->getTerritory(user_input)->getName()).compare(t->getName()))
 			{
-			std::cout << "You have owned the territory already. You cannot attack your own land" << "\n";
-			std::cout << "Please wait for the next round" << "\n";
+				std::cout << "You have owned the territory already. You cannot attack your own land" << "\n";
+				std::cout << "Please wait for the next round" << "\n";
+				break;
 			}
 			else
 			{
