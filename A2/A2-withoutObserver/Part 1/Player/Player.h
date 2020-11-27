@@ -57,6 +57,7 @@ public:
 	
     //added for a3
     void setStrategy(std::string strategy);
+    void toSkip();
     //added for a3
 
 };
