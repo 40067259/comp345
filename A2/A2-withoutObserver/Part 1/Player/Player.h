@@ -22,6 +22,9 @@ private:
     int _armies = 0;
     int reinforcementPool;
     static int numberOfPlayers;
+    //added for a3
+    PlayerStrategy* justStrat;
+    //added for a3
 
 public:
     Player();
@@ -51,6 +54,10 @@ public:
     std::vector<Territory*> _territoriesToDefend_priority;
     std::vector<Territory*> _territoriesToAttack_priority;
     //added
+	
+    //added for a3
+    void setStrategy(std::string strategy);
+    //added for a3
 
 };
 
