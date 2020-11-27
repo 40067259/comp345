@@ -12,8 +12,7 @@ public:
 	~PlayerStrategy();
 
 protected:
-
-
+	Player* p;
 };
 
 class HumanPlayerStrategy : public PlayerStrategy
