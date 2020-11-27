@@ -3,27 +3,59 @@
 #include <string>
 #include "PlayerStrategy.h"
 
-class PlayerStrategy
+//======================================PlayerStrategy======================================
+PlayerStrategy::PlayerStrategy()
 {
 
 };
+PlayerStrategy::~PlayerStrategy()
+{
 
-class HumanPlayerStrategy : public PlayerStrategy
+}
+//======================================PlayerStrategy======================================
+
+
+//======================================HumanPlayerStrategy======================================
+HumanPlayerStrategy::HumanPlayerStrategy()
 {
 
 };
-
-class AggressivePlayerStrategy : public PlayerStrategy
+HumanPlayerStrategy::~HumanPlayerStrategy()
 {
 
 };
+//======================================HumanPlayerStrategy======================================
 
-class BenevolentPlayerStrategy : public PlayerStrategy
+//======================================AggressivePlayerStrategy======================================
+AggressivePlayerStrategy::AggressivePlayerStrategy()
 {
 
-};
-
-class NeutralPlayerStrategy : public PlayerStrategy
+}
+AggressivePlayerStrategy::~AggressivePlayerStrategy()
 {
 
-};
+}
+//======================================AggressivePlayerStrategy======================================
+
+//======================================BenevolentPlayerStrategy======================================
+BenevolentPlayerStrategy::BenevolentPlayerStrategy()
+{
+
+}
+BenevolentPlayerStrategy::~BenevolentPlayerStrategy()
+{
+
+}
+//======================================BenevolentPlayerStrategy======================================
+
+//======================================NeutralPlayerStrategy======================================
+NeutralPlayerStrategy::NeutralPlayerStrategy()
+{
+
+}
+NeutralPlayerStrategy::~NeutralPlayerStrategy()
+{
+
+}
+
+//======================================NeutralPlayerStrategy======================================
