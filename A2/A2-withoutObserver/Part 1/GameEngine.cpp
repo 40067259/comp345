@@ -297,6 +297,49 @@ void GameEngine::issuingOrderPhase()
 	{
 		cout << "It is " << p->getName() << "'s Issuing Orders Phase now!" << "\n";
 
+		/*
+		//This part should be changed to ask player which strategy they would like to use
+		int strategySelection = 0;
+		std::cout << "Select Strategy: " << "\n";
+		std::cout << "Enter 1 for 'Human Player Strategy'\n";
+		std::cout << "Enter 2 for 'Aggressive Player Strategy'\n";
+		std::cout << "Enter 3 for 'Benevolent Player Strategy'\n";
+		std::cout << "Enter 4 for 'Neutral Player Strategyade'\n";
+		std::cout << "ENTER 0 TO EXIT\n";
+		std::cout << ">>";
+		cin >> strategySelection;
+		if (strategySelection == 0)
+		{
+			break;
+		}
+		else if (strategySelection == 1)
+		{
+			p->setStrategy("HumanPlayerStrategy");
+			std::cout << p->getName() << " selected 1. Human Player Strategy (Printed From GameEngine.cpp)" << "\n";
+		}
+		else if (strategySelection == 2)
+		{
+			p->setStrategy("AggressivePlayerStrategy");
+			std::cout << p->getName() << " selected 2. Aggressive Player Strategy (Printed From GameEngine.cpp)" << "\n";
+		}
+		else if (strategySelection == 3)
+		{
+			p->setStrategy("BenevolentPlayerStrategy");
+			std::cout << p->getName() << " selected 3. Benevolent Player Strategy (Printed From GameEngine.cpp)" << "\n";
+		}
+		else if (strategySelection == 4)
+		{
+			p->setStrategy("NeutralPlayerStrategy");
+			std::cout << p->getName() << " selected 4. Neutral Player Strategy (Printed From GameEngine.cpp)" << "\n";
+
+		}
+		else
+		{
+			p->setStrategy("Default");
+			std::cout << p->getName() << " selected a default Strategy (Printed From GameEngine.cpp)" << "\n";
+		}
+		*/
+		
 		// [Asking for orders]
 		cout << "Issue Order: " << "\n";
 		cout << "Enter 1 for 'deploy'\n";
