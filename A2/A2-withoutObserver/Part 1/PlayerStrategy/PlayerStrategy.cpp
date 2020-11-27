@@ -1,61 +1,34 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "PlayerStrategy.h"
+#include "Player.h"
 
-//======================================PlayerStrategy======================================
-PlayerStrategy::PlayerStrategy()
+class PlayerStrategy
 {
-
+	PlayerStrategy();
 };
-PlayerStrategy::~PlayerStrategy()
+
+class HumanPlayerStrategy : public PlayerStrategy
 {
-
-}
-//======================================PlayerStrategy======================================
-
-
-//======================================HumanPlayerStrategy======================================
-HumanPlayerStrategy::HumanPlayerStrategy()
-{
-
+	HumanPlayerStrategy();
+	~HumanPlayerStrategy();
 };
-HumanPlayerStrategy::~HumanPlayerStrategy()
-{
 
+class AggressivePlayerStrategy : public PlayerStrategy
+{
+	AggressivePlayerStrategy();
+	~AggressivePlayerStrategy();
 };
-//======================================HumanPlayerStrategy======================================
 
-//======================================AggressivePlayerStrategy======================================
-AggressivePlayerStrategy::AggressivePlayerStrategy()
+class BenevolentPlayerStrategy : public PlayerStrategy
 {
+	BenevolentPlayerStrategy();
+	~BenevolentPlayerStrategy();
+};
 
-}
-AggressivePlayerStrategy::~AggressivePlayerStrategy()
+class NeutralPlayerStrategy : public PlayerStrategy
 {
-
-}
-//======================================AggressivePlayerStrategy======================================
-
-//======================================BenevolentPlayerStrategy======================================
-BenevolentPlayerStrategy::BenevolentPlayerStrategy()
-{
-
-}
-BenevolentPlayerStrategy::~BenevolentPlayerStrategy()
-{
-
-}
-//======================================BenevolentPlayerStrategy======================================
-
-//======================================NeutralPlayerStrategy======================================
-NeutralPlayerStrategy::NeutralPlayerStrategy()
-{
-
-}
-NeutralPlayerStrategy::~NeutralPlayerStrategy()
-{
-
-}
-
-//======================================NeutralPlayerStrategy======================================
+	NeutralPlayerStrategy();
+	~NeutralPlayerStrategy();
+};
