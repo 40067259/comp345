@@ -215,3 +215,39 @@ void Player::giveNewArmy(int num) {
 void Player::printPlayerOrders() {
     _orderList->printOrders();
 }
+
+//added for a3
+void Player::setStrategy(std::string strategy)
+{
+
+    if (strategy.compare("HumanPlayerStrategy") == 0)
+    {
+        std::cout << "HumanPlayerStrategy is set." << "\n";
+        justStrat = new HumanPlayerStrategy();
+    }
+
+    else if (strategy.compare("AggressivePlayerStrategy") == 0)
+    {
+        std::cout << "AggressivePlayerStrategy is set." << "\n";
+        justStrat = new AggressivePlayerStrategy();
+    }
+
+    else if (strategy.compare("BenevolentPlayerStrategy") == 0)
+    {
+        std::cout << "BenevolentPlayerStrategy is set." << "\n";
+        justStrat = new BenevolentPlayerStrategy();
+    }
+
+    else if (strategy.compare("NeutralPlayerStrategy") == 0)
+    {
+        std::cout << "NeutralPlayerStrategy is set." << "\n";
+        justStrat = new NeutralPlayerStrategy();
+    }
+
+    else
+    {
+        std::cout << "Command is not recognized, HumanPlayerStrategy is set as default." << "\n";
+        justStrat = new HumanPlayerStrategy();
+    } 
+}
+//added for a3
