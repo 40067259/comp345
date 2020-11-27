@@ -1,34 +1,61 @@
-#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Player.h"
+#include "PlayerStrategy.h"
 
-class PlayerStrategy
+//======================================PlayerStrategy======================================
+PlayerStrategy::PlayerStrategy()
 {
-	PlayerStrategy();
-};
 
-class HumanPlayerStrategy : public PlayerStrategy
-{
-	HumanPlayerStrategy();
-	~HumanPlayerStrategy();
 };
+PlayerStrategy::~PlayerStrategy()
+{
 
-class AggressivePlayerStrategy : public PlayerStrategy
-{
-	AggressivePlayerStrategy();
-	~AggressivePlayerStrategy();
-};
+}
+//======================================PlayerStrategy======================================
 
-class BenevolentPlayerStrategy : public PlayerStrategy
-{
-	BenevolentPlayerStrategy();
-	~BenevolentPlayerStrategy();
-};
 
-class NeutralPlayerStrategy : public PlayerStrategy
+//======================================HumanPlayerStrategy======================================
+HumanPlayerStrategy::HumanPlayerStrategy()
 {
-	NeutralPlayerStrategy();
-	~NeutralPlayerStrategy();
+
 };
+HumanPlayerStrategy::~HumanPlayerStrategy()
+{
+
+};
+//======================================HumanPlayerStrategy======================================
+
+//======================================AggressivePlayerStrategy======================================
+AggressivePlayerStrategy::AggressivePlayerStrategy()
+{
+
+}
+AggressivePlayerStrategy::~AggressivePlayerStrategy()
+{
+
+}
+//======================================AggressivePlayerStrategy======================================
+
+//======================================BenevolentPlayerStrategy======================================
+BenevolentPlayerStrategy::BenevolentPlayerStrategy()
+{
+
+}
+BenevolentPlayerStrategy::~BenevolentPlayerStrategy()
+{
+
+}
+//======================================BenevolentPlayerStrategy======================================
+
+//======================================NeutralPlayerStrategy======================================
+NeutralPlayerStrategy::NeutralPlayerStrategy()
+{
+
+}
+NeutralPlayerStrategy::~NeutralPlayerStrategy()
+{
+
+}
+
+//======================================NeutralPlayerStrategy======================================
