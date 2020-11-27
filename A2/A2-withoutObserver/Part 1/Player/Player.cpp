@@ -250,4 +250,10 @@ void Player::setStrategy(std::string strategy)
         justStrat = new HumanPlayerStrategy();
     } 
 }
+void Player::toSkip()
+{
+    std::cout << _name << " is using NeutralPlayerStrategy. That means the player is not issuing orders. (Printed from toSkip() method)" << "\n";
+}
+
+
 //added for a3
