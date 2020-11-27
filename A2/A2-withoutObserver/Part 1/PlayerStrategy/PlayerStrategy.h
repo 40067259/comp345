@@ -1,77 +1,49 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "PlayerStrategy.h"
+#include "Player.h"
 
-//======================================PlayerStrategy======================================
-PlayerStrategy::PlayerStrategy()
+class PlayerStrategy
 {
-}
-PlayerStrategy::PlayerStrategy(Player* p)
+public:
+	PlayerStrategy();
+	PlayerStrategy(Player* p);
+	~PlayerStrategy();
+
+protected:
+
+
+};
+
+class HumanPlayerStrategy : public PlayerStrategy
 {
-}
-PlayerStrategy::~PlayerStrategy()
+public:
+	HumanPlayerStrategy();
+	HumanPlayerStrategy(Player* p);
+	~HumanPlayerStrategy();
+};
+
+class AggressivePlayerStrategy : public PlayerStrategy
 {
-}
-//======================================PlayerStrategy======================================
+public:
+	AggressivePlayerStrategy();
+	AggressivePlayerStrategy(Player* p);
+	~AggressivePlayerStrategy();
+};
 
-
-//======================================HumanPlayerStrategy======================================
-HumanPlayerStrategy::HumanPlayerStrategy():PlayerStrategy()
+class BenevolentPlayerStrategy : public PlayerStrategy
 {
+public:
+	BenevolentPlayerStrategy();
+	BenevolentPlayerStrategy(Player* p);
+	~BenevolentPlayerStrategy();
+};
 
-}
-HumanPlayerStrategy::HumanPlayerStrategy(Player* p):PlayerStrategy(p)
+class NeutralPlayerStrategy : public PlayerStrategy
 {
-
-}
-HumanPlayerStrategy::~HumanPlayerStrategy()
-{
-
-}
-//======================================HumanPlayerStrategy======================================
-
-//======================================AggressivePlayerStrategy======================================
-AggressivePlayerStrategy::AggressivePlayerStrategy()
-{
-
-}
-AggressivePlayerStrategy::AggressivePlayerStrategy(Player* p) : PlayerStrategy(p)
-{
-
-}
-AggressivePlayerStrategy::~AggressivePlayerStrategy()
-{
-
-}
-//======================================AggressivePlayerStrategy======================================
-
-//======================================BenevolentPlayerStrategy======================================
-BenevolentPlayerStrategy::BenevolentPlayerStrategy()
-{
-
-}
-BenevolentPlayerStrategy::BenevolentPlayerStrategy(Player* p) : PlayerStrategy(p)
-{
-
-}
-BenevolentPlayerStrategy::~BenevolentPlayerStrategy()
-{
-
-}
-//======================================BenevolentPlayerStrategy======================================
-
-//======================================NeutralPlayerStrategy======================================
-NeutralPlayerStrategy::NeutralPlayerStrategy()
-{
-
-}
-NeutralPlayerStrategy::NeutralPlayerStrategy(Player* p) : PlayerStrategy(p)
-{
-
-}
-NeutralPlayerStrategy::~NeutralPlayerStrategy()
-{
-
-}
-//======================================NeutralPlayerStrategy======================================
+public:
+	NeutralPlayerStrategy();
+	NeutralPlayerStrategy(Player* p);
+	~NeutralPlayerStrategy();
+};
