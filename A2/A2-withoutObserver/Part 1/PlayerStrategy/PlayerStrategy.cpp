@@ -6,28 +6,37 @@
 //======================================PlayerStrategy======================================
 PlayerStrategy::PlayerStrategy()
 {
-
-};
+}
+PlayerStrategy::PlayerStrategy(Player* p)
+{
+}
 PlayerStrategy::~PlayerStrategy()
 {
-
 }
 //======================================PlayerStrategy======================================
 
 
 //======================================HumanPlayerStrategy======================================
-HumanPlayerStrategy::HumanPlayerStrategy()
+HumanPlayerStrategy::HumanPlayerStrategy():PlayerStrategy()
 {
 
-};
+}
+HumanPlayerStrategy::HumanPlayerStrategy(Player* p):PlayerStrategy(p)
+{
+
+}
 HumanPlayerStrategy::~HumanPlayerStrategy()
 {
 
-};
+}
 //======================================HumanPlayerStrategy======================================
 
 //======================================AggressivePlayerStrategy======================================
 AggressivePlayerStrategy::AggressivePlayerStrategy()
+{
+
+}
+AggressivePlayerStrategy::AggressivePlayerStrategy(Player* p) : PlayerStrategy(p)
 {
 
 }
@@ -42,6 +51,10 @@ BenevolentPlayerStrategy::BenevolentPlayerStrategy()
 {
 
 }
+BenevolentPlayerStrategy::BenevolentPlayerStrategy(Player* p) : PlayerStrategy(p)
+{
+
+}
 BenevolentPlayerStrategy::~BenevolentPlayerStrategy()
 {
 
@@ -53,9 +66,12 @@ NeutralPlayerStrategy::NeutralPlayerStrategy()
 {
 
 }
+NeutralPlayerStrategy::NeutralPlayerStrategy(Player* p) : PlayerStrategy(p)
+{
+
+}
 NeutralPlayerStrategy::~NeutralPlayerStrategy()
 {
 
 }
-
 //======================================NeutralPlayerStrategy======================================
