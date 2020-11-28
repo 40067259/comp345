@@ -40,7 +40,8 @@ HumanPlayerStrategy::~HumanPlayerStrategy()
 //======================================AggressivePlayerStrategy======================================
 AggressivePlayerStrategy::AggressivePlayerStrategy()
 {
-	
+	p = new Player();
+	p->toAttack();
 }
 AggressivePlayerStrategy::AggressivePlayerStrategy(Player* p) : PlayerStrategy(p)
 {
@@ -49,7 +50,7 @@ AggressivePlayerStrategy::AggressivePlayerStrategy(Player* p) : PlayerStrategy(p
 	//so that deep copy can be made
 
 	//strategy
-	p->toAttack(); 
+	p->toAttack();
 	//need to modify toAttack method
 	//need to remove the argument
 	//so that it can be used in the AggressivePlayerStrategy
@@ -66,6 +67,7 @@ AggressivePlayerStrategy::~AggressivePlayerStrategy()
 BenevolentPlayerStrategy::BenevolentPlayerStrategy()
 {
 	p = new Player();
+	p->toDefend();
 }
 BenevolentPlayerStrategy::BenevolentPlayerStrategy(Player* p) : PlayerStrategy(p)
 {
