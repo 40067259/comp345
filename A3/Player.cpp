@@ -136,7 +136,7 @@ std::vector<Territory*> Player::toDefend() {
 }
 
 //need to modify this 
-std::vector<Territory*> Player::toAttack(Territory* territoryToAttack) {
+std::vector<Territory*> Player::toAttack(/*//===removed the argument===//  Territory* territoryToAttack*/) {
 
     //Should use this new version
     std::cout << "Which territory you would like to attack?" << "\n"; 
