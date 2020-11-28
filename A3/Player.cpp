@@ -138,6 +138,43 @@ std::vector<Territory*> Player::toDefend() {
 //need to modify this 
 std::vector<Territory*> Player::toAttack(Territory* territoryToAttack) {
 
+    //Should use this new version
+    std::cout << "Which territory you would like to attack?" << "\n"; 
+    std::cout << "You can attack: " << "\n";
+    
+    //only print out the land the user does not own
+    std::vector<string> temp_territory_vector;
+    for (int i = 0; i < map->size(); i++)
+    {
+        for (int j = 0; _territories.size(); j++)
+        {
+            if (((map->getTerritory(i)->getName()).compare(_territories[j]->getName())) == 0)
+            {
+                continue;
+            }
+            else
+            {
+                //add the territory name to the tamp_territory
+                temp_territory_vector.push_back(map->getTerritory(i)->getName());
+                //add the territory name to the tamp_territory
+            }
+        }
+    }
+    for (int i = 0; i < temp_territory_vector.size(); i++)
+    {
+        std::cout << temp_territory_vector[i] << "\n";
+    }
+    //only print out the land the user does not own
+    string user_input;
+    cin >> user_input;
+    
+    arbitraryTerritoriesToAttack.push_back(map->getTerritory(user_input));
+
+    return arbitraryTerritoriesToAttack;
+    //Should use this new version
+
+    //Old version
+    /*
     arbitraryTerritoriesToAttack.push_back(territoryToAttack);
 
     //tell the player that there are territories in the list
@@ -150,6 +187,8 @@ std::vector<Territory*> Player::toAttack(Territory* territoryToAttack) {
         
     //_territoriesToAttack_priority.pushback();
     return arbitraryTerritoriesToAttack;
+    */
+    //old version
 }
 
 
@@ -249,6 +288,11 @@ void Player::setStrategy(std::string strategy)
 void Player::toSkip()
 {
     std::cout << _name << " is using NeutralPlayerStrategy. That means the player is not issuing orders. (Printed from toSkip() method)" << "\n";
+}
+
+Map* Player::getMap()
+{
+    return map;
 }
 
 //added for a3
