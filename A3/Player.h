@@ -27,6 +27,7 @@ private:
 
     //added for a3
     PlayerStrategy* justStrat;
+    Map* map;
     //added for a3
 
 public:
@@ -61,6 +62,7 @@ public:
     //added for a3
     void setStrategy(std::string strategy);
     void toSkip();
+    Map* getMap();
     //added for a3
 
 };
