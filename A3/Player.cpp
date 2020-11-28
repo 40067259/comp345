@@ -257,31 +257,41 @@ void Player::setStrategy(std::string strategy)
     if (strategy.compare("HumanPlayerStrategy") == 0)
     {
         std::cout << "HumanPlayerStrategy is set. (Printed From Player class)" << "\n";
+        //need to modify the constructor used
         justStrat = new HumanPlayerStrategy();
+        //need to modify the constructor used
     }
 
     else if (strategy.compare("AggressivePlayerStrategy") == 0)
     {
         std::cout << "AggressivePlayerStrategy is set. (Printed From Player class)" << "\n";
+        //need to modify the constructor used
         justStrat = new AggressivePlayerStrategy();
+        //need to modify the constructor used
     }
 
     else if (strategy.compare("BenevolentPlayerStrategy") == 0)
     {
         std::cout << "BenevolentPlayerStrategy is set. (Printed From Player class)" << "\n";
+        //need to modify the constructor used
         justStrat = new BenevolentPlayerStrategy();
+        //need to modify the constructor used
     }
 
     else if (strategy.compare("NeutralPlayerStrategy") == 0)
     {
         std::cout << "NeutralPlayerStrategy is set. (Printed From Player class)" << "\n";
+        //need to modify the constructor used
         justStrat = new NeutralPlayerStrategy();
+        //need to modify the constructor used
     }
 
     else
     {
         std::cout << "Command is not recognized, HumanPlayerStrategy is set as default. (Printed From Player class)" << "\n";
+        //need to modify the constructor used
         justStrat = new HumanPlayerStrategy();
+        //need to modify the constructor used
     } 
 }
 
