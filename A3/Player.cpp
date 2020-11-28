@@ -258,7 +258,8 @@ void Player::setStrategy(std::string strategy)
     {
         std::cout << "HumanPlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
-        justStrat = new HumanPlayerStrategy();
+        //justStrat = new HumanPlayerStrategy(); //just keep it for now, will be deleted later
+        justStrat = new HumanPlayerStrategy(this);
         //need to modify the constructor used
     }
 
@@ -266,7 +267,8 @@ void Player::setStrategy(std::string strategy)
     {
         std::cout << "AggressivePlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
-        justStrat = new AggressivePlayerStrategy();
+        //justStrat = new AggressivePlayerStrategy(); //just keep it for now, will be deleted later
+        justStrat = new AggressivePlayerStrategy(this);
         //need to modify the constructor used
     }
 
@@ -274,7 +276,8 @@ void Player::setStrategy(std::string strategy)
     {
         std::cout << "BenevolentPlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
-        justStrat = new BenevolentPlayerStrategy();
+        //justStrat = new BenevolentPlayerStrategy(); //just keep it for now, will be deleted later
+        justStrat = new BenevolentPlayerStrategy(this);
         //need to modify the constructor used
     }
 
@@ -282,7 +285,8 @@ void Player::setStrategy(std::string strategy)
     {
         std::cout << "NeutralPlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
-        justStrat = new NeutralPlayerStrategy();
+        //justStrat = new NeutralPlayerStrategy(); //just keep it for now, will be deleted later
+        justStrat = new NeutralPlayerStrategy(this);
         //need to modify the constructor used
     }
 
@@ -290,7 +294,8 @@ void Player::setStrategy(std::string strategy)
     {
         std::cout << "Command is not recognized, HumanPlayerStrategy is set as default. (Printed From Player class)" << "\n";
         //need to modify the constructor used
-        justStrat = new HumanPlayerStrategy();
+        //justStrat = new HumanPlayerStrategy(); //just keep it for now, will be deleted later
+        justStrat = new HumanPlayerStrategy(this);
         //need to modify the constructor used
     } 
 }
