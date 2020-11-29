@@ -261,6 +261,14 @@ void GameEngine::mainGameLoop() {
 
 //PART 3 - ReinforcementPhase
 void GameEngine::reinforcementPhase() {
+
+	// [should also load the map to the each player]
+	for (Player* p : playersVector)
+	{
+		//load map into the map var of each player
+	}
+	// [should also load the map to the each player]
+
 	//For each player playing the game, give them armies
 	for (Player* p : playersVector) {
 
@@ -523,6 +531,59 @@ Player* GameEngine::getPlayer(string name) {
 
 void GameEngine::ordersExectionPhase()
 {
+
+	/*A new order execution phase*/
+	for (Player* p : playersVector)
+	{
+		//a netral player
+		if (p->arbitraryTerritoriesToAttack.size()==0)
+		{
+			std::cout << "Player is taking NeutralPlayerStrategy, there is not territory the player would like to attack" << "\n";
+		}
+		//a neutral player
+		
+		//other strategy
+		else
+		{
+			//aggresive player
+			if (p->arbitraryTerritoriesToAttack.size() != 0)
+			{
+				std::cout << "Player is taking AggresivePlayerStrategy. " << "\n";
+				std::cout << "Player is attacking. " << "\n";
+
+				//get the territory to attack
+				//pop from the arbitraryTerritoriesToAttack vector
+				string territoryToAttack = p->arbitraryTerritoriesToAttack.front()->getName(); // store the name of the territory to atack temporily for every round
+				std::cout << "Player is going to attack " << p->arbitraryTerritoriesToAttack.front()->getName() << "\n";
+				//pop from the arbitraryTerritoriesToAttack vector
+				//get the territory to attack
+
+				//get the order
+				string order = p->getOrdersList()->getListOfOrders().front()->getOrderType();
+				std::cout << "Player is executing " << order << " order. " << "\n";
+				//get the order
+
+				//execute the attacking order
+				//...
+				//execute the attacking order
+
+			}
+			//aggresive player
+
+
+
+		}
+		//pther strategy
+
+	}
+
+
+
+	/*A new order execution phase*/
+
+
+
+
 	//this is a 2-way vector to wrap the order and the territory
 	//std::vector<Orders*, Territory*> orderIssuedAndTerritoryMerged;
 
