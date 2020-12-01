@@ -42,4 +42,4 @@ private:
 	vector<string> mapNames;
 	MapLoader* mapLoader;
 	std::string currentphase;
-};
+};//
