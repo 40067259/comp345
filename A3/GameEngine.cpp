@@ -310,7 +310,6 @@ void GameEngine::issuingOrderPhase()
 	{
 		cout << "It is " << p->getName() << "'s Issuing Orders Phase now!" << "\n";
 
-		/*
 		//This part should be changed to ask player which strategy they would like to use
 		int strategySelection = 0;
 		std::cout << "Select Strategy: " << "\n";
@@ -327,34 +326,34 @@ void GameEngine::issuingOrderPhase()
 		}
 		else if (strategySelection == 1)
 		{
-			p->setStrategy("HumanPlayerStrategy");
+			p->setStrategy("HumanPlayerStrategy", this);
 			std::cout << p->getName() << " selected 1. Human Player Strategy (Printed From GameEngine.cpp)" << "\n";
 		}
 		else if (strategySelection == 2)
 		{
-			p->setStrategy("AggressivePlayerStrategy");
+			p->setStrategy("AggressivePlayerStrategy", this);
 			std::cout << p->getName() << " selected 2. Aggressive Player Strategy (Printed From GameEngine.cpp)" << "\n";
 		}
 		else if (strategySelection == 3)
 		{
-			p->setStrategy("BenevolentPlayerStrategy");
+			p->setStrategy("BenevolentPlayerStrategy", this);
 			std::cout << p->getName() << " selected 3. Benevolent Player Strategy (Printed From GameEngine.cpp)" << "\n";
 		}
 		else if (strategySelection == 4)
 		{
-			p->setStrategy("NeutralPlayerStrategy");
+			p->setStrategy("NeutralPlayerStrategy", this);
 			std::cout << p->getName() << " selected 4. Neutral Player Strategy (Printed From GameEngine.cpp)" << "\n";
 
 		}
 		else
 		{
-			p->setStrategy("Default");
+			p->setStrategy("Default", this);
 			std::cout << p->getName() << " selected a default Strategy (Printed From GameEngine.cpp)" << "\n";
 		}
-		*/
 		
 		
-
+		//This is the old code
+		/*
 		// [Asking for orders]
 		cout << "Issue Order: " << "\n";
 		cout << "Enter 1 for 'deploy'\n";
@@ -393,7 +392,6 @@ void GameEngine::issuingOrderPhase()
 
 			cout << "Enter name of territory that you want deploy to:" << endl;
 			cin >> targetTerritory;
-			//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
 			p->issueOrder(1, p, NULL, myMap->getTerritory(sourceTerritory), myMap->getTerritory(targetTerritory),  numberOfArmies);
 			//[1. Store order to player's order list]
 			//[2. Print out message]           
@@ -468,8 +466,9 @@ void GameEngine::issuingOrderPhase()
 		// [issue order]
 		// This method will ask the player which order they would like to issue
 		// The order the player issue will then be placed inside the "_orderList" list of that player
+		*/
 
-
+		/*
 		// [toAttack]
 		std::cout << "Please select Territory to attack: " << "\n";
 		int count = 0;
@@ -492,23 +491,28 @@ void GameEngine::issuingOrderPhase()
 			else
 			{
 				//problem is in here
-				p->toAttack(myMap->getTerritory(user_input)); //add the territory to attack to the arbitraryTerritoriesToAttack list
+				p->toAttack(); //add the territory to attack to the arbitraryTerritoriesToAttack list
 				break;
 			}
 		}
 		// [toAttack]
+		*/
 
+		/*
 		// [toDefend]
 		p->toDefend();
 		// [toDefend]
+		*/
 
 		//problem is in here
 		// The method will ask the player to choose a territory it owns to defend
 		// The territory will be placed into "_territoriesToDefend_priority" list of that player
+		//This is the old code
 
 	}
-
 }
+
+
 Player* GameEngine::getPlayer(string name) {
 	for (int i = 0; i < playersVector.size(); i++)
 	{
@@ -536,7 +540,7 @@ void GameEngine::ordersExectionPhase()
 	for (Player* p : playersVector)
 	{
 		//a netral player
-		if (p->arbitraryTerritoriesToAttack.size()==0)
+		if (p->getOrdersList()->size() == 0)
 		{
 			std::cout << "Player is taking NeutralPlayerStrategy, there is not territory the player would like to attack" << "\n";
 		}
@@ -546,49 +550,82 @@ void GameEngine::ordersExectionPhase()
 		else
 		{
 			//aggresive player
-			if (p->arbitraryTerritoriesToAttack.size() != 0)
+			if (p->arbitraryTerritoriesToAttack.size() != 0 && p->_territoriesToDefend_priority.size() == 0)
 			{
 				std::cout << "Player is taking AggresivePlayerStrategy. " << "\n";
 				std::cout << "Player is attacking. " << "\n";
 
 				//get the territory to attack
 				//pop from the arbitraryTerritoriesToAttack vector
-				string territoryToAttack = p->arbitraryTerritoriesToAttack.front()->getName(); // store the name of the territory to atack temporily for every round
 				std::cout << "Player is going to attack " << p->arbitraryTerritoriesToAttack.front()->getName() << "\n";
+				p->arbitraryTerritoriesToAttack.pop_back();
 				//pop from the arbitraryTerritoriesToAttack vector
 				//get the territory to attack
 
 				//get the order
 				string order = p->getOrdersList()->getListOfOrders().front()->getOrderType();
 				std::cout << "Player is executing " << order << " order. " << "\n";
+
+				//execute order
+				p->getOrdersList()->getListOfOrders().front()->execute();
+				//execute order
+
+				p->getOrdersList()->getListOfOrders().pop_back();
+				//pop from the listOfOrders(OrderList) of _orderList(Player)
 				//get the order
-
-				//execute the attacking order
-				//...
-				//execute the attacking order
-
 			}
 			//aggresive player
 
+			//Benevolent Player
+			else if (p->arbitraryTerritoriesToAttack.size() == 0 && p->_territoriesToDefend_priority.size() != 0)
+			{
+				std::cout << "Player is taking BenevolentPlayerStrategy. " << "\n";
+				std::cout << "Player is defending. " << "\n";
 
+				//get the territory to defend
+				//pop from _territoriesToDefend_priority vector
+				std::cout << "Player is going to defend " << p->_territoriesToDefend_priority.front()->getName() << "\n";
+				p->_territoriesToDefend_priority.pop_back();
+				//pop from _territoriesToDefend_priority vector
+				//get the territory to defend
 
+				//get the order
+				string order = p->getOrdersList()->getListOfOrders().front()->getOrderType();
+				std::cout << "Player is executing " << order << " order. " << "\n";
+
+				//execute order
+				p->getOrdersList()->getListOfOrders().front()->execute();
+				//execute order
+
+				p->getOrdersList()->getListOfOrders().pop_back();
+				//pop from the listOfOrders(OrderList) of _orderList(Player) 
+				//get the order
+
+			}
+			//Benevolent Player
+
+			//Human player
+			//check arbitraryTerritoriesToAttack
+			//seems does not need to specify
+			//as the three vectors will either have 1 items or 0 items
+			//and either the arbitraryTerritoriesToAttack or the _territoriesToDefend_priority vector contains items with listOfOrders(OrderList) of _orderList(Player) 
+			//check _territoriesToDefend_priority
+			//Human player
 		}
-		//pther strategy
+		//other strategy
 
 	}
-
-
-
 	/*A new order execution phase*/
 
 
 
 
+
+	//Old version of ordersExectionPhase()
 	//this is a 2-way vector to wrap the order and the territory
 	//std::vector<Orders*, Territory*> orderIssuedAndTerritoryMerged;
-
+	/*
 	Orders* orders;
-
 	for (Player* p : playersVector)
 	{
 
@@ -786,6 +823,8 @@ void GameEngine::ordersExectionPhase()
 		//[Pop the order out from the orderslist vector]
 
 	}
+	*/
+	//Old version of ordersExectionPhase()
 }
 
 //====================================================================added for Part 3 =====================================================================================
