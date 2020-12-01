@@ -44,6 +44,13 @@ Player::Player() {
     reinforcementPool = 0;
 }
 
+//added copy constructor
+Player::Player(const Player* p)
+{
+
+}
+//added copy constructor
+
 //-----------findTer by name------------//
 Territory* Player::findTerritory(std::string terName) {
     for (int i = 0; i < this->getTerritories().size(); i++) {
@@ -251,7 +258,7 @@ void Player::printPlayerOrders() {
 }
 
 //added for a3
-void Player::setStrategy(std::string strategy)
+void Player::setStrategy(std::string strategy, GameEngine* g)
 {
 
     if (strategy.compare("HumanPlayerStrategy") == 0)
@@ -259,7 +266,7 @@ void Player::setStrategy(std::string strategy)
         std::cout << "HumanPlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
         //justStrat = new HumanPlayerStrategy(); //just keep it for now, will be deleted later
-        justStrat = new HumanPlayerStrategy(this);
+        justStrat = new HumanPlayerStrategy(this, g);
         //need to modify the constructor used
     }
 
@@ -268,7 +275,7 @@ void Player::setStrategy(std::string strategy)
         std::cout << "AggressivePlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
         //justStrat = new AggressivePlayerStrategy(); //just keep it for now, will be deleted later
-        justStrat = new AggressivePlayerStrategy(this);
+        justStrat = new AggressivePlayerStrategy(this, g);
         //need to modify the constructor used
     }
 
@@ -277,7 +284,7 @@ void Player::setStrategy(std::string strategy)
         std::cout << "BenevolentPlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
         //justStrat = new BenevolentPlayerStrategy(); //just keep it for now, will be deleted later
-        justStrat = new BenevolentPlayerStrategy(this);
+        justStrat = new BenevolentPlayerStrategy(this, g);
         //need to modify the constructor used
     }
 
@@ -286,7 +293,7 @@ void Player::setStrategy(std::string strategy)
         std::cout << "NeutralPlayerStrategy is set. (Printed From Player class)" << "\n";
         //need to modify the constructor used
         //justStrat = new NeutralPlayerStrategy(); //just keep it for now, will be deleted later
-        justStrat = new NeutralPlayerStrategy(this);
+        justStrat = new NeutralPlayerStrategy(this, g);
         //need to modify the constructor used
     }
 
@@ -295,7 +302,7 @@ void Player::setStrategy(std::string strategy)
         std::cout << "Command is not recognized, HumanPlayerStrategy is set as default. (Printed From Player class)" << "\n";
         //need to modify the constructor used
         //justStrat = new HumanPlayerStrategy(); //just keep it for now, will be deleted later
-        justStrat = new HumanPlayerStrategy(this);
+        justStrat = new HumanPlayerStrategy(this, g);
         //need to modify the constructor used
     } 
 }
