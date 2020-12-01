@@ -13,7 +13,7 @@
 class Hand;
 class Cards;
 class OrdersList;
-
+class PlayerStrategy;
 class Player {
 private:
     std::vector<Territory*> _territories;
