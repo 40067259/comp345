@@ -9,11 +9,12 @@
 #include "Card.h"
 //added
 #include "PlayerStrategy.h"
+#include "GameEngine.h"
 
 class Hand;
 class Cards;
 class OrdersList;
-class PlayerStrategy;
+
 class Player {
 private:
     std::vector<Territory*> _territories;
@@ -60,10 +61,11 @@ public:
     //added
 
     //added for a3
-    void setStrategy(std::string strategy);
+    Player(const Player* p);    // copy constructor
+    void setStrategy(std::string strategy, GameEngine* g);
     void toSkip();
     Map* getMap();
+    GameEngine* gE; // do i need this?
     //added for a3
 
 };
-//
