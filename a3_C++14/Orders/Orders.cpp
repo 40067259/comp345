@@ -335,7 +335,7 @@ Negotiate::~Negotiate()
 // for now, no need to implement the execute() and validate() 
 bool Negotiate::validate() {
 	cout << "varifing the Negotiate order..." << endl;
-	if (p2 = getPlayer())
+	if (p2 == getPlayer())
 	{
 		cout << "Error, you can only negotiate with enemy!" << endl;
 		return false;
