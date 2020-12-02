@@ -14,6 +14,8 @@
 class Hand;
 class Cards;
 class OrdersList;
+class Orders;
+class PlayerStrategy;
 
 class Player {
 private:
