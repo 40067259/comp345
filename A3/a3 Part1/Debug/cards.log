@@ -1,0 +1,6 @@
+﻿  PlayerStrategy.cpp
+C:\Users\isa20\Desktop\com345\A2\Card\PlayerStrategy.cpp(20,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\com345\A2\Card\PlayerStrategy.cpp(166,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\com345\A2\Card\PlayerStrategy.cpp(194,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\isa20\Desktop\com345\A2\Card\PlayerStrategy.cpp(209,23): warning C4018: '<': signed/unsigned mismatch
+  cards.vcxproj -> C:\Users\isa20\Desktop\com345\A2\Card\Debug\cards.exe
