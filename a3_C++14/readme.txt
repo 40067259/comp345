@@ -6,4 +6,5 @@
    ABC_Map.map, Aden.map, and Alberta.map are Conquest maps to test reader Adapter. 
    ABC_Map.map is an invalid map, 
    Aden.map, and Alberta.map are good ones.
-3. a3 part 2 files are in "MapLoader" folder.
+3. a3 part 1 files are in "Player" folder.
+4. a3 part 2 files are in "MapLoader" folder.
