@@ -197,16 +197,8 @@ vector<Territory*> BenevolentPlayerStrategy::toAttack(Player *p){
 NeutralPlayerStrategy::NeutralPlayerStrategy(){
 }
 
-NeutralPlayerStrategy::NeutralPlayerStrategy(Player* p, GameEngine* g) : PlayerStrategy(p, g)
-{
-	this->p = p;
-	//need to add copy constructor for player class, 
-	//so that deep copy can be made
-
-}
 NeutralPlayerStrategy::~NeutralPlayerStrategy()
 {
-	delete p;
 }
 
 void NeutralPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies) {
