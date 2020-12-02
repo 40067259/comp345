@@ -328,22 +328,22 @@ void GameEngine::issuingOrderPhase()
 		else if (strategySelection == 1)
 		{
 			p->setStrategy("HumanPlayerStrategy");
-			std::cout << p->getName() << " selected 1. Human Player Strategy (Printed From GameEngine.cpp)" << "\n";
+			std::cout << p->getName() << " selected 1. Human Player Strategy" << "\n";
 		}
 		else if (strategySelection == 2)
 		{
 			p->setStrategy("AggressivePlayerStrategy");
-			std::cout << p->getName() << " selected 2. Aggressive Player Strategy (Printed From GameEngine.cpp)" << "\n";
+			std::cout << p->getName() << " selected 2. Aggressive Player Strategy" << "\n";
 		}
 		else if (strategySelection == 3)
 		{
 			p->setStrategy("BenevolentPlayerStrategy");
-			std::cout << p->getName() << " selected 3. Benevolent Player Strategy (Printed From GameEngine.cpp)" << "\n";
+			std::cout << p->getName() << " selected 3. Benevolent Player Strategy" << "\n";
 		}
 		else if (strategySelection == 4)
 		{
 			p->setStrategy("NeutralPlayerStrategy");
-			std::cout << p->getName() << " selected 4. Neutral Player Strategy (Printed From GameEngine.cpp)" << "\n";
+			std::cout << p->getName() << " selected 4. Neutral Player Strategy" << "\n";
 		}
 
 
