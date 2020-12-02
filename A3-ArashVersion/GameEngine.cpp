@@ -345,12 +345,191 @@ void GameEngine::issuingOrderPhase()
 			std::cout << p->getName() << " selected 4. Neutral Player Strategy (Printed From GameEngine.cpp)" << "\n";
 
 		}
-		else
-		{
-			p->setStrategy("Default", this);
-			std::cout << p->getName() << " selected a default Strategy (Printed From GameEngine.cpp)" << "\n";
+		// when the player choose HumanPlayerStrategy, it needs users' input
+		if (strategySelection == 1) {
+
+			// [Asking for orders]
+			cout << "Issue Order: " << "\n";
+			cout << "Enter 1 for 'deploy'\n";
+			cout << "Enter 2 for 'advance'\n";
+			cout << "Enter 3 for 'bomb'\n";
+			cout << "Enter 4 for 'blockade'\n";
+			cout << "Enter 5 for 'airlift'\n";
+			cout << "Enter 6 for 'negotiate'\n";
+			cout << "ENTER 0 TO EXIT\n";
+			cout << ">>";
+			cin >> orderNb;
+			// [Asking for orders]
+
+			// [issue order]
+			if (orderNb == 0)
+			{
+				break;
+			}
+			else if (orderNb == 1)
+			{
+				int numberOfArmies;
+				cout << "Enter number of armies you want to deploy:" << endl;
+				cin >> numberOfArmies;
+				string sourceTerritory;
+
+				cout << "Your territories: " << "\n";
+				for (Territory* t : p->getTerritories())
+				{
+					cout << t->getName() << "\n";
+				}
+				cout << "\n";
+
+				cout << "Enter name of territory that you want deploy from:" << endl;
+				cin >> sourceTerritory;
+				string targetTerritory;
+
+				cout << "Enter name of territory that you want deploy to:" << endl;
+				cin >> targetTerritory;
+				//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
+				p->issueOrder(1, p, NULL, myMap->getTerritory(sourceTerritory), myMap->getTerritory(targetTerritory), numberOfArmies);
+				//[1. Store order to player's order list]
+				//[2. Print out message]           
+			}
+			else if (orderNb == 2)
+			{
+				int numberOfArmies2;
+				cout << "Enter number of armies you want to advance:" << endl;
+				cin >> numberOfArmies2;
+				string sourceTerritory2;
+				cout << "Enter name of territory that you want advance from:" << endl;
+				cin >> sourceTerritory2;
+				string targetTerritory2;
+				cout << "Enter name of territory that you want advance to:" << endl;
+				cin >> targetTerritory2;
+				//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
+				p->issueOrder(2, p, NULL, myMap->getTerritory(sourceTerritory2), myMap->getTerritory(targetTerritory2), numberOfArmies2);
+				//[1. Store order to player's order list]
+				//[2. Print out message] 
+			}
+			else if (orderNb == 3)
+			{
+				string sourceTerritory3;
+				cout << "Enter name of territory that you want to place a bomb:" << endl;
+				cin >> sourceTerritory3;
+				//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
+				p->issueOrder(3, p, NULL, NULL, myMap->getTerritory(sourceTerritory3), 0);
+				//[1. Store order to player's order list]
+				//[2. Print out message] 
+			}
+			else if (orderNb == 4)
+			{
+				string targetTerritory4;
+				cout << "Enter name of territory that you want doubling the number of armies on the territory and transferring the ownership of the territory to the Neutral player.:" << endl;
+				cin >> targetTerritory4;
+				//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
+				p->issueOrder(4, p, NULL, NULL, myMap->getTerritory(targetTerritory4), 0);
+				//[1. Store order to player's order list]
+				//[2. Print out message] 
+			}
+			else if (orderNb == 5)
+			{
+				int numberOfArmies5;
+				cout << "Enter number of armies you want to airlift:" << endl;
+				cin >> numberOfArmies5;
+				string sourceTerritory5;
+				cout << "Enter name of territory that you want airlift from:" << endl;
+				cin >> sourceTerritory5;
+				string targetTerritory5;
+				cout << "Enter name of territory that you want airlift to:" << endl;
+				cin >> targetTerritory5;
+				//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
+				p->issueOrder(5, p, NULL, myMap->getTerritory(sourceTerritory5), myMap->getTerritory(targetTerritory5), numberOfArmies5);
+				//[1. Store order to player's order list]
+				//[2. Print out message] 
+			}
+			else if (orderNb == 6)
+			{
+				string p2name;
+				cout << "Enter name of player that you want negotiate with:" << endl;
+				cin >> p2name;
+				//issueOrder(1, p, Player* p2, Territory* source, Territory* target, int numberOfArmies);
+				p->issueOrder(6, p, getPlayer(p2name), NULL, NULL, 0);
+				//[1. Store order to player's order list]
+				//[2. Print out message]
+			}
+			else
+			{
+				cout << "There is no such option. Please wait for the next round";
+				break;
+			}
+			// [issue order]
+			// This method will ask the player which order they would like to issue
+			// The order the player issue will then be placed inside the "_orderList" list of that player
+
+
+			// [toAttack]
+			std::cout << "Please select Territory to attack: " << "\n";
+
+			//only print out the land the user does not own
+			std::vector<string> temp_territory_vector;
+			for (int i = 0; i < myMap->size(); i++)
+			{
+				for (int j = 0; p->_territories.size(); j++)
+				{
+					if (((myMap->getTerritory(i)->getName()).compare(p->_territories[j]->getName())) == 0)
+					{
+						continue;
+					}
+					else
+					{
+						//add the territory name to the tamp_territory
+						temp_territory_vector.push_back(myMap->getTerritory(i)->getName());
+						//add the territory name to the tamp_territory
+					}
+				}
+			}
+			int count = 0;
+			for (int i = 0; i < temp_territory_vector.size(); i++)
+			{
+				std::cout << "Press \"" << count << "\" to select " << temp_territory_vector[i] << "\n";
+				count++;
+			}
+			//only print out the land the user does not own
+
+			int user_input;
+			std::cin >> user_input;
+
+			for (Territory* t : p->getTerritories())
+			{
+				if ((myMap->getTerritory(user_input)->getName()).compare(t->getName()))
+				{
+					std::cout << "You have owned the territory already. You cannot attack your own land. " << "\n";
+					std::cout << "Please wait for the next round" << "\n";
+					break;
+				}
+				else
+				{
+					//problem is in here
+					p->toAttack(); //add the territory to attack to the arbitraryTerritoriesToAttack list
+					break;
+				}
+			}
+			// [toAttack]
+
+			// [toDefend]
+			p->toDefend();
+			// [toDefend]
+
+			//problem is in here
+			// The method will ask the player to choose a territory it owns to defend
+			// The territory will be placed into "_territoriesToDefend_priority" list of that player
+
 		}
-		
+       // if the player choose AggressivePlayerStrategy, BenevolentPlayerStrategy, and NeutralPlayerStrategy, no need of user's input
+       else {
+           // none of the AIs can issue order, aggressive computer player focus on attack, 
+	   //benevolent computer player only defend, and neutral player do nothing
+           p->toAttack();
+	   p->toDefend();
+	   
+        }
+	}
 		
 		//This is the old code
 		/*
