@@ -123,8 +123,7 @@ void HumanPlayerStrategy::toAttack(Player *p){
 
 //MUST IMPLEMENT
 void AggressivePlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
-    
-    
+    std::cout << "Aggressive player never issues any order" << std::endl;    
 }
 
 //MUST IMPLEMENT
