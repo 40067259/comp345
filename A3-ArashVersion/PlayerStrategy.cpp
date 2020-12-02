@@ -144,37 +144,37 @@ void AggressivePlayerStrategy:: toDefend(Player *p){
 
 
 void BenevolentPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
-    
-    //here, we don't use orderName as all this benevolant player can do is deploy armies to the weakest territory
-    //1) DETECT WEAKEST TERRITORY
-    Territory *weakestTerritory = p1->getTerritories().at(0);
-    
-    for(Territory *t : p1->getTerritories()){
-        if(t->getArmies()< weakestTerritory->getArmies()) {
-            weakestTerritory = t;
-        }
-    }
-    
-    //2) DETECT THE STRONGEST TERRITORY
-    Territory *strongestTerritory = p1->getTerritories().at(0);
-    
-    for(Territory *t : p1->getTerritories()){
-        if(t->getArmies()> weakestTerritory->getArmies()) {
-            strongestTerritory = t;
-        }
-    }
-    
-    //3) ADD HALF OF STRONGEST ARMIES TERRITORIES TO WEAKEST
-    int armiesToAddToWeakest = strongestTerritory->getArmies()/2;
-    strongestTerritory->removeArmies(armiesToAddToWeakest);
-    weakestTerritory->addArmies(armiesToAddToWeakest);
-    
+    std::cout << "Benevolent player never issues any order" << std::endl;
 }
 
 
 
 void BenevolentPlayerStrategy::toDefend(Player *p) {
     
+   //here, we don't use orderName as all this benevolant player can do is deploy armies to the weakest territory
+	//1) DETECT WEAKEST TERRITORY
+	Territory *weakestTerritory = p->getTerritories().at(0);
+
+	for (Territory *t : p->getTerritories()) {
+		if (t->getArmies() < weakestTerritory->getArmies()) {
+			weakestTerritory = t;
+		}
+	}
+
+	//2) DETECT THE STRONGEST TERRITORY
+	Territory *strongestTerritory = p->getTerritories().at(0);
+
+	for (Territory *t : p->getTerritories()) {
+		if (t->getArmies() > weakestTerritory->getArmies()) {
+			strongestTerritory = t;
+		}
+	}
+
+	//3) ADD HALF OF STRONGEST ARMIES TERRITORIES TO WEAKEST
+	int armiesToAddToWeakest = strongestTerritory->getArmies() / 2;
+	strongestTerritory->removeArmies(armiesToAddToWeakest);
+	weakestTerritory->addArmies(armiesToAddToWeakest);
+
     vector<Territory*> toDefend = p->getTerritories();
     
     std::cout << "Player needs to defend: " << "\n";
