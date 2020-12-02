@@ -40,10 +40,9 @@ public:
     Player(std::string name);
     Player(std::string name, std::vector<Territory*> territories, Hand* cards, OrdersList* orderlist);
     ~Player();
-    std::vector<Territory*> arbitraryTerritoriesToAttack; //TEMPORARY: For the first assignement
-    std::vector<Territory*> toDefend();
-    //std::vector<Territory*> toAttack();
-    std::vector<Territory*> toAttack(/*//===removed the argument===//  Territory* territoryToAttack*/);
+    void arbitraryTerritoriesToAttack; //TEMPORARY: For the first assignement
+    void toDefend(Territory* territoryToDefend);
+	void toAttack(Territory* territoryToAttack);
     Territory* findTerritory(std::string terName);
     void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
     void printPlayerOrders();
@@ -69,7 +68,6 @@ public:
     void setStrategy(PlayerStrategy *strategy);
     void toSkip();
     Map* getMap();
-    GameEngine* gE; // do i need this?
     //added for a3
     void appendOrder(Orders *newOrder);
 };
