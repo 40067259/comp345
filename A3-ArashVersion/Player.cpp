@@ -116,7 +116,7 @@ std::vector<Territory*> Player::toDefend() {
     return playerStrat->toDefend(this);
 }
 
-
+/*
 //A3 NEW toAttack()
 std::vector<Territory*> Player::toAttack() {
     return playerStrat->toAttack(this);
@@ -134,12 +134,20 @@ void Player::setStrategy(PlayerStrategy *strategy)
 {
     playerStrat = strategy;
 }
+*/
+void Player::toDefend(Territory* territoryToDefend) {
+	return this->justStrat->toDefend(territoryToDefend);
+}
+
+void Player::toAttack(Territory* territoryToAttack) {
+	return this->justStrat->toAttack(territoryToAttack);
+}
 
 
-
-
-
-
+//issue the order depending on what the player wants
+void Player::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies) {
+	return this->justStrat->issueOrder(orderName, p1, p2, source, target, numberOfArmies);
+}
 
 //add territory
 void Player::addTerritory(Territory* terr) {
