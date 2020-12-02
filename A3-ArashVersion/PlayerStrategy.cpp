@@ -194,18 +194,28 @@ vector<Territory*> BenevolentPlayerStrategy::toAttack(Player *p){
 
 //====NEUTRAL PLAYER STRATEGY=====//
 
-
-//MUST IMPLEMENT
-void NeutralPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
-    
+NeutralPlayerStrategy::NeutralPlayerStrategy(){
 }
 
-//MUST IMPLEMENT
-vector<Territory*> NeutralPlayerStrategy::toDefend(Player *p) {
-    
+NeutralPlayerStrategy::NeutralPlayerStrategy(Player* p, GameEngine* g) : PlayerStrategy(p, g)
+{
+	this->p = p;
+	//need to add copy constructor for player class, 
+	//so that deep copy can be made
+
+}
+NeutralPlayerStrategy::~NeutralPlayerStrategy()
+{
+	delete p;
 }
 
-//MUST IMPLEMENT
-vector<Territory*> NeutralPlayerStrategy::toAttack(Player *p){
-    
+void NeutralPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies) {
+	std::cout << "neutral player never issues any order" << std::endl;
 }
+void NeutralPlayerStrategy::toDefend(Player* p) {
+	std::cout << "neutral player never defend" << std::endl;
+}
+void NeutralPlayerStrategy::toAttack(Player* p) {
+	std::cout << "neutral player never attack" << std::endl;
+}
+
