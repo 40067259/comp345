@@ -1,0 +1,8 @@
+E:\C++\Workplace\cards\Debug\cards.exe
+E:\C++\Workplace\cards\Debug\cards.pdb
+E:\Project\comp345\A2\cards\Debug\cards.exe
+E:\Project\comp345\A2\cards\Debug\cards.pdb
+C:\Users\isa20\Desktop\Card\Debug\cards.exe
+C:\Users\isa20\Desktop\Card\Debug\cards.pdb
+C:\Users\isa20\Desktop\com345\A2\Card\Debug\cards.exe
+C:\Users\isa20\Desktop\com345\A2\Card\Debug\cards.pdb
