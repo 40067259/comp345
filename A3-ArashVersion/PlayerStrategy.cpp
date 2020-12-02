@@ -128,12 +128,87 @@ void AggressivePlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2,
 
 //MUST IMPLEMENT
 void AggressivePlayerStrategy::toAttack(Player *p){
-    
+    //only attack the land that the user does not own
+    std::vector<string> temp_territory_vector;
+    for (int i = 0; i < p->getMap()->size(); i++)
+    {
+        for (int j = 0; p->getTerritories().size(); j++)
+        {
+            if (((p->getMap()->getTerritory(i)->getName()).compare(p->getTerritories()[j]->getName())) == 0)
+            {
+                continue;
+            }
+            else
+            {
+                //add the territory name to the tamp_territory
+                temp_territory_vector.push_back(p->getMap()->getTerritory(i)->getName());
+                //add the territory name to the tamp_territory
+            }
+        }
+    }
+    //only attack the land that the user does not own
+
+    //[randomly select a territory to attack]
+    //randomly select a number within limit
+    int limit = (temp_territory_vector.size()) - 1;
+    int getNumber = 0;
+    getNumber = rand() % limit;
+    //randomly select a number within limit
+    //[randomly select a territory to attack]
+
+    //point to the targeting territory to attack
+    Territory* territorySelectedToAttack = p->getMap()->getTerritory(temp_territory_vector[getNumber]);
+    //point to the targeting territory to attack
+        
+    p->arbitraryTerritoriesToAttack.push_back(territorySelectedToAttack);
 }
 
 //MUST IMPLEMENT
 void AggressivePlayerStrategy:: toDefend(Player *p){
-    
+    //reinforce its strongest territory
+
+    //[get the strongest territory]
+    Territory* strongestTerritory = p->getTerritories().front();
+    for (Territory* t : p->getTerritories())
+    {
+        //if another territory has more armies, strongestTerritory will point to that territory
+        if (t->getArmies() > strongestTerritory->getArmies())
+        {
+            strongestTerritory = t;
+        }
+        else if (t->getArmies() <= strongestTerritory->getArmies())
+        {
+            continue;
+        }
+    }
+    //[get the strongest territory]
+
+    //[randomly get the territory owned by the player]
+    //randomly select a number within limit
+    int limit = (p->getTerritories().size()) - 1;
+    int getNumber = 0;
+    getNumber = rand() % limit;
+    int ArmiesThatCanbeMoved = p->getTerritories()[getNumber]->getArmies();
+    //randomly select a number within limit
+
+    //check if the numbers of armies in that territory is equal to 0 or not
+    while (ArmiesThatCanbeMoved = 0) //if there are no armies to move
+    {
+        getNumber = rand() % limit;
+        int ArmiesThatCanbeMoved = p->getTerritories()[getNumber]->getArmies();
+    }
+    //check if the numbers of armies in that territory is equal to 0 or not
+    //[randomly get the territory owned by the player]
+
+    //[maximize aggregation of forces in one territory]
+    //move army to the strongest territory
+    p->getTerritories()[getNumber]->removeArmies(ArmiesThatCanbeMoved);
+    strongestTerritory->addArmies(ArmiesThatCanbeMoved);
+    //move army to the strongest territory
+    //[maximize aggregation of forces in one territory]
+
+    std::cout << "Player - " << p->getName() << " playing with Aggressive Player Strategy" << endl;
+    std::cout << "Player is moving " << ArmiesThatCanbeMoved << " of armies from " << p->getTerritories()[getNumber]->getName() << " to " << strongestTerritory->getName() << endl;    
 }
 
 
