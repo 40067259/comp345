@@ -17,6 +17,10 @@ class OrdersList;
 
 class Player {
 private:
+    
+    
+    
+    
     std::vector<Territory*> _territories;
     Hand* _cards;
     OrdersList* _orderList;
@@ -27,7 +31,7 @@ private:
     static int numberOfPlayers;
 
     //added for a3
-    PlayerStrategy* justStrat;
+    PlayerStrategy* playerStrat;
     Map* map;
     //added for a3
 
@@ -62,7 +66,7 @@ public:
 
     //added for a3
     Player(const Player* p);    // copy constructor
-    void setStrategy(std::string strategy, GameEngine* g);
+    void setStrategy(PlayerStrategy *strategy);
     void toSkip();
     Map* getMap();
     GameEngine* gE; // do i need this?

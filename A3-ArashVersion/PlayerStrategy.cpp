@@ -1,139 +1,176 @@
+#include <vector>
 #include <iostream>
-#include <fstream>
+#include "Player.h"
+#include"Orders.h"
 #include <string>
-#include "PlayerStrategy.h"
 
-//====HUMAN PLAYER STRATEGY=====//
-void HumanPlayerStrategy::issueOrder(int orderName, Player *p1, Player *p2, Territory *source, Territory *target, int numberOfArmies)
+
+int Player::numberOfPlayers = 0; //initializing static variable
+
+
+//==========CONSTRUCTORS==========//
+
+Player::Player(std::string name, std::vector<Territory*> territories, Hand* cards, OrdersList* orderList) {
+    _playerNumber = ++numberOfPlayers;
+    _name = name;
+    _territories = territories;
+    _cards = cards;
+    _orderList = orderList;
+    reinforcementPool = 0;
+
+}
+
+Player::Player(std::string name) {
+    _playerNumber = ++numberOfPlayers;
+    _name = name;
+    std::vector<Territory*> territories;
+    _territories = territories;
+    _cards = new Hand();
+    std::cout << "An empty hand of cards created." << std::endl;
+    _orderList = new OrdersList();
+    std::cout << "An empty order list created." << std::endl;
+    reinforcementPool = 0;
+}
+
+Player::Player() {
+    _playerNumber = ++numberOfPlayers;
+    _name = "Default" + std::to_string(_playerNumber);
+    std::vector<Territory*> territories;
+    _territories = territories;
+    _cards = new Hand();
+    std::cout << "An empty hand of cards created." << std::endl;
+    _orderList = new OrdersList();
+    std::cout << "An empty order list created." << std::endl;
+    reinforcementPool = 0;
+}
+
+//added copy constructor
+Player::Player(const Player* p)
 {
 
-    if (orderName == 1) {
-        Deploy* deploy = new Deploy(p1, numberOfArmies, target);
-        p1->appendOrder(deploy);
-        std::cout << "Troops deployed!\n"; //Problem is here: do we really need this statement?
-    }
+}
+//added copy constructor
 
-    else if (orderName == 2) {
-        Advance* advance = new Advance(p1, numberOfArmies, source, target);
-        p1->appendOrder(advance);
-        std::cout << "Troops advanced!\n";
+//-----------findTer by name------------//
+Territory* Player::findTerritory(std::string terName) {
+    for (int i = 0; i < this->getTerritories().size(); i++) {
+        if (this->_territories[i]->getName() == terName) return _territories[i];
     }
-
-    else if (orderName == 5) {
-        Airlift* airlift = new Airlift(p1, numberOfArmies, source, target);
-        p1->appendOrder(airlift);
-        std::cout << "Calling Airlift!\n";
-    }
-
-    else if (orderName == 3) {
-        Bomb* bomb = new Bomb(p1, target);
-        p1->appendOrder(bomb);
-        std::cout << "Bombed!\n";
-    }
-
-    else if (orderName == 4) {
-        Blockade* blockade = new Blockade(p1, target);
-        p1->appendOrder(blockade);
-        std::cout << "Blockade!\n";
-    }
-
-
-    else if (orderName == 6) {
-        Negotiate* negotiate = new Negotiate(p1, p2);
-        p1->appendOrder(negotiate);
-        std::cout << "Negotiating...";
-    }
-    else {
-        cout << "ERROR: invalide order!" << endl;
-    }
+    return nullptr;
 }
 
 
-vector<Territory*> HumanPlayerStrategy::toDefend(Player *p) {
-    
-    vector<Territory*> toDefend = p->getTerritories();
-    
-    std::cout << "Player needs to defend: " << "\n";
-    for (Territory* terr : p->getTerritories())
-        std::cout << terr->getName() << "\n";
 
-    //int count = 0;
-    int user_input;
-    std::cout << "Which territory would you like to defend?" << "\n";
-
-    for (int i = 0; i < p->getTerritories().size(); i++)
+//==========DESTRUCTORS==========//
+Player::~Player() {
+    for (Territory* t : _territories)
     {
-        std::cout << "Enter \"" << i << "\" for " + p->getTerritories()[i]->getName() << "\n";
-        //count++;
-    }
-    std::cin >> user_input;
-    
-    p->_territoriesToDefend_priority.push_back(p->getTerritories()[user_input]);
+        delete t;
+        t = nullptr;
+    };
 
-    std::cout << p->getTerritories()[user_input]->getName() << " will be defended. " << "\n";
-    return p->_territoriesToDefend_priority;
-    
+    delete _cards;
+    _cards = nullptr;
+    delete _orderList;
+    _orderList = nullptr;
 }
 
-//MUST IMPLELEMNT
-vector<Territory*> HumanPlayerStrategy::toAttack(Player *p){}
-
-
-
-
-
-//====AGGRESSIVE PLAYER STRATEGY=====//
-
-//MUST IMPLEMENT
-void AggressivePlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
-    
-}
-
-//MUST IMPLEMENT
-vector<Territory*> AggressivePlayerStrategy::toAttack(Player *p){
-    
-}
-
-//MUST IMPLEMENT
-vector<Territory*> AggressivePlayerStrategy:: toDefend(Player *p){
-    
+//=====GETTERS AND SETTERS====//
+std::vector<Territory*> Player::getTerritories() {
+    return _territories;
 }
 
 
+Hand* Player::getHand() {
+    return _cards;
+};
 
+OrdersList* Player::getOrdersList() {
+    return _orderList;
+};
 
-//====BENEVOLANT PLAYER STRATEGY=====//
+std::string Player::getName() {
+    return _name;
+};
+int Player::getArmies() {
+    return _armies;
+};
 
-//MUST IMPLEMENT
-void BenevolentPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
-    
+int Player::getReinforcements() {
+    return reinforcementPool;
 }
 
-//MUST IMPLEMENT
-vector<Territory*> BenevolentPlayerStrategy::toDefend(Player *p) {
-    
+
+
+
+//==========METHODS==========//
+//add reinforcements to the player
+void Player::addReinforcements(int r) {
+    reinforcementPool += r;
 }
 
-//MUST IMPLEMENT
-vector<Territory*> BenevolentPlayerStrategy::toAttack(Player *p){
-    
+
+
+//A3 NEW toDefend()
+std::vector<Territory*> Player::toDefend() {
+    return playerStrat->toDefend(this);
 }
 
 
-//====NEUTRAL PLAYER STRATEGY=====//
-
-
-//MUST IMPLEMENT
-void NeutralPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies){
-    
+//A3 NEW toAttack()
+std::vector<Territory*> Player::toAttack() {
+    return playerStrat->toAttack(this);
 }
 
-//MUST IMPLEMENT
-vector<Territory*> NeutralPlayerStrategy::toDefend(Player *p) {
-    
+
+//A3 New issueOrder()
+void Player::issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies) {
+    return playerStrat->issueOrder(orderName, p1, p2, source, target, numberOfArmies);
 }
 
-//MUST IMPLEMENT
-vector<Territory*> NeutralPlayerStrategy::toAttack(Player *p){
-    
+
+//A3 setStrategy()
+void Player::setStrategy(PlayerStrategy *strategy)
+{
+    playerStrat = strategy;
+}
+
+
+
+
+
+
+
+//add territory
+void Player::addTerritory(Territory* terr) {
+    this->_territories.push_back(terr);
+}
+
+//add new army to players
+void Player::giveNewArmy(int num) {
+    _armies = _armies + num;
+}
+
+void Player::printPlayerOrders() {
+    _orderList->printOrders();
+}
+
+
+
+
+
+void Player::toSkip()
+{
+    std::cout << _name << " is using NeutralPlayerStrategy. That means the player is not issuing orders. (Printed from toSkip() method)" << "\n";
+}
+
+Map* Player::getMap()
+{
+    return map;
+}
+
+
+//added for a3
+void Player::appendOrder(Orders *newOrder){
+    _orderList->addOrders(newOrder);
 }
