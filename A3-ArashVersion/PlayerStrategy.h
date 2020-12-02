@@ -15,8 +15,8 @@ class HumanPlayerStrategy : public PlayerStrategy
 {
 public:
     void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
-    vector<Territory*> toAttack(Player *p);
-    vector<Territory*> toDefend(Player *p);
+    void toAttack(Player *p);
+    void toDefend(Player *p);
 };
 
 
@@ -26,24 +26,24 @@ class AggressivePlayerStrategy : public PlayerStrategy
 {
 public:
     void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
-    vector<Territory*> toAttack(Player *p);
-    vector<Territory*> toDefend(Player *p);
+    void toAttack(Player *p);
+    void toDefend(Player *p);
 };
 
 class BenevolentPlayerStrategy : public PlayerStrategy
 {
 public:
     void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
-    vector<Territory*> toAttack(Player *p);
-    vector<Territory*> toDefend(Player *p);
+    void toAttack(Player *p);
+    void toDefend(Player *p);
 };
 
 class NeutralPlayerStrategy : public PlayerStrategy
 {
 public:
     void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
-    vector<Territory*> toAttack(Player *p);
-    vector<Territory*> toDefend(Player *p);
+    void toAttack(Player *p);
+    void toDefend(Player *p);
 };
 
 
