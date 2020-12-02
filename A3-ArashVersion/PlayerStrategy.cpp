@@ -186,7 +186,7 @@ void BenevolentPlayerStrategy::toDefend(Player *p) {
 
 
 void BenevolentPlayerStrategy::toAttack(Player *p){
-    std::cout << "neutral player never attack" << std::endl;
+    std::cout << "Benevolent player never attack" << std::endl;
 	//return p->arbitraryTerritoriesToAttack;
     
 }
