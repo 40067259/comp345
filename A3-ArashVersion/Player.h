@@ -41,8 +41,8 @@ public:
     Player(std::string name, std::vector<Territory*> territories, Hand* cards, OrdersList* orderlist);
     ~Player();
     void arbitraryTerritoriesToAttack; //TEMPORARY: For the first assignement
-    void toDefend(Territory* territoryToDefend);
-	void toAttack(Territory* territoryToAttack);
+    void toDefend();
+    void toAttack();
     Territory* findTerritory(std::string terName);
     void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies);
     void printPlayerOrders();
