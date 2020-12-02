@@ -164,7 +164,7 @@ void AggressivePlayerStrategy::toAttack(Player *p){
 }
 
 //MUST IMPLEMENT
-void AggressivePlayerStrategy:: toDefend(Player *p){
+void AggressivePlayerStrategy::toDefend(Player *p){
     //reinforce its strongest territory
 
     //[get the strongest territory]
