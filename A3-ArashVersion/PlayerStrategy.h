@@ -6,8 +6,8 @@ class Territory;
 class PlayerStrategy{
 public:
     virtual void issueOrder(int orderName, Player* p1, Player* p2, Territory* source, Territory* target, int numberOfArmies) =0;
-    virtual vector<Territory*> toAttack(Player *p) = 0;
-    virtual vector<Territory*> toDefend(Player *p) = 0;
+    virtual void toAttack(Player *p) = 0;
+    virtual void toDefend(Player *p) = 0;
 };
 
 
