@@ -49,7 +49,7 @@ void HumanPlayerStrategy::issueOrder(int orderName, Player *p1, Player *p2, Terr
 }
 
 
-vector<Territory*> HumanPlayerStrategy::toDefend(Player *p) {
+void HumanPlayerStrategy::toDefend(Player *p) {
     
     vector<Territory*> toDefend = p->getTerritories();
     
@@ -71,14 +71,14 @@ vector<Territory*> HumanPlayerStrategy::toDefend(Player *p) {
     p->_territoriesToDefend_priority.push_back(p->getTerritories()[user_input]);
 
     std::cout << p->getTerritories()[user_input]->getName() << " will be defended. " << "\n";
-    return p->_territoriesToDefend_priority;
+    //return p->_territoriesToDefend_priority;
     
 }
 
 
 
 
-vector<Territory*> HumanPlayerStrategy::toAttack(Player *p){
+void HumanPlayerStrategy::toAttack(Player *p){
 
     std::cout << "Which territory you would like to attack?" << "\n";
     std::cout << "You can attack: " << "\n";
@@ -111,7 +111,7 @@ vector<Territory*> HumanPlayerStrategy::toAttack(Player *p){
 
     p->arbitraryTerritoriesToAttack.push_back(p->getMap()->getTerritory(user_input));
 
-    return p->arbitraryTerritoriesToAttack;
+    //return p->arbitraryTerritoriesToAttack;
   
 }
 
@@ -128,12 +128,12 @@ void AggressivePlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2,
 }
 
 //MUST IMPLEMENT
-vector<Territory*> AggressivePlayerStrategy::toAttack(Player *p){
+void AggressivePlayerStrategy::toAttack(Player *p){
     
 }
 
 //MUST IMPLEMENT
-vector<Territory*> AggressivePlayerStrategy:: toDefend(Player *p){
+void AggressivePlayerStrategy:: toDefend(Player *p){
     
 }
 
@@ -173,7 +173,7 @@ void BenevolentPlayerStrategy::issueOrder(int orderName, Player* p1, Player* p2,
 
 
 
-vector<Territory*> BenevolentPlayerStrategy::toDefend(Player *p) {
+void BenevolentPlayerStrategy::toDefend(Player *p) {
     
     vector<Territory*> toDefend = p->getTerritories();
     
@@ -181,13 +181,14 @@ vector<Territory*> BenevolentPlayerStrategy::toDefend(Player *p) {
     for (Territory* terr : p->getTerritories())
         std::cout << terr->getName() << "\n";
 
-    return p->_territoriesToDefend_priority;
+   // return p->_territoriesToDefend_priority;
     
 }
 
 
-vector<Territory*> BenevolentPlayerStrategy::toAttack(Player *p){
-    return p->arbitraryTerritoriesToAttack;
+void BenevolentPlayerStrategy::toAttack(Player *p){
+    std::cout << "neutral player never attack" << std::endl;
+	//return p->arbitraryTerritoriesToAttack;
     
 }
 
